@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/contractbook-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: authorization
+  type: http
+  scheme: bearer
+  description: 'Bearer API key created in Contractbook profile settings (shown only once on
+    creation) and passed as ''Authorization: Bearer YOUR_API_KEY''. Separate keys exist for
+    the staging and production environments. API access is a paid add-on available on the Centralize
+    and Accelerate plans.'
+  sources:
+  - openapi/contractbook-openapi.json
+  - https://api.contractbook.com/v3/docs

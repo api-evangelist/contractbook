@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Contractbook
+providerId: contractbook
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Contract Management
+- CLM
+- Contract Lifecycle
+- Legal
+- eSignature
+- Rate Limiting
+- Quotas
+description: Contractbook does not publish fixed numeric rate limits for its Public API v3.
+  API access is sold as a plan add-on subject to 'fair usage limits', and effective throughput
+  is bounded by plan-level contract-volume and template allowances (for example, signed-contracts-per-year
+  caps on each subscription tier) rather than a documented per-minute request cap. Webhook delivery
+  for document life-cycle events is asynchronous with automated retries, so notifications may
+  arrive more than once, delayed, or out of order.
+notes: No numeric per-account or per-endpoint request-rate limits are documented as of the review
+  date; the 'fair usage limits' language on the pricing page is the only stated constraint.
+  Confirm any enforced limits and 429 behavior with Contractbook (help-public-api@contractbook.dk)
+  during reconciliation.
+sources:
+- https://api.contractbook.com/v3/docs
+- https://contractbook.com/pricing
+responseCodes:
+  throttled: 429
+limits:
+- name: Public API Requests
+  scope: account
+  metric: requests
+  limit: not published (fair usage)
+  notes: No fixed numeric request-rate limit is documented; API access is a fair-usage add-on.
+- name: Signed Contracts
+  scope: account
+  metric: contracts
+  limit: per plan (e.g. 100/350/500 per year)
+  notes: Plan-level annual signed-contract allowance effectively bounds contract creation volume.
+- name: Templates
+  scope: account
+  metric: templates
+  limit: per plan (e.g. 5/15/25)
+  notes: Number of templates available is capped by subscription tier.
+- name: Webhook Delivery
+  scope: endpoint
+  metric: notifications
+  limit: asynchronous with retries
+  notes: Document life-cycle webhooks are delivered asynchronously and may duplicate, delay,
+    or reorder.
+policies:
+- name: Fair Usage
+  description: API access add-on is governed by fair-usage limits rather than a published numeric
+    quota.
+- name: Webhook Verification
+  description: After receiving a webhook, confirm document state via an authenticated GET /documents/{id}
+    call to guard against spoofed or duplicate notifications.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After
+    on any 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,100 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Contractbook
+providerId: contractbook
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Contract Management
+- CLM
+- Contract Lifecycle
+- Legal
+- eSignature
+- FinOps
+- Cost Management
+- FOCUS
+description: FinOps view of Contractbook spend. Contractbook is a SaaS contract lifecycle management
+  subscription billed primarily on seats plus contract volume, with Public API access sold as
+  a paid add-on on the Centralize and Accelerate plans (and Custom/enterprise). Cost drivers
+  are the plan tier, number of users/seats, annual signed-contract volume, template count, and
+  the API add-on itself. There is no per-API-call metered fee documented; API usage is governed
+  by fair-usage limits within the subscription.
+notes: List prices and API add-on terms are indicative and quote-based; verify on the pricing
+  page and with sales. FOCUS mapping below is a best-effort model of a seat-plus-volume SaaS
+  subscription, not a reconciled billing export.
+sources:
+- https://contractbook.com/pricing
+- https://api.contractbook.com/v3/docs
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Contractbook
+serviceCategory: Contract Lifecycle Management
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Contractbook CLM
+  ServiceCategory: Contract Lifecycle Management
+  ProviderName: Contractbook
+  PublisherName: Contractbook
+  InvoiceIssuerName: Contractbook
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: seats
+  description: Licensed users on the subscription plan.
+  unit: seats
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+- name: signed_contracts
+  description: Contracts signed per year against the plan allowance.
+  unit: contracts
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: templates
+  description: Templates provisioned, capped by plan tier.
+  unit: templates
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+- name: api_addon
+  description: Public API access add-on enabled on the subscription.
+  unit: flat
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+principles:
+- name: Visibility
+  description: Track seats, annual signed-contract volume, and whether the API add-on is enabled
+    per account and plan tier.
+- name: Allocation
+  description: Map seats and contract volume to teams (legal, sales, HR, procurement) using
+    Contractbook spaces.
+- name: Optimization
+  description: Right-size the plan tier to actual signed-contract volume and seat count; only
+    add the API add-on where automated contract generation justifies it.
+- name: Accountability
+  description: Assign an owner for the subscription; review annual renewal against contract-volume
+    and API-usage trends.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

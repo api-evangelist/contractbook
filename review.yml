@@ -1,0 +1,98 @@
+aid: contractbook
+name: Contractbook
+review:
+  question: Does Contractbook expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-11'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: 'No AsyncAPI document was authored. Contractbook''s Public API v3 is request/response
+    REST over HTTPS (base https://api.contractbook.com/v3), documented with an OpenAPI 3.0 description
+    at /v3/docs. Its only server-push surface is an outbound HTTP webhook that notifies a client-configured
+    callback URL of document life-cycle events (created/updated/signed). That is server-to-endpoint
+    HTTP callbacks, not a WebSocket or SSE stream on Contractbook''s own API, so there is no
+    server-push transport on Contractbook''s API to model as AsyncAPI.
+
+    '
+findings:
+  summary: 'Contractbook does not publish a documented public WebSocket API. Contractbook is
+    a contract lifecycle management (CLM) platform. Its Public API v3 is pure request/response
+    REST over HTTPS at https://api.contractbook.com/v3, authenticated with a Bearer API key
+    in the Authorization header, and described by an OpenAPI 3.0 document at https://api.contractbook.com/v3/docs
+    (openapi-v3.json). The documented resources are Documents (contracts), Templates, Automations,
+    Spaces, Attachments, and Document sharing. Contractbook delivers document life-cycle notifications
+    via outbound HTTP webhooks to a client callback URL - these are unauthenticated HTTP POST
+    callbacks (optionally guarded by an access_token query parameter), not a WebSocket. No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is documented on Contractbook''s
+    API as of the review date.
+
+    '
+  openSource: 'Contractbook''s platform is proprietary SaaS; there is no open-source server.
+    Public API access is a paid add-on gated to the Centralize, Accelerate, and Custom plans
+    (not the entry Essential plan). A deprecated Apiary blueprint (contractbook.docs.apiary.io)
+    now redirects to the current v2/v3 docs at api.contractbook.com.
+
+    '
+  transports:
+  - protocol: REST
+    scheme: https
+    baseURL: https://api.contractbook.com/v3
+    documented: true
+    note: Public API v3, OpenAPI 3.0. Bearer API-key auth. A prior v2 lives at https://api.contractbook.com
+      (/v2/... paths).
+  - protocol: Webhook
+    scheme: https
+    documented: true
+    note: Outbound HTTP callbacks on document created/updated/signed to a client URL; unauthenticated
+      by default, optional access_token query param. Not WebSocket.
+  - protocol: WebSocket
+    scheme: wss
+    documented: false
+    note: No WebSocket endpoint is documented anywhere in Contractbook's Public API v2/v3 OpenAPI
+      or docs as of the review date.
+  endpointsConfirmedRest:
+  - GET    https://api.contractbook.com/v3/documents
+  - GET    https://api.contractbook.com/v3/documents/{id}
+  - PATCH  https://api.contractbook.com/v3/documents/{id}
+  - DELETE https://api.contractbook.com/v3/documents/{id}
+  - GET    https://api.contractbook.com/v3/documents/{id}/pdf
+  - POST   https://api.contractbook.com/v3/documents/{id}/send
+  - POST   https://api.contractbook.com/v3/documents/{id}/share
+  - DELETE https://api.contractbook.com/v3/documents/{id}/share
+  - GET    https://api.contractbook.com/v3/templates
+  - GET    https://api.contractbook.com/v3/templates/{id}
+  - POST   https://api.contractbook.com/v3/templates/{id}/create_document
+  - GET    https://api.contractbook.com/v3/automations
+  - POST   https://api.contractbook.com/v3/automations/{id}/run
+  - POST   https://api.contractbook.com/v3/spaces/{id}
+  - GET    https://api.contractbook.com/v3/spaces/{id}/tree
+  - POST   https://api.contractbook.com/v3/upload
+sources:
+- url: https://api.contractbook.com/v3/docs
+  type: Documentation
+  note: Public API v3 Stoplight docs; OpenAPI 3.0 at /v3/docs/public/v3/openapi-v3.json. REST
+    base https://api.contractbook.com/v3, Bearer auth. No WebSocket.
+- url: https://api.contractbook.com/v2/docs
+  type: Documentation
+  note: Prior Public API v2 (OpenAPI 2.0-titled, OpenAPI 3.0 doc); base https://api.contractbook.com
+    with /v2/... paths. REST only.
+- url: https://contractbook.com/pricing
+  type: Pricing
+  note: Plans (Essential/Centralize/Accelerate/Custom); API access is a paid add-on on Centralize+
+    with fair-usage limits.
+- url: https://support.contractbook.com/knowledge/how-to-generate-api-keys-on-contractbook-1
+  type: Documentation
+  note: API keys generated in profile settings; may be locked depending on plan.
+- url: https://contractbook.docs.apiary.io/
+  type: Documentation
+  note: Deprecated Apiary blueprint; redirects to current api.contractbook.com docs.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: 'No WebSocket protocol surface exists. Contractbook''s Public API v3 is request/response
+    REST (OpenAPI 3.0), and its only push mechanism is outbound HTTP webhooks to a client callback
+    URL for document life-cycle events. No AsyncAPI document was created because there is no
+    server-push streaming transport (WebSocket or SSE) on Contractbook''s own API to model;
+    the webhook is captured separately as a modeled Webhooks artifact.
+
+    '

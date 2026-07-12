@@ -1,0 +1,51 @@
+specification: API Commons Webhooks
+specificationVersion: '0.1'
+provider: Contractbook
+providerId: contractbook
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+modeled: true
+tags:
+- Webhooks
+- Notifications
+- Events
+- Contract Lifecycle
+- CLM
+description: 'Contractbook Public API v3 documents a webhook mechanism for document life-cycle
+  events: when a document is created, updated, or signed, Contractbook sends an HTTP request
+  to a client-configured callback URL. This lets integrations react to contract state changes
+  instead of polling GET /documents/{id}. Webhook subscriptions are configured within Contractbook
+  (profile/automation configuration) rather than through documented CRUD endpoints in the OpenAPI,
+  so the event catalog below is HONESTLY MODELED from the documented notification behavior and
+  may not be exhaustive.'
+security: Webhook callbacks are UNAUTHENTICATED by default. Contractbook recommends adding an
+  access_token query parameter to the callback URL (for example https://example.com/hook?access_token=SECRET)
+  and, on receipt, confirming the document's true state with an authenticated GET /documents/{id}
+  call to detect spoofed or duplicate notifications.
+delivery:
+  transport: HTTP
+  authenticated: false
+  retries: true
+  ordering: not guaranteed
+  notes: Asynchronous delivery with automated retries; notifications may arrive more than once,
+    delayed, or out of order.
+events:
+- name: document.created
+  modeled: true
+  description: A document (contract/draft) was created.
+- name: document.updated
+  modeled: true
+  description: A document's data or state changed.
+- name: document.signed
+  modeled: true
+  description: A document was signed by a party (life-cycle completion event).
+sources:
+- https://api.contractbook.com/v3/docs
+notes: Event names are modeled labels for the documented 'created, updated or signed' life-cycle
+  notifications; Contractbook does not publish a formal event-type enum or a webhook-management
+  REST resource in the Public API v3 OpenAPI. Verify exact payload shape and available event
+  types with help-public-api@contractbook.dk.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

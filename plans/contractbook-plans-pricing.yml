@@ -1,0 +1,119 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Contractbook
+providerId: contractbook
+created: '2026-07-11'
+modified: '2026-07-11'
+reconciled: false
+tags:
+- Contract Management
+- CLM
+- Contract Lifecycle
+- Legal
+- eSignature
+- Plans
+description: 'Contractbook sells seat-and-volume subscription plans for its contract lifecycle
+  management platform. Public API access is not a standalone product: it is a paid add-on available
+  on the Centralize and Accelerate plans (and Custom/enterprise), and is not available on the
+  entry Essential plan. Plan prices below reflect list pricing observed on the pricing page
+  at the review date and can change; treat them as indicative, not reconciled.'
+notes: API access is gated by plan and offered as an add-on with 'fair usage limits'. Exact
+  add-on pricing is quote-based / not publicly listed. Verify current tiers, seat counts, contract
+  volumes, and API add-on terms on the pricing page during reconciliation.
+sources:
+- https://contractbook.com/pricing
+- https://api.contractbook.com/v3/docs
+- https://support.contractbook.com/knowledge/how-to-generate-api-keys-on-contractbook-1
+plans:
+- id: contractbook-essential
+  name: Essential
+  type: paid
+  description: Entry plan for a single user and low contract volume. Includes the AI contract
+    assistant. Does NOT include Public API access.
+  entries:
+  - label: Subscription
+    name: essential_subscription
+    type: flat
+    metric: seat
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: list ~ USD 599/mo billed annually (verify)
+    userMultiplied: false
+  elements:
+  - name: 1 User
+  - name: Up to 100 Signed Contracts / Year
+  - name: 5 Templates
+  - name: AI Contract Assistant
+  - name: No API Access
+- id: contractbook-centralize
+  name: Centralize
+  type: paid
+  description: Team plan adding AI-powered data extraction and higher volumes. Public API access
+    is available as a paid add-on.
+  entries:
+  - label: Subscription
+    name: centralize_subscription
+    type: flat
+    metric: seat
+    limit: 5
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: list pricing on pricing page (verify)
+    userMultiplied: true
+  elements:
+  - name: 5 Users
+  - name: Up to 350 Signed Contracts / Year
+  - name: 15 Templates
+  - name: AI Data Extraction
+  - name: API Access (Paid Add-On)
+  - name: Zapier / Make Integrations (Add-On)
+- id: contractbook-accelerate
+  name: Accelerate
+  type: paid
+  description: Higher-tier team plan including automations and larger volumes. Public API access
+    is available as a paid add-on.
+  entries:
+  - label: Subscription
+    name: accelerate_subscription
+    type: flat
+    metric: seat
+    limit: 10
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: list ~ USD 599/mo billed annually (verify)
+    userMultiplied: true
+  elements:
+  - name: 10 Users
+  - name: Up to 500 Signed Contracts / Year
+  - name: 25 Templates
+  - name: Automations
+  - name: API Access (Paid Add-On)
+- id: contractbook-custom
+  name: Custom / Enterprise
+  type: enterprise
+  description: Tailored plan with consultancy-led setup, dedicated Customer Success support,
+    custom volumes, and negotiated API terms. Contact Contractbook sales.
+  entries:
+  - label: Enterprise Agreement
+    name: custom
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volumes and Seats
+  - name: 1:1 Customer Success Manager
+  - name: Consultancy-Led Onboarding
+  - name: Negotiated API Terms
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,493 @@
+{
+  "info": {
+    "name": "Contractbook API v3",
+    "description": "Contractbook Public API v3 - contract lifecycle management. Manage documents (contracts), templates, automations, spaces, and attachments, send contracts for e-signature, and receive document life-cycle webhooks. Base URL: https://api.contractbook.com/v3. All requests require a Bearer API key in the Authorization header. Grounded in the official OpenAPI at https://api.contractbook.com/v3/docs.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.contractbook.com/v3",
+      "type": "string"
+    },
+    {
+      "key": "bearerToken",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Get a list of documents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents"
+              ]
+            },
+            "description": "List documents (contracts) and drafts in the workspace, with filtering and pagination."
+          }
+        },
+        {
+          "name": "Get a document",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieve a single document (contract) by ID, including parties, signees, and data fields."
+          }
+        },
+        {
+          "name": "Update a document",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Update a document's data fields and metadata.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        },
+        {
+          "name": "Delete a document",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Delete a document by ID."
+          }
+        },
+        {
+          "name": "Get a PDF copy of a document",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/pdf",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id",
+                "pdf"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Download a PDF copy of the document/contract."
+          }
+        },
+        {
+          "name": "Send a document for signature",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/send",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id",
+                "send"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Send a document out for electronic signature.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Document sharing",
+      "item": [
+        {
+          "name": "Share a document",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/share",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id",
+                "share"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Share a document with collaborators.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        },
+        {
+          "name": "Unshare a document",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/documents/:id/share",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "documents",
+                ":id",
+                "share"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Revoke collaborator access to a document."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Templates",
+      "item": [
+        {
+          "name": "Get a list of templates",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/templates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "templates"
+              ]
+            },
+            "description": "List reusable contract templates in the workspace."
+          }
+        },
+        {
+          "name": "Get a template",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/templates/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "templates",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieve a single template by ID."
+          }
+        },
+        {
+          "name": "Create a new document from a template",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/templates/:id/create_document",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "templates",
+                ":id",
+                "create_document"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Generate a new pre-filled draft document (contract) from a template.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Automations",
+      "item": [
+        {
+          "name": "Get a list of automations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/automations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "automations"
+              ]
+            },
+            "description": "List the automations configured in the workspace."
+          }
+        },
+        {
+          "name": "Run an automation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/automations/:id/run",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "automations",
+                ":id",
+                "run"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Trigger a specific automation to run.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Spaces",
+      "item": [
+        {
+          "name": "Create a child space",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/spaces/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "spaces",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Create a child space under the given space.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        },
+        {
+          "name": "Get a space tree",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/spaces/:id/tree",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "spaces",
+                ":id",
+                "tree"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            },
+            "description": "Retrieve the tree of spaces beneath the given space."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attachments",
+      "item": [
+        {
+          "name": "Upload an attachment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/upload",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "upload"
+              ]
+            },
+            "description": "Upload a file to attach to a document.",
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
