@@ -182,6 +182,8 @@ apis:
     than through documented CRUD endpoints in the Public API v3 OpenAPI, so this API is honestly
     modeled from the documented notification behavior.
 common:
+- type: AgenticAccess
+  url: agentic-access/contractbook-agentic-access.yml
 - type: Authentication
   url: authentication/contractbook-authentication.yml
 - type: LinkedIn
