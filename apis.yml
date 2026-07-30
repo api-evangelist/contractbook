@@ -9,7 +9,20 @@ description: Contractbook is a contract lifecycle management (CLM) platform that
   run automations, upload attachments, and receive webhook notifications on document life-cycle
   events. Contractbook covers the full contract lifecycle - drafting, negotiation, signing,
   storage, and post-signature management - for legal, sales, HR, and procurement teams.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/contractbook.png
 tags:
 - Contract Management
 - CLM
@@ -23,140 +36,6 @@ created: '2026-07-11'
 modified: '2026-07-11'
 specificationVersion: '0.19'
 apis:
-- aid: contractbook:contractbook-documents-api
-  name: Contractbook Documents API
-  tags:
-  - Contracts
-  - Documents
-  - CLM
-  - Contract Lifecycle
-  - eSignature
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs
-  baseURL: https://api.contractbook.com/v3
-  properties:
-  - url: https://api.contractbook.com/v3/docs
-    type: Documentation
-  - url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
-    type: APIReference
-  - &id001
-    url: openapi/contractbook-openapi.json
-    type: OpenAPI
-  - &id002
-    url: collections/contractbook.postman_collection.json
-    type: PostmanCollection
-  - &id003
-    url: collections/contractbook.opencollection.json
-    type: OpenCollection
-  description: The core contract lifecycle surface. List and filter contracts and drafts,
-    retrieve a single document, update its data fields, delete it, download a signed PDF copy,
-    and send a document out for electronic signature. In Contractbook's model a contract is
-    a 'document', so this is the primary Contract Management / CLM entry point.
-- aid: contractbook:contractbook-templates-api
-  name: Contractbook Templates API
-  tags:
-  - Templates
-  - Contract Templates
-  - CLM
-  - Document Generation
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs
-  baseURL: https://api.contractbook.com/v3
-  properties:
-  - url: https://api.contractbook.com/v3/docs
-    type: Documentation
-  - url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
-    type: APIReference
-  - *id001
-  - *id002
-  - *id003
-  description: List and retrieve the reusable contract templates in a workspace, and generate
-    a new pre-filled draft document from a template (POST /templates/{id}/create_document).
-    This is how integrations mass-produce contracts from data in an upstream system such as
-    a CRM or HRIS.
-- aid: contractbook:contractbook-document-sharing-api
-  name: Contractbook Document Sharing API
-  tags:
-  - Sharing
-  - Collaboration
-  - Permissions
-  - CLM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs
-  baseURL: https://api.contractbook.com/v3
-  properties:
-  - url: https://api.contractbook.com/v3/docs
-    type: Documentation
-  - url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
-    type: APIReference
-  - *id001
-  - *id002
-  - *id003
-  description: Grant and revoke collaborator access to a document. Share a contract with internal
-    or external collaborators (POST /documents/{id}/share) and unshare it (DELETE /documents/{id}/share)
-    to control who can view or work on a given contract.
-- aid: contractbook:contractbook-automations-api
-  name: Contractbook Automations API
-  tags:
-  - Automations
-  - Workflows
-  - CLM
-  - Approval Workflows
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs
-  baseURL: https://api.contractbook.com/v3
-  properties:
-  - url: https://api.contractbook.com/v3/docs
-    type: Documentation
-  - url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
-    type: APIReference
-  - *id001
-  - *id002
-  - *id003
-  description: List the automations configured in a workspace and trigger a specific automation
-    to run (POST /automations/{id}/run). Automations drive contract-lifecycle workflows -
-    reminders, approvals, and event-based actions - defined in Contractbook's Automation Builder.
-- aid: contractbook:contractbook-spaces-api
-  name: Contractbook Spaces API
-  tags:
-  - Spaces
-  - Organization
-  - Folders
-  - CLM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs
-  baseURL: https://api.contractbook.com/v3
-  properties:
-  - url: https://api.contractbook.com/v3/docs
-    type: Documentation
-  - url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
-    type: APIReference
-  - *id001
-  - *id002
-  - *id003
-  description: Organize contracts into a hierarchy of spaces. Retrieve the space tree (GET
-    /spaces/{id}/tree) and create child spaces (POST /spaces/{id}) to structure a workspace's
-    documents by team, department, or matter.
-- aid: contractbook:contractbook-attachments-api
-  name: Contractbook Attachments API
-  tags:
-  - Attachments
-  - Uploads
-  - Files
-  - CLM
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs
-  baseURL: https://api.contractbook.com/v3
-  properties:
-  - url: https://api.contractbook.com/v3/docs
-    type: Documentation
-  - url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
-    type: APIReference
-  - *id001
-  - *id002
-  - *id003
-  description: Upload a file (POST /upload) to attach supporting material - appendices, signed
-    copies, exhibits - to a contract in Contractbook.
 - aid: contractbook:contractbook-document-webhooks
   name: Contractbook Document Webhooks
   tags:
@@ -166,21 +45,190 @@ apis:
   - CLM
   - Contract Lifecycle
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://api.contractbook.com/v3/docs#section/Use-cases/Scenario-7.-Receiving-notifications-for-document-life-cycle-events
+  humanURL: >-
+    https://api.contractbook.com/v3/docs#section/Use-cases/Scenario-7.-Receiving-notifications-for-document-life-cycle-events
   baseURL: https://api.contractbook.com/v3
   properties:
   - url: https://api.contractbook.com/v3/docs
     type: Documentation
   - url: webhooks/contractbook-webhooks.yml
     type: Webhooks
-  description: Contractbook's document life-cycle notification (webhook) mechanism. When a
-    document is created, updated, or signed, Contractbook sends an HTTP request to a client-configured
-    callback URL, letting integrations react to contract state changes instead of polling.
-    Webhook payloads are unauthenticated by default; an access_token query parameter can be
-    added to the callback URL, and recipients are advised to confirm state via an authenticated
-    GET /documents/{id} call. Webhook subscriptions are configured in Contractbook rather
-    than through documented CRUD endpoints in the Public API v3 OpenAPI, so this API is honestly
+  description: >-
+    Contractbook's document life-cycle notification (webhook) mechanism. When a document is created, updated,
+    or signed, Contractbook sends an HTTP request to a client-configured callback URL, letting integrations
+    react to contract state changes instead of polling. Webhook payloads are unauthenticated by default;
+    an access_token query parameter can be added to the callback URL, and recipients are advised to confirm
+    state via an authenticated GET /documents/{id} call. Webhook subscriptions are configured in Contractbook
+    rather than through documented CRUD endpoints in the Public API v3 OpenAPI, so this API is honestly
     modeled from the documented notification behavior.
+- aid: contractbook:contractbook-attachments-api
+  name: Contractbook Attachments API
+  description: The Attachments API from Contractbook — 1 operation(s) for attachments.
+  humanURL: https://api.contractbook.com/v3/docs
+  baseURL: https://api.contractbook.com/v3
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/contractbook-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://api.contractbook.com/v3/docs
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
+  - type: PostmanCollection
+    url: collections/contractbook.postman_collection.json
+  - type: OpenCollection
+    url: collections/contractbook.opencollection.json
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
+- aid: contractbook:contractbook-automations-api
+  name: Contractbook Automations API
+  description: The Automations API from Contractbook — 2 operation(s) for automations.
+  humanURL: https://api.contractbook.com/v3/docs
+  baseURL: https://api.contractbook.com/v3
+  tags:
+  - Automations
+  properties:
+  - type: OpenAPI
+    url: openapi/contractbook-automations-api-openapi.yml
+  - type: Documentation
+    url: https://api.contractbook.com/v3/docs
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
+  - type: PostmanCollection
+    url: collections/contractbook.postman_collection.json
+  - type: OpenCollection
+    url: collections/contractbook.opencollection.json
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
+- aid: contractbook:contractbook-document-sharing-api
+  name: Contractbook Document sharing API
+  description: The Document sharing API from Contractbook — 1 operation(s) for document sharing.
+  humanURL: https://api.contractbook.com/v3/docs
+  baseURL: https://api.contractbook.com/v3
+  tags:
+  - Document sharing
+  properties:
+  - type: OpenAPI
+    url: openapi/contractbook-document-sharing-api-openapi.yml
+  - type: Documentation
+    url: https://api.contractbook.com/v3/docs
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
+  - type: PostmanCollection
+    url: collections/contractbook.postman_collection.json
+  - type: OpenCollection
+    url: collections/contractbook.opencollection.json
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
+- aid: contractbook:contractbook-documents-api
+  name: Contractbook Documents API
+  description: The Documents API from Contractbook — 5 operation(s) for documents.
+  humanURL: https://api.contractbook.com/v3/docs
+  baseURL: https://api.contractbook.com/v3
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/contractbook-documents-api-openapi.yml
+  - type: Documentation
+    url: https://api.contractbook.com/v3/docs
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
+  - type: PostmanCollection
+    url: collections/contractbook.postman_collection.json
+  - type: OpenCollection
+    url: collections/contractbook.opencollection.json
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
+- aid: contractbook:contractbook-spaces-api
+  name: Contractbook Spaces API
+  description: The Spaces API from Contractbook — 2 operation(s) for spaces.
+  humanURL: https://api.contractbook.com/v3/docs
+  baseURL: https://api.contractbook.com/v3
+  tags:
+  - Spaces
+  properties:
+  - type: OpenAPI
+    url: openapi/contractbook-spaces-api-openapi.yml
+  - type: Documentation
+    url: https://api.contractbook.com/v3/docs
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
+  - type: PostmanCollection
+    url: collections/contractbook.postman_collection.json
+  - type: OpenCollection
+    url: collections/contractbook.opencollection.json
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
+- aid: contractbook:contractbook-templates-api
+  name: Contractbook Templates API
+  description: The Templates API from Contractbook — 2 operation(s) for templates.
+  humanURL: https://api.contractbook.com/v3/docs
+  baseURL: https://api.contractbook.com/v3
+  tags:
+  - Templates
+  properties:
+  - type: OpenAPI
+    url: openapi/contractbook-templates-api-openapi.yml
+  - type: Documentation
+    url: https://api.contractbook.com/v3/docs
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20documents
+  - type: PostmanCollection
+    url: collections/contractbook.postman_collection.json
+  - type: OpenCollection
+    url: collections/contractbook.opencollection.json
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20templates
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Share%20a%20document
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20list%20of%20automations
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Get%20a%20space%20tree
+  - type: APIReference
+    url: https://api.contractbook.com/v3/docs#/operations/Upload%20an%20attachment
 common:
 - type: AgenticAccess
   url: agentic-access/contractbook-agentic-access.yml
