@@ -1,0 +1,24 @@
+{
+  "provider": "contractbook",
+  "sources": [
+    "contractbook-attachments-api-openapi.yml",
+    "contractbook-automations-api-openapi.yml",
+    "contractbook-document-sharing-api-openapi.yml",
+    "contractbook-documents-api-openapi.yml",
+    "contractbook-spaces-api-openapi.yml",
+    "contractbook-templates-api-openapi.yml"
+  ],
+  "outputs": [
+    "contractbook-attachments-api-openapi.yml",
+    "contractbook-automations-api-openapi.yml",
+    "contractbook-document-sharing-api-openapi.yml",
+    "contractbook-documents-api-openapi.yml",
+    "contractbook-spaces-api-openapi.yml",
+    "contractbook-templates-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
