@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Contractbook Attachments Automations API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Automations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of automations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/automations",
+            "params": [
+              {
+                "name": "trigger_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "trigger_filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of automations"
+        },
+        {
+          "info": {
+            "name": "Runs a specific automation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.contractbook.com/v3/automations/:id/run",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Automation ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Note: Currently for this endpoint we only support those automations that have \"Salesforce flow is executed\" as a trigger"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

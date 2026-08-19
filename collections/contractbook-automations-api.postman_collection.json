@@ -1,0 +1,748 @@
+{
+  "item": [
+    {
+      "id": "5a9e2acc-586b-4165-8bf2-6b315c145e0a",
+      "name": "Automations",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f25bb8bf-7b70-4a1b-a737-6d292ce5feac",
+          "name": "Get a list of automations",
+          "request": {
+            "name": "Get a list of automations",
+            "description": {
+              "content": "",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "trigger_type",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "object_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "record_type_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4fb3e8c6-8aca-4544-86b4-54b7ce8a2da2",
+              "name": "List of automations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trigger_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "Opportunity"
+                    },
+                    {
+                      "key": "record_type_id",
+                      "value": "0060900000FpKajAAF"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"automations\": [\n    {\n      \"id\": \"6b6314b6-56f9-4454-869a-84c96682cea9\",\n      \"inserted_at\": \"1953-12-01T10:27:25.257Z\",\n      \"name\": \"Generate Employment agreement\",\n      \"published\": true,\n      \"updated_at\": \"2016-11-27T12:18:32.627Z\"\n    },\n    {\n      \"id\": \"6b6314b6-56f9-4454-869a-84c96682cea9\",\n      \"inserted_at\": \"2017-01-07T03:53:48.550Z\",\n      \"name\": \"Generate Employment agreement\",\n      \"published\": true,\n      \"updated_at\": \"1970-08-13T20:48:48.042Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bcc4ba0-c5a0-429c-b34f-fafd5752bff2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trigger_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "Opportunity"
+                    },
+                    {
+                      "key": "record_type_id",
+                      "value": "0060900000FpKajAAF"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_request\",\n    \"message\": \"Bad Request\",\n    \"failures\": [\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      },\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e5a27ed-3e1b-41b2-adf7-6ff975ab664f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trigger_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "Opportunity"
+                    },
+                    {
+                      "key": "record_type_id",
+                      "value": "0060900000FpKajAAF"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eff6d2a5-37fc-4889-9701-ee8ecc71c58e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trigger_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "Opportunity"
+                    },
+                    {
+                      "key": "record_type_id",
+                      "value": "0060900000FpKajAAF"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Forbidden\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71fe3859-8997-4c69-b2e7-2693d139876e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trigger_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "Opportunity"
+                    },
+                    {
+                      "key": "record_type_id",
+                      "value": "0060900000FpKajAAF"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"not_found\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d770bf0e-f22a-4cf5-8631-ab8cde8fd86c",
+              "name": "Unprocessable request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "trigger_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object_type",
+                      "value": "Opportunity"
+                    },
+                    {
+                      "key": "record_type_id",
+                      "value": "0060900000FpKajAAF"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unprocessable_entity\",\n    \"message\": \"Unprocessable Content\",\n    \"failures\": [\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      },\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3992fbca-174d-43a1-ac7c-a0eaa6cab2f8",
+          "name": "Runs a specific automation",
+          "request": {
+            "name": "Runs a specific automation",
+            "description": {
+              "content": "Note: Currently for this endpoint we only support those automations that have \"Salesforce flow is executed\" as a trigger",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "automations",
+                ":id",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) Automation ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"object_type\": \"<string>\",\n  \"object_id\": \"<string>\",\n  \"attachments\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"contacts\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e79dd978-ee79-4d70-977a-9b298b409cf3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Automation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"Opportunity\",\n  \"object_id\": \"0060900000FpKajAAF\",\n  \"attachments\": [\n    \"https://contractbook.com/file.pdf\"\n  ],\n  \"contacts\": [\n    \"0030900000Ujt0BAAR\",\n    \"0030900000Ujt0GAAR\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b2ce249-2933-4f60-aff1-c79f876ea06e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Automation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"Opportunity\",\n  \"object_id\": \"0060900000FpKajAAF\",\n  \"attachments\": [\n    \"https://contractbook.com/file.pdf\"\n  ],\n  \"contacts\": [\n    \"0030900000Ujt0BAAR\",\n    \"0030900000Ujt0GAAR\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"bad_request\",\n    \"message\": \"Bad Request\",\n    \"failures\": [\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      },\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c3fd20d-e2e9-4a73-af3f-a5319b9bfe58",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Automation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"Opportunity\",\n  \"object_id\": \"0060900000FpKajAAF\",\n  \"attachments\": [\n    \"https://contractbook.com/file.pdf\"\n  ],\n  \"contacts\": [\n    \"0030900000Ujt0BAAR\",\n    \"0030900000Ujt0GAAR\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unauthorized\",\n    \"message\": \"Unauthorized\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2344724c-0f94-4753-aff0-166654ad5bca",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Automation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"Opportunity\",\n  \"object_id\": \"0060900000FpKajAAF\",\n  \"attachments\": [\n    \"https://contractbook.com/file.pdf\"\n  ],\n  \"contacts\": [\n    \"0030900000Ujt0BAAR\",\n    \"0030900000Ujt0GAAR\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"forbidden\",\n    \"message\": \"Forbidden\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d6b3067-6756-4e43-af3e-a192a4f8877f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Automation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"Opportunity\",\n  \"object_id\": \"0060900000FpKajAAF\",\n  \"attachments\": [\n    \"https://contractbook.com/file.pdf\"\n  ],\n  \"contacts\": [\n    \"0030900000Ujt0BAAR\",\n    \"0030900000Ujt0GAAR\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"not_found\",\n    \"message\": \"Not Found\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5508af78-8af2-447d-982a-f6d711101de6",
+              "name": "Unprocessable request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "automations",
+                    ":id",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) Automation ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object_type\": \"Opportunity\",\n  \"object_id\": \"0060900000FpKajAAF\",\n  \"attachments\": [\n    \"https://contractbook.com/file.pdf\"\n  ],\n  \"contacts\": [\n    \"0030900000Ujt0BAAR\",\n    \"0030900000Ujt0GAAR\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"unprocessable_entity\",\n    \"message\": \"Unprocessable Content\",\n    \"failures\": [\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      },\n      {\n        \"title\": \"string\",\n        \"detail\": \"string\",\n        \"source\": {\n          \"pointer\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.contractbook.com/v3/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0e4b450c-e1de-4eb2-9eb5-6cd999f4ae69",
+    "name": "Contractbook Attachments Automations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "> **Note**\n>\n> Looking for documentation for **Public API v2**? Click [here](https://api.contractbook.com/v2/docs).\n>\n>\n> Please, provide your feedback via `#help-public-api` channel at [Contractbook Friends](https://contractbook-friends.slack.com/join/shared_invite/zt-953ed23n-oboQCnDCZIO4CyBjkF4iAg#/shared-invite/email)\n> Slack or by sending an email at [help-public-api@contractbook.dk](mailto:help-public-api@contractbook.dk).\n\n## Table of Contents\n\n- [Introduction](#introduction)\n- [Migration from Public API v2](#migration-from-public-api-v2)\n- [Authentication](#authentication)\n- [Use cases](#use-cases)\n  - [Scenario 1: Sending multiple contracts for signature](#scenario-1-sending-multiple-contracts-for-signature-based-on-a-single-document-template)\n  - [Scenario 2: Uploading attachments to a document](#scenario-2-uploading-attachments-to-a-document)\n  - [Scenario 3: Deleting a document](#scenario-3-deleting-a-document)\n  - [Scenario 4: Using data fields](#scenario-4-using-data-fields)\n  - [Scenario 5: Downloading the contract as PDF](#scenario-5-downloading-the-contract-as-pdf)\n  - [Scenario 6: Sharing a document with collaborators](#scenario-6-sharing-a-document-with-collaborators)\n  - [Scenario 7: Receiving notifications for document life-cycle events](#scenario-7-receiving-notifications-for-document-life-cycle-events)\n- [Appendix A: Enhancing the /v3/documents](#appendix-a---enhancing-the-v3documents)\n\n\n## Introduction\n\nContractbook turns static contracts into a database for your entire\norganization, unlocking the full value of your data while ensuring transparency\nand a seamless data flow between tools.\n\nOur API allows you to generate pre-filled drafts from any data source, stay\nupdated on contract activity, and quickly export an overview of all contracts\nand drafts.\n\n> Note: Whenever your user needs to access the Contractbook editor, we expect\n> you to redirect their browser to the appropriate page.\n\n<!-- vale Microsoft.HeadingAcronyms = NO -->\n## Migration from Public API v2\n<!-- vale Microsoft.HeadingAcronyms = YES -->\n\nPublic API v3 introduces several breaking changes focused on simplifying the document and template structure.\n\n### Restructured parties and signees\n\nThe most significant change is the restructuring of document parties and signees. In v2, you had two separate but overlapping structures that created data redundancy:\n\n- `visible_parties`: Basic party info (name, address, type, reference, number)\n- `parties`: Signee details with redundant company/personal fields\n\nIn v3, this has been unified and simplified:\n- **v2 `visible_parties`** → **v3 `parties`**: Contains essential party information\n- **v2 `parties`** → **v3 `signees`**: Nested within parties, contains only signee-related information\n\n**Field changes in the restructuring:**\n- `personal_title` (personal party) and `representative_title` (company party) → unified as `title` in signees\n- `company_representative` (company party) → `full_name` in signees\n- **Removed redundant fields**: `company_address`, `company_name`, `company_number`, `personal_number` (already available in the parent party)\n- **Removed internal references**: `user_id`, `profile_id`, `visible_party_id`\n\n**Signee structure** now contains only signee-related information:\n- `email`, `full_name`, `title`,`order`, `signature_verification_methods`\n- `signed_at`, `opened_at`, `rejected_at`, `changes_requested_at`\n\n### Other removed attributes**\n\n**From documents:**\n- `folders` (folders are deprecated in favor of workspaces)\n\n**From templates:**\n- `target_shared_folder` (folders are deprecated in favor of workspaces)\n- Party structure follows the same pattern as documents\n\n### Migration strategy\n\nWhen migrating from v2 to v3:\n\n1. **Update all endpoint URLs** by replacing `/v2/` with `/v3/`\n2. **Restructure party data** in your requests and response handling:\n   - Map `visible_parties` to `parties`\n   - Move signee information from old `parties` to `signees` array within each party\n3. **Remove deprecated fields** from your payloads (company_*, personal_*, representative_* fields)\n4. **Update response parsing** to handle the new nested signee structure\n5. **Test thoroughly** as the party/signee relationship is now more structured\n\n## Authentication\n\nTo use the API, you'll need to get your own API key. For that, log into\nContractbook and navigate to your profile settings. There you can create an API\nkey which is going to be shown only once upon creation.\n\nThere are two environments for API:\n\n* **[staging](https://api-staging.contractbook.com/v3/docs)**: this environment should\n  only be used for testing purposes only. Here's where you'll be spending most of\n  your time when developing new features for your app(s).\n\n  To obtain an account on staging environment, please contact [help-public-api@contractbook.dk](mailto:help-public-api@contractbook.dk)\n  or ping the team on Slack (see detail at the top of this page).\n\n* **[production](https://api.contractbook.com/v3/docs)**: when you're ready to release\n  your feature, you can switch your app(s) from staging environment to production\n  environment.\n\n> Note: If your application consist of multiple self-sufficient services, it's\n> recommended to use separate tokens for different subparts of your system to be\n> able to revoke them in a more granular way.\n\n## Use cases\n\nPublic API v3 offers an unprecedented level of flexibility when creating and managing documents on Contractbook platform. Examples for how to use the API are presented below.\n\n### Scenario 1. Sending multiple contracts for signature, based on a single document template\n\nOftentimes it's useful to prepare a single document to serve as a template, then send multiple copies of that document for signature to different parties. it's possible to implement this scenario by employing Public API v3. Below is a step-by-step guide how to implement this:\n\n1. Using in-browser document editor, prepare a common template putting \"placeholders\" across it, make note of its id; \"placeholders\" are places in the document text that will be substituted with actual values during template->draft creation process,\n\n2. Prepare request data containing values to put in the placeholders and party details,\n\n3. Use `template_id` obtained in step 1 to create a draft by issuing an HTTP request to the API,\n\n    > **Note**\n    >\n    > To better understand the distinction between the draft and template, see \"[The difference between a draft and a template](https://contractbook.freshdesk.com/support/solutions/articles/206000046352-the-difference-between-a-draft-and-a-template)\"\n\n4. Use `document_id` obtained in step 3 to send the draft for signature by issuing an HTTP request to the API, effectively converting draft into contract pending a signature.\n\nBelow is a closer look at these steps:\n\n1. **visit https://app.contractbook.com, find, open and edit the desired template using the in-browser editor**.\n\n    There are a few things to keep in mind while preparing the template:\n\n      * refer to \"[How to create a contract template from scratch](https://contractbook.freshdesk.com/support/solutions/articles/206000046197-how-can-i-create-a-template-from-scratch-)\" for exhaustive tutorial on how to create templates,\n\n      * be sure to turn text that must be customized by employing \"**Data fields**\" functionality (see \"Using data fields\" scenario for more details on using data fields); later, when preparing the payload for an HTTP API call, actual values to be put in place of data fields will have to be set in the `data_fields` list of maps,\n\n      * while technically this step could be done through an API endpoint too, there's currently no API endpoint to create a template.\n\n        This limitation exists mainly due to the contents of template - what you see in the UI when viewing the template, being a Prosemirror-compatible AST, represented in a JSON format. it's considered an implementation detail such that isn't to be relied on. Contractbook is constantly working on evolving the document format, and is unable to provide a guarantee for the format to not change in future.\n\n        However, if you find yourself still in need of setting the contents of template, consider scenario called \"Creating a draft specifying the contents of the document\"\n\n      * if you choose to use the conditions functionality available in the template editor, it will be resolved in the same way in the Public API as it is when using the Contractbook app. If the data field value used in a condition is provided when creating a document from a template, it will be used to resolve the condition. If the value is not present, the condition will be resolved as `false`, and the content that is guarded by the condition will not be included in the created document.\n\n      * after creating the template, make sure to save the template ID from browser's address bar. For the purpose of this example, a template with ID value of <nobr>`1c843255-9203-4e46-9030-cb966b94359b`</nobr> is used,\n\n2. **create draft by sending a `POST` HTTP request to `/v3/templates/:id/create_document` API endpoint** using desired payload. In the request examples below tools called `curl` (to make HTTP requests) and `jq` (to extract the ID of resulting draft by parsing the JSON from the HTTP response) are used:\n\n    * create the first draft from the template and save the value of `document_id` from response:\n\n        ```shell\n        curl https://api-staging.contractbook.com/v3/templates/1c843255-9203-4e46-9030-cb966b94359b/create_document \\\n          --request POST \\\n          --header \"Content-Type: application/json\" \\\n          --oauth2-bearer \"<access_token>\" \\\n          --silent \\\n          --data '{\n            \"document\": {\n              \"data_fields\": [],\n              \"message\": {\n                \"content\": \"Hi, Kenneth! Please review and sign this.\"\n              },\n              \"parties\": [\n                {\n                  \"address\": \"3722 Crestview Terrace, Del Rio, TX 78840\",\n                  \"id\": \"e5300b40-3053-4d0e-a881-182cd3b31a57\",\n                  \"name\": \"Paul C. Caudillo\",\n                  \"number\": \"409-645-2567\",\n                  \"reference\": \"Sender\",\n                  \"signees\": [\n                    {\n                      \"email\": \"paul@example.com\",\n                      \"full_name\": \"Paul C. Caudillo\",\n                      \"id\": \"2da88cc0-3158-4541-af34-bd633591c31a\",\n                      \"order\": 0,\n                      \"title\": \"CEO\"\n                    }\n                  ],\n                  \"type\": \"company\"\n                },\n                {\n                  \"address\": \"664 Campfire Ave. Lemont, IL 60439\",\n                  \"id\": \"7ca7c4f9-56f4-4d4d-b016-d8391b2375a4\",\n                  \"name\": \"Kenneth B. Rojas\",\n                  \"number\": \"412-786-7983\",\n                  \"reference\": \"Recipient\",\n                  \"signees\": [\n                    {\n                      \"email\": \"kenneth@example.com\",\n                      \"full_name\": \"Kenneth B. Rojas\",\n                      \"id\": \"cdf01430-4da0-4768-b3be-c8800f6aba9f\",\n                      \"order\": 1,\n                      \"title\": \"Dr.\"\n                    }\n                  ],\n                  \"type\": \"personal\"\n                }\n              ],\n              \"signing_order_mode\": \"strict\",\n              \"title\": \"Cooperation agreement between X and Y\",\n              \"to_be_signed_by\": \"others_only\"\n            }\n          }'\n        ```\n\n    * create the second draft from the template and save the value of `document_id` from response:\n\n        ```shell\n        curl https://api-staging.contractbook.com/v3/templates/1c843255-9203-4e46-9030-cb966b94359b/create_document \\\n          --request POST \\\n          --header \"Content-Type: application/json\" \\\n          --oauth2-bearer \"<access_token>\" \\\n          --silent \\\n          --data '{\n            \"document\": {\n              \"data_fields\": [],\n              \"message\": {\n                \"content\": \"Hi, Kenneth! Please review and sign this.\"\n              },\n              \"parties\": [\n                {\n                  \"address\": \"3722 Crestview Terrace, Del Rio, TX 78840\",\n                  \"id\": \"e5300b40-3053-4d0e-a881-182cd3b31a57\",\n                  \"name\": \"Paul C. Caudillo\",\n                  \"number\": \"409-645-2567\",\n                  \"reference\": \"Sender\",\n                  \"signees\": [\n                    {\n                      \"email\": \"paul@example.com\",\n                      \"full_name\": \"Paul C. Caudillo\",\n                      \"id\": \"2da88cc0-3158-4541-af34-bd633591c31a\",\n                      \"order\": 0,\n                      \"title\": \"CEO\"\n                    }\n                  ],\n                  \"type\": \"company\"\n                },\n                {\n                  \"address\": \"664 Campfire Ave. Lemont, IL 60439\",\n                  \"id\": \"7ca7c4f9-56f4-4d4d-b016-d8391b2375a4\",\n                  \"name\": \"Kenneth B. Rojas\",\n                  \"number\": \"412-786-7983\",\n                  \"reference\": \"Recipient\",\n                  \"signees\": [\n                    {\n                      \"email\": \"kenneth@example.com\",\n                      \"full_name\": \"Kenneth B. Rojas\",\n                      \"id\": \"cdf01430-4da0-4768-b3be-c8800f6aba9f\",\n                      \"order\": 1,\n                      \"title\": \"Dr.\"\n                    }\n                  ],\n                  \"type\": \"personal\"\n                }\n              ],\n              \"signing_order_mode\": \"strict\",\n              \"title\": \"Cooperation agreement between X and Y\",\n              \"to_be_signed_by\": \"others_only\"\n            }\n          }'\n        ```\n\n    * please note that it is possible to set the allowed signature verification methods for each signee. This can be done by specifying them in `signature_verification_methods` field, as defined in the `DocumentCreateRequest` schema.\n\n    > **Note**\n    >\n    > It worth mentioning, that at this point it's possible to open the drafts in UI, and perform a review or edit the draft contents. This may be useful in document workflow scenarios that depend on manual approval of documents to be sent for signature.\n    >\n    > This \"pause\" in the flow could also be used to upload file attachments to the draft, either from UI or via API, such that have to differ from attachments in the original templates, if any.\n\n3. the response contains two drafts with IDs `bd272a06-6ee3-4d49-9e73-f7a129b5c673` and `f6ee8b19-cfda-44eb-acf5-b53d28871ea5` respectively. Now, turn each draft into contract pending a signature by sending a `POST` HTTP request to `/v3/documents/:id/send` API endpoint:\n\n    * send the first contract:\n\n        ```shell\n        curl https://api-staging.contractbook.com/v3/documents/bd272a06-6ee3-4d49-9e73-f7a129b5c673/send \\\n          --request POST \\\n          --oauth2-bearer \"<access_token>\" \\\n          --header \"Content-Type: application/json\" \\\n          --silent\n        ```\n\n    * send the second contract:\n\n        ```shell\n        curl https://api-staging.contractbook.com/v3/documents/f6ee8b19-cfda-44eb-acf5-b53d28871ea5/send \\\n          --request POST \\\n          --oauth2-bearer \"<access_token>\" \\\n          --header \"Content-Type: application/json\" \\\n          --silent\n        ```\n\nAt this point depending on the draft signature order settings, one or more recipients will receive an email informing them of a new document pending their signature.\n\nA few things to keep in mind:\n\n* typically, the signee receives an email with link to signing the document. It's possible to expose the link to sign the document in the response of the `POST /v3/documents/:id/send` HTTP API request.\n\n   Exposing the signing link, however requires an additional agreement to be signed between Contractbook and the party who's willing to integrate. The agreement states that integrator takes responsibility for handling this signing link and verifying that the user has provided an email address they have access to.\n\n   After the agreement is signed, the API key used by integrator will be granted special permission, which will expose the signing link located at `.contract.parties[].preview_url` in the HTTP response.\n\n* when the contract contains multiple parties, by default parties will sign the contract in what's known as a \"strict\" order: in an order they're displayed when viewing the contract from the UI.\n\n   In cases when strict order of signing isn't necessary, it may be desirable, for example to shorten the time before the document is fully signed, to send it to all parties for signature, at once. This way parties will sign the contract in a non-determined order.\n\n   The order can be changed during the `POST /v3/documents/:id/send` HTTP API request, via an option called `signing_order_mode`. This option takes one of three values:\n\n   * `random` signing order (also known as signing out of order) means all signees will receive the contract for signing at the same time and there is no order of signing imposed\n   * `strict` signing order means only the first signee will gain access to the contract and only once they sign the second signee will receive access to the contract and once the second signee signs the next signee gains access until all signed.\n   * `grouped` signing order is a mix of the previous two modes. Signees will be grouped and these groups will have a signing order. However, within the same group, signees can sign in a non-determined order.\n\n* it is possible to redirect the signee to a custom URL once the contract has been signed. However, in order to do so, you will need to contact the Contractbook support team. Currently, it is not possible to set the `redirect_url` parameter via the Public API. This setting applies to the API key that is used for Public API requests. Once the setting has been applied, all contracts created with that API key will have the specified redirect behavior after being signed.\n\n### Scenario 2. Uploading attachments to a document\n\nAlong with the document itself, it's oftentimes useful to bundle some files to be signed with document as a single package. For example, the text of the document may refer to some other media, such as images or PDF files, that must be taking into account during the signature process. In the context of document such uploads are called \"attachments.\" Public API v3 offers a way to upload files, attaching them to the document to be signed and thus allowing for scenarios like this.\n\nNote, that documents to which file scan be attached, include:\n\n- a draft created in UI,\n- a draft created using API,\n- a draft created from template using API.\n\nThere's virtually no difference between drafts created from UI and by employing API.\n\nBelow is a step-by-step guide how to attach two files to a document.\n\n1. upload file (or files) by sending a `POST` HTTP request to `/v3/upload` API endpoint containing the file. After a successful upload, store the response:\n\n\n    *\n        ```shell title=\"Request example 1\"\n        curl https://api-staging.contractbook.com/v3/upload \\\n          --request POST \\\n          --oauth2-bearer \"<access_token>\" \\\n          --silent \\\n          --form \"file=/tmp/rfc1149.txt.pdf\"\n        ```\n\n        ```json title=\"Response example 1\"\n        {\n          \"original\": \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/7305c1f5-e494-4427-bce9-6485d445932b/rfc1149.txt.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135916Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=7a6170358dfb8da424d3af1036b5c59defc5ee2040bdbef0cc4444bf134b6f194697932b8d1f6334bc2eefdd28a4faf6a7748c047224d20fbecf5ff3051e622debec330aa2265d34893e25972f0c8cc6017833d0702034969b26fceaf33112a34ba8baaf34b00f9464dd3803c00f6a2cb425cb188f154cb94248bffc136f9f5c21c7326dc2325e878d3b5b291f73a9d9b0fda1247ae37c679716aeb2635f9132b23c1a05b810f9776c0ca0aabffdd28e203dca4d23ff511c0f43cc132ce6973eb3687d49c97cb37d41a67aacdf2b5a3e6ca27fb9ba34da1a7b4229e09c158f2f2ed4295333a82320081c4906f3b918d5095de30ad4000536a31d1ae7865ede07d5beb25861289014212fbb93900d6cedd451258e5a3e13cb805b9368d71d0b35f539980b7b367e1b59fb3712f9949df599adfb180b58836c27a531ff88587b47cefb86eb32012ae51134fc858967f4ee2dd43ff702e31f3d77ce0bd74c90bf42f39bb670ffc2e5d3a1d8fd216a3668831be0863dcdf17c1f59cf3ddb1765a6b0cfbfbc346e61d937369c3d57daa845a4aea4a303436a4b20b7ab966f7432353f881cd04f358f7593c53cdea88c6bca035718bbfdd54c098fb25d06007a1788b59d2b610197b94b39ee897d8d55050f959e7051613d2c0ee9a4ab05b211da7d3e2727436d7dc6ee3ee2b07219cfd7fb6b5c26732ef618d69105616999a346e89d\",\n          \"preview\": [\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/7305c1f5-e494-4427-bce9-6485d445932b/preview/preview-001.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135917Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=6f2b24e15e4f0300ea79ded51432f4e12e85e979d18e47052cde403336a5016d6d6f00b4973af204e6fd95576ecccce4e93c9e266100864adf73c7fbb479cca2d0342fff85f9a0978ad47326de465b7ea6edafff4edccbd18f1a25e76a0b639c7cd98c68c9679ebbfb6490fc4b31009cbb2340ee47032b267c1da353b8d078ef641cfbb2bf892a69917f01e4b87c613a3202b2d28a2b36b6e8c1603b02bff84c96003836f6e1b5698d1aae3faa7e488db85c1f2defda416f93119e6a73b58b7d772129e3118f9ebf994e1ece58916baabdcc19a1df7aea6d53966f98e903f47f00b24e939e62657e56aef97d6243269be70b740f0c8746cc07afa4bc8ab31d2e0e62ccc06d63a43c482590efe55a82e53949eaad332daa196f6990c6705d4e76f4d548a8c6a3bd0345c135bf2ba32e8b1aeab6521348008b71a2ae318d50227e4d22a06cfdc582cfaa6efc6396ddf59c2460861e49bfc1aed009acdb22fc18d9adebe01fa5682aed3978cbc8553fc0f104978db062afc510c7b32bb61ea93532602c912cc02bedb1b3e4a95500888f1ef1e67f6a2fb060484c194b6ffa3a42879401dc14e940e407dee4a0cf38d83af2c8296b7accfb731215b52ada4747552c9fd35c6af6869cc7c5dc70138a3a1d406b4405fb6f42d16c7f63965386aac4feabb7a38eb402982763f84034e66bc303500875303ef89f1f2bff782f4e5fed77\",\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/7305c1f5-e494-4427-bce9-6485d445932b/preview/preview-002.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135917Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=7eeb48316088f9dd77c16e9caa78010705d1df4390b9d54256d318ad51a653f155b891e3699f792603103ab4d915ab01f9b31b768d797929740d0e0292b76c388f2f45111af6ec79092eae267dfdf9747cbf97051fcb39b793528446cf51885ca0d049c7956d2ed065b0bdd494de6bc0272f4ee039ed564259fe2056d8bcab76e16ae27c2ad433c2f89c58665c2ce26e7604d8fdd47f5730b2067e44268bd8c8684d3ec3b9baf7271462152729c9ce0df13d874bfd03422274936aab35537d6b41e3033fe30e4990f95eaca9b36aa569c7d01b21220304da620f163e1d26cc2b2dd95fa240cecf94a8d05c829ab962d091ad857e0947ea456d9f7cd1f922eb28289273625a1f1ac48ef1a5b6b730759af72898e2d97f4845c52b1aed808fd55d75b21cd0be9963b4b771ee48e0f300eb1dbdca82923909c89a501fad6d294bd1912cc8829494d9a27ffb64c0a8bca02a58ed7d5942dac084222019f1257e9ea75a3f7358b91b758f3a2dba8ae7bd264ff428021fb70cd8e05f08b3465a2c85ed6eb31fd3ef2117291a2f9bc7fb8e421c9fdb8b25f2cfe28fd39b72f1a33c13a8f0f7071df96b4c35bb77ce12b52c639500ccd622d063f823dba180d48c7137c62b876a5980bcc6392d899a2ec84c5cf64f77ad683cfd357819515b669de877654bf8e213e73c04df2d613bf522f5c6675518211eb6fb7e9ea39b0cbb12463357\"\n          ]\n        }\n        ```\n\n    *\n        ```shell title=\"Request example 2\"\n        curl https://api-staging.contractbook.com/v3/upload \\\n          --request POST \\\n          --oauth2-bearer \"<access_token>\" \\\n          --silent \\\n          --form \"file=/tmp/rfc2346.txt.pdf\"\n        ```\n\n        ```json title=\"Response example 2\"\n        {\n          \"original\": \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/rfc2346.txt.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135917Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=656753c0d2e0a3c0c87bff8c2e9ac9244c7a254ee0c81f95bdca69a2c1b796287c64dd5803c61fc0ef9bd371e4d63a9908141b1ec28a96f2f6a195d7f8c4b3edb6e1da491474c697dfa6d93f771651ea03701eba4ea111dd60b36fe1111fe868539a4cd4ce8b49c04506d2d9f02caf25f33f98db787aca3f7b02ba7d74953e8dbcfb15598e810274252a6322d07604dbd015da51f663a52de6643500e0fb40145e69910b9ec00ca49ae76248947657adb6db624075545ed6edfbdb1e03f8a160a8b76f800ec8c40f5f64c14e10630364edf42aa4859913b8da10627d59e4826048b83256ea94e94d79d82c92553ec004c1a975f5c1eec50220ac021c0abd954c6825b4652c13aac87b4d5a7758e0318e69825e18af1e0f8bfd77021e8f6ce3d383723ad346053dea4404276e010de9e10cc3338073ed82456024092467d4bb5bd403beaedaeedcecc7b9467a031c30f01dfd65bbb256192b51775220adb40a4c696b169b8d961360e9173557fe15b1286c9d59abb02d9b5b4e7814f1091fc5033e0c548e0ad04047ee318d1e60565e999967cf856a55892ad51e6902064339782a4d467ea556b4623cb58c659c7412e9ecb7c810cc81e21eeba2d59fbb4bf5fb59a7e6e414937b9227642881f036a14bbfee61aa3e42d29dc7d4989e8b7f330029aaee0e0a16779ae6d4d65e54f4b94e9d08c7fc7af0b545dfa9dff9669a0756\",\n          \"preview\": [\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-001.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=b97dcad3c613004ca9b297e26af6fbf0ea82a82bac097d44a5c7e4ef3486cb63f87f3aaad016350a2c6e85d0009a09b77711837c61630c1f7ee4c1e8db23df531dbc559f9066e6f27ebe7f3ede938cb0bbf9ddde35367e69d8cedd7ef654d4dda1959e2fb66cae837365b254c764444a77b330b29870b58962855bc9c99933c7779a19bbedd285ba791a0ae24a8e204e31271e9f44862d9db20d891d2fba50b9c63f5137f9c9cc993d5c181d6f3e9b57b3a824db70f09c66831f26428f63879452627871f8ebe0b6ba79dc49cd2f6a35f2862e381477757f4a4e4bb2bba32f4b2991d126770e4175c84030604494111cdda6e36e0a347d0b5903330efd85078e6077ad1ac7ae9a84d2d3a6b030989e30d5fbf976f7f2a965dcccd6e7b203290b97494ef2e5c0c15e109f4342127998f928cdff2cd3bd6591fd6ae6fff4282213956127515a3ae2cd304407cd5f8701672e8be855017e0fe5676e46b0a42b4713303a4861d0cc4192f3b6bfb54908a1fa5afee3eceebfb83ee7e2c1068631432493d8216c8bbe3c1522cf9653e3f2e99f73995c957d1a6f33e76d344edc7fbf7f66b7c8bb95be2c9bb3798808f3f1674cb096817e3a07a9ef831fd68a55d9f4241c668f1d2a9ff2d49ae2d56b7648f2bb51eaa91710e04b862340bb1971715e677d6aa4d54e068cdd4af2682fb41de9f7d09a47298c2fef0d369ec63f6f32a65d\",\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-002.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=98a210b7dd1d733670325618da9f5d91a64d369a82c3aeb443e91f2444a1a6e3ba17a052bca017a57fe6440d5b15cfd1f0c6000a7a1a8767a28ad5606280076fe1480e1838f63fc6b5435f6f24909357b4bd9fce9f1714296edf91bd6631116ba93952587fd6a5dacb0a56979e98daa5cbd7bb544f3f77aed97c5b80c334aa753551658b240aa5558bec4e0ad645d69fd508039525d4fefa3a4af8e89c465480f75bb79c3dfb623649767f6442b81d3f54d6e398afc3a6ac1f1ad59a983f6310ab70ec441c7c529d6a11576a50be449ebafa8f8749f1ec13d67f8c3d5cb1e09558ce17c4ab556d60b599d423f8acc121b3061a6348cb061f2643e5e02bef74f853cafc750711a285fd37830274c5c2ae066e203324bcc766901ebdc3d1710b412888ad81b3edd5823dab6577dbb6210ae0f88e604ba2aca585bd07d340fc3b8a38696075e8025ae85ee02423152dc39a5c858fc7a564471c9d44a089ef36c382e41630631c9fc82fd20f096883b17ef7fa42393fcd922103789ef21199c2e15efc9f25053024c422101c2198a1254edeb2c49e389d067a0711e658c977bdcea480e8a362ee1fce081d60fa4437b900732f51c604e4add7bdd6fc5554d47aef2c7821638232e1c31da51bedc06ae693887020806094c901d5618188df3d657c32b2c0aacd009660f60be0aede50b7c3edb6474ac421c6b94ad4384e7d8905df53\",\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-003.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=29e4d42b4eae2ff0f1caae7bfbf56ec06235de561044088a92534bfea4891b32034801f2f77a86344661b36a74c08f11851a31c119b8930cf200fff815035bee9d002255aa1425177a4f649b03fdc81de0ed53b09d05d28788c5002f0c0a82146b4d2466a4bb1c0f11816a1972712d36a1a00f2873b6c9c51854f7045120f7be2cb524888340b9c7d4c7d8cb1630ddae7dbcd3121681d91f398617c2b19420ca7ec77cd15bf772481385a0317142db137169470572f9ef7ee9409cbbda9b3bfceaea4745a92a25625a897cc2d472430382daadad6cd6615ddb46f6791a7065fc2d88d2e66532e0c4626259b595d6df83d4e81fdd2696ffb810069ff3f4a272c4dcc9e0969c8354b6764a52c3b9e20ce49cc9c48145b0ed7610bca60e33dbb77d4c975730a9d6df8d3fca1014e453e1cfd68d535c801f88c35c3bc0a168c9b0d2daeee50ca72193f94cc137da3d7878666718cb03597670e0ab6d26e03cc343988a44755c436dafe4925370a2bd3ba581c8ed5995d12b06cd4409b871a26e636378c554e1bfe0870690e4c3493dc84798405a4d4b08fb2ef5ca6ced4930620fa016203b72af3b8637dcd239137653f8df5803b77baca3072e1a6974d6f589afabdbc591b502eb8a9b7fa580c0125e1626bbb84b5a96fca5850a6d7d08a6e884d99593488bf5529e68f9ea9102279426f06fd9f1e462a8c22a173c7ee44b9145f3\",\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-004.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=5309f1a2fe306ba7f4c180e71cb4d2cefb24e9890eccab18402e8b9f4f0a688329430ed06d1e047e628f8b868ea77874299c9e15b8517a54b257a0626a8d3ee9124fc40d90961b3a76e269238a1a0933472c867fc137555c802224caf12547a1e0db99a6c833c0a514712177ebe4cb68dbcc6e1dda433b7bd07b7d480d61e01208f143cf5de36caf54fed9767827d9575c19d4f6d3cbfb8c5877fe08c0ecbc5e13b769583f503756ce243fea76d9a9312beb501ed65dfd87c28e92d02d613af4c059abcfdb0173711c80d179c511455e2ae18d80300fef396b623bf11fc7d0dfcc9e513262174db90619b4ddea472a5746fa5bf830fc677af6b66ff7ad531d5768bc253bdba32a8b6ffdfd756cddfac15bed38fcf7d3b5124017e7d716299dc8885a9b69e814be29c0c4486faed302024a7ba07dfcbbb9557f2f0ccf267e9ee82803bc26332ed098aa654cfe00a0ce45ac42c644d8a049f0452e9c193aedf3dafb1cdd4e08cbc50340cc89a9b2909e8ff8cf0891865d0bb2b118ef438173a4595f953edce037ca97082fc9b1928145d5c03adaab26bcdf4041ba3bb74a34cd13f2be9d0049b231d996671607b5e1ebe83bf57f320e9da6796f98b1980ee20e71a0d8b518ec8ebd64ae7293e973eed41727171d476fc9e012f3847b1b53f5cda9ae49ff3df3365a48f355838fc2a6b47a8a6d2ca19f4de0db0f2bac6f18296a72\",\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-005.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=33a3819cd56116e1424301aed8bc76bfd262b3ddec89267da0f7c633ab057773af8d0f3828d5f195787f21dd9018a2e48a1caa965d293ebb799b5172aef62b65de5fd9802b71c8cdcacbdd92b3c77f1b395efb5ca8a1eb47e05b977d36331fc7d6eb93927e6f55bae01fa845304c4c5f5d0de634a1a1afa801d11a7460e35cb35e1c2d4b82af702b21834cd5eea5cb41cc7b141190b168bf76a1bcb344364271722e4c5290f38ac210c0376f074d889103141a608824428310f4be725172c536c21da9e912c6c9b871052a2c04decdb628eefe56e4159e9c43a225ae59b08618ba6d7e669059c3224060672e7d31bada6bc5957dea6c6cc438f0c186c5342e0f7efcc238a247beae5644c6892649e1f7c0b8a58102dbb657fecafb0bb66db53785f67452f88a74848e9d09953bc7089324173dd7df1fbdb4ff32f74b05a5cf5f5e226e312dbdde030e89a2916ae8da87733bf483adc8d3414d0cda8eae163a354935d083c76b1724a7f73c9dc70d6e1cf2c30bbb789deee2b5d50455e685ed2aa6ae80c541ff047f67ecc48d2416ad9d9da7cf0ddb5e8ab5225b0e8d2641f328a50e8bbcb91b51f5d51befab2d922a88bd7b4ea3cb71e662f94e09508ef0018d21d379c545f0423bf494f9d38918c9b61863392084f06f557c291e65c3dac679870a09af0d5c2f56d0be9d56a0250f9e1dd2f376c75208384ecf8d49ae5741b2\",\n            \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-006.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=23e344a76ae26b50fca5d96da6720d2e3e5f5d558dbab361ee97ba7639eb06622d0d9d5159abbc349838b69cd097dca2eb03082eaa2e01834d48a9b8ba7fa9df7bd76965d7661b5c4cb9ead256c4dfdb28c9dfe67107bb037f84d238fb061e386a937b313fdf3cddf4de8e6fc5dfd6946d70f1a6e93198917f90525b5a07d2e411ab3fa4debae97c151bcf8015e1deba554595f3621b802f9bddf1fe67987876ca8869e3a7848f15ca55080802502e1b7f28d66f30e2aa16233754c88bdbc6d0f9b52e09c2a7fb2e4fd9f7a4462c5d7d9bbb8012e93120e901fd2b5a94cb1fb671e6d437fbddd2278bbfab814f57b7941a7ea6eb5e74db190134bcdd27fdc2f13963f7545686a6a9dc8467ebb7500efe813e87c3545d708c3ff9e2c5b9578c3ba6e7dba3e59875656f367e184fa2561a0bb1160c0cde1814b7472c90e5546683efd31d54f08f730ab04a28db6da6f1dda5809aeab51d0bd94cf6230b7c262043a0a2d311e0826cbbc930149db5ca7a28fb89dd55e1a27a28d9a9b307582f4be556c65949d0d87a7e73acba05910bef7ea75e19c9a09ff83935b04b1f6bd1a0bb4fc7ce3234603aeb563c8a362efe2a57d6c3bd6bb559f548f4014dc78f5bd7c5222f1cda76817467dd79bc85a717ef65290043e54341f92ff60a3268389a2dea1cc22570df3ed35499647323a0e085bcdf37e39328c9b275ef9935652f071fce\"\n          ]\n        }\n        ```\n\n    > **Note**\n    >\n    > While preview addresses could be copied and shared, they're not protected by additional authentication mechanisms. It's up to integrator to take care and not expose these URLs to undesirable viewers. At the same time, because part of preview addresses is a UUID string, guessing it by undesirable viewers is virtually impossible.\n\n2. having an ID of existing draft (for the purpose of this example, an ID with a value of <nobr>`bf1c3b9e-2786-4efb-b0b1-1860d935431b`</nobr> is used), update it by setting `attachments` field:\n\n    ```shell\n    curl https://api-staging.contractbook.com/v3/documents/bf1c3b9e-2786-4efb-b0b1-1860d935431b \\\n      --request PATCH \\\n      --header \"Content-Type: application/json\" \\\n      --oauth2-bearer \"<access_token>\" \\\n      --silent \\\n      --data '{\n        \"document\": {\n          \"version\": \"74129abd-36c0-4dac-9d55-4f5be15e226e\",\n          \"attachments\": [\n            {\n              \"original\": \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/7305c1f5-e494-4427-bce9-6485d445932b/rfc1149.txt.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135916Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=7a6170358dfb8da424d3af1036b5c59defc5ee2040bdbef0cc4444bf134b6f194697932b8d1f6334bc2eefdd28a4faf6a7748c047224d20fbecf5ff3051e622debec330aa2265d34893e25972f0c8cc6017833d0702034969b26fceaf33112a34ba8baaf34b00f9464dd3803c00f6a2cb425cb188f154cb94248bffc136f9f5c21c7326dc2325e878d3b5b291f73a9d9b0fda1247ae37c679716aeb2635f9132b23c1a05b810f9776c0ca0aabffdd28e203dca4d23ff511c0f43cc132ce6973eb3687d49c97cb37d41a67aacdf2b5a3e6ca27fb9ba34da1a7b4229e09c158f2f2ed4295333a82320081c4906f3b918d5095de30ad4000536a31d1ae7865ede07d5beb25861289014212fbb93900d6cedd451258e5a3e13cb805b9368d71d0b35f539980b7b367e1b59fb3712f9949df599adfb180b58836c27a531ff88587b47cefb86eb32012ae51134fc858967f4ee2dd43ff702e31f3d77ce0bd74c90bf42f39bb670ffc2e5d3a1d8fd216a3668831be0863dcdf17c1f59cf3ddb1765a6b0cfbfbc346e61d937369c3d57daa845a4aea4a303436a4b20b7ab966f7432353f881cd04f358f7593c53cdea88c6bca035718bbfdd54c098fb25d06007a1788b59d2b610197b94b39ee897d8d55050f959e7051613d2c0ee9a4ab05b211da7d3e2727436d7dc6ee3ee2b07219cfd7fb6b5c26732ef618d69105616999a346e89d\",\n              \"preview\": [\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/7305c1f5-e494-4427-bce9-6485d445932b/preview/preview-001.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135917Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=6f2b24e15e4f0300ea79ded51432f4e12e85e979d18e47052cde403336a5016d6d6f00b4973af204e6fd95576ecccce4e93c9e266100864adf73c7fbb479cca2d0342fff85f9a0978ad47326de465b7ea6edafff4edccbd18f1a25e76a0b639c7cd98c68c9679ebbfb6490fc4b31009cbb2340ee47032b267c1da353b8d078ef641cfbb2bf892a69917f01e4b87c613a3202b2d28a2b36b6e8c1603b02bff84c96003836f6e1b5698d1aae3faa7e488db85c1f2defda416f93119e6a73b58b7d772129e3118f9ebf994e1ece58916baabdcc19a1df7aea6d53966f98e903f47f00b24e939e62657e56aef97d6243269be70b740f0c8746cc07afa4bc8ab31d2e0e62ccc06d63a43c482590efe55a82e53949eaad332daa196f6990c6705d4e76f4d548a8c6a3bd0345c135bf2ba32e8b1aeab6521348008b71a2ae318d50227e4d22a06cfdc582cfaa6efc6396ddf59c2460861e49bfc1aed009acdb22fc18d9adebe01fa5682aed3978cbc8553fc0f104978db062afc510c7b32bb61ea93532602c912cc02bedb1b3e4a95500888f1ef1e67f6a2fb060484c194b6ffa3a42879401dc14e940e407dee4a0cf38d83af2c8296b7accfb731215b52ada4747552c9fd35c6af6869cc7c5dc70138a3a1d406b4405fb6f42d16c7f63965386aac4feabb7a38eb402982763f84034e66bc303500875303ef89f1f2bff782f4e5fed77\",\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/7305c1f5-e494-4427-bce9-6485d445932b/preview/preview-002.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135917Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=7eeb48316088f9dd77c16e9caa78010705d1df4390b9d54256d318ad51a653f155b891e3699f792603103ab4d915ab01f9b31b768d797929740d0e0292b76c388f2f45111af6ec79092eae267dfdf9747cbf97051fcb39b793528446cf51885ca0d049c7956d2ed065b0bdd494de6bc0272f4ee039ed564259fe2056d8bcab76e16ae27c2ad433c2f89c58665c2ce26e7604d8fdd47f5730b2067e44268bd8c8684d3ec3b9baf7271462152729c9ce0df13d874bfd03422274936aab35537d6b41e3033fe30e4990f95eaca9b36aa569c7d01b21220304da620f163e1d26cc2b2dd95fa240cecf94a8d05c829ab962d091ad857e0947ea456d9f7cd1f922eb28289273625a1f1ac48ef1a5b6b730759af72898e2d97f4845c52b1aed808fd55d75b21cd0be9963b4b771ee48e0f300eb1dbdca82923909c89a501fad6d294bd1912cc8829494d9a27ffb64c0a8bca02a58ed7d5942dac084222019f1257e9ea75a3f7358b91b758f3a2dba8ae7bd264ff428021fb70cd8e05f08b3465a2c85ed6eb31fd3ef2117291a2f9bc7fb8e421c9fdb8b25f2cfe28fd39b72f1a33c13a8f0f7071df96b4c35bb77ce12b52c639500ccd622d063f823dba180d48c7137c62b876a5980bcc6392d899a2ec84c5cf64f77ad683cfd357819515b669de877654bf8e213e73c04df2d613bf522f5c6675518211eb6fb7e9ea39b0cbb12463357\"\n              ]\n            },\n            {\n              \"original\": \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/rfc2346.txt.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135917Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=656753c0d2e0a3c0c87bff8c2e9ac9244c7a254ee0c81f95bdca69a2c1b796287c64dd5803c61fc0ef9bd371e4d63a9908141b1ec28a96f2f6a195d7f8c4b3edb6e1da491474c697dfa6d93f771651ea03701eba4ea111dd60b36fe1111fe868539a4cd4ce8b49c04506d2d9f02caf25f33f98db787aca3f7b02ba7d74953e8dbcfb15598e810274252a6322d07604dbd015da51f663a52de6643500e0fb40145e69910b9ec00ca49ae76248947657adb6db624075545ed6edfbdb1e03f8a160a8b76f800ec8c40f5f64c14e10630364edf42aa4859913b8da10627d59e4826048b83256ea94e94d79d82c92553ec004c1a975f5c1eec50220ac021c0abd954c6825b4652c13aac87b4d5a7758e0318e69825e18af1e0f8bfd77021e8f6ce3d383723ad346053dea4404276e010de9e10cc3338073ed82456024092467d4bb5bd403beaedaeedcecc7b9467a031c30f01dfd65bbb256192b51775220adb40a4c696b169b8d961360e9173557fe15b1286c9d59abb02d9b5b4e7814f1091fc5033e0c548e0ad04047ee318d1e60565e999967cf856a55892ad51e6902064339782a4d467ea556b4623cb58c659c7412e9ecb7c810cc81e21eeba2d59fbb4bf5fb59a7e6e414937b9227642881f036a14bbfee61aa3e42d29dc7d4989e8b7f330029aaee0e0a16779ae6d4d65e54f4b94e9d08c7fc7af0b545dfa9dff9669a0756\",\n              \"preview\": [\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-001.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=b97dcad3c613004ca9b297e26af6fbf0ea82a82bac097d44a5c7e4ef3486cb63f87f3aaad016350a2c6e85d0009a09b77711837c61630c1f7ee4c1e8db23df531dbc559f9066e6f27ebe7f3ede938cb0bbf9ddde35367e69d8cedd7ef654d4dda1959e2fb66cae837365b254c764444a77b330b29870b58962855bc9c99933c7779a19bbedd285ba791a0ae24a8e204e31271e9f44862d9db20d891d2fba50b9c63f5137f9c9cc993d5c181d6f3e9b57b3a824db70f09c66831f26428f63879452627871f8ebe0b6ba79dc49cd2f6a35f2862e381477757f4a4e4bb2bba32f4b2991d126770e4175c84030604494111cdda6e36e0a347d0b5903330efd85078e6077ad1ac7ae9a84d2d3a6b030989e30d5fbf976f7f2a965dcccd6e7b203290b97494ef2e5c0c15e109f4342127998f928cdff2cd3bd6591fd6ae6fff4282213956127515a3ae2cd304407cd5f8701672e8be855017e0fe5676e46b0a42b4713303a4861d0cc4192f3b6bfb54908a1fa5afee3eceebfb83ee7e2c1068631432493d8216c8bbe3c1522cf9653e3f2e99f73995c957d1a6f33e76d344edc7fbf7f66b7c8bb95be2c9bb3798808f3f1674cb096817e3a07a9ef831fd68a55d9f4241c668f1d2a9ff2d49ae2d56b7648f2bb51eaa91710e04b862340bb1971715e677d6aa4d54e068cdd4af2682fb41de9f7d09a47298c2fef0d369ec63f6f32a65d\",\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-002.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=98a210b7dd1d733670325618da9f5d91a64d369a82c3aeb443e91f2444a1a6e3ba17a052bca017a57fe6440d5b15cfd1f0c6000a7a1a8767a28ad5606280076fe1480e1838f63fc6b5435f6f24909357b4bd9fce9f1714296edf91bd6631116ba93952587fd6a5dacb0a56979e98daa5cbd7bb544f3f77aed97c5b80c334aa753551658b240aa5558bec4e0ad645d69fd508039525d4fefa3a4af8e89c465480f75bb79c3dfb623649767f6442b81d3f54d6e398afc3a6ac1f1ad59a983f6310ab70ec441c7c529d6a11576a50be449ebafa8f8749f1ec13d67f8c3d5cb1e09558ce17c4ab556d60b599d423f8acc121b3061a6348cb061f2643e5e02bef74f853cafc750711a285fd37830274c5c2ae066e203324bcc766901ebdc3d1710b412888ad81b3edd5823dab6577dbb6210ae0f88e604ba2aca585bd07d340fc3b8a38696075e8025ae85ee02423152dc39a5c858fc7a564471c9d44a089ef36c382e41630631c9fc82fd20f096883b17ef7fa42393fcd922103789ef21199c2e15efc9f25053024c422101c2198a1254edeb2c49e389d067a0711e658c977bdcea480e8a362ee1fce081d60fa4437b900732f51c604e4add7bdd6fc5554d47aef2c7821638232e1c31da51bedc06ae693887020806094c901d5618188df3d657c32b2c0aacd009660f60be0aede50b7c3edb6474ac421c6b94ad4384e7d8905df53\",\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-003.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=29e4d42b4eae2ff0f1caae7bfbf56ec06235de561044088a92534bfea4891b32034801f2f77a86344661b36a74c08f11851a31c119b8930cf200fff815035bee9d002255aa1425177a4f649b03fdc81de0ed53b09d05d28788c5002f0c0a82146b4d2466a4bb1c0f11816a1972712d36a1a00f2873b6c9c51854f7045120f7be2cb524888340b9c7d4c7d8cb1630ddae7dbcd3121681d91f398617c2b19420ca7ec77cd15bf772481385a0317142db137169470572f9ef7ee9409cbbda9b3bfceaea4745a92a25625a897cc2d472430382daadad6cd6615ddb46f6791a7065fc2d88d2e66532e0c4626259b595d6df83d4e81fdd2696ffb810069ff3f4a272c4dcc9e0969c8354b6764a52c3b9e20ce49cc9c48145b0ed7610bca60e33dbb77d4c975730a9d6df8d3fca1014e453e1cfd68d535c801f88c35c3bc0a168c9b0d2daeee50ca72193f94cc137da3d7878666718cb03597670e0ab6d26e03cc343988a44755c436dafe4925370a2bd3ba581c8ed5995d12b06cd4409b871a26e636378c554e1bfe0870690e4c3493dc84798405a4d4b08fb2ef5ca6ced4930620fa016203b72af3b8637dcd239137653f8df5803b77baca3072e1a6974d6f589afabdbc591b502eb8a9b7fa580c0125e1626bbb84b5a96fca5850a6d7d08a6e884d99593488bf5529e68f9ea9102279426f06fd9f1e462a8c22a173c7ee44b9145f3\",\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-004.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=5309f1a2fe306ba7f4c180e71cb4d2cefb24e9890eccab18402e8b9f4f0a688329430ed06d1e047e628f8b868ea77874299c9e15b8517a54b257a0626a8d3ee9124fc40d90961b3a76e269238a1a0933472c867fc137555c802224caf12547a1e0db99a6c833c0a514712177ebe4cb68dbcc6e1dda433b7bd07b7d480d61e01208f143cf5de36caf54fed9767827d9575c19d4f6d3cbfb8c5877fe08c0ecbc5e13b769583f503756ce243fea76d9a9312beb501ed65dfd87c28e92d02d613af4c059abcfdb0173711c80d179c511455e2ae18d80300fef396b623bf11fc7d0dfcc9e513262174db90619b4ddea472a5746fa5bf830fc677af6b66ff7ad531d5768bc253bdba32a8b6ffdfd756cddfac15bed38fcf7d3b5124017e7d716299dc8885a9b69e814be29c0c4486faed302024a7ba07dfcbbb9557f2f0ccf267e9ee82803bc26332ed098aa654cfe00a0ce45ac42c644d8a049f0452e9c193aedf3dafb1cdd4e08cbc50340cc89a9b2909e8ff8cf0891865d0bb2b118ef438173a4595f953edce037ca97082fc9b1928145d5c03adaab26bcdf4041ba3bb74a34cd13f2be9d0049b231d996671607b5e1ebe83bf57f320e9da6796f98b1980ee20e71a0d8b518ec8ebd64ae7293e973eed41727171d476fc9e012f3847b1b53f5cda9ae49ff3df3365a48f355838fc2a6b47a8a6d2ca19f4de0db0f2bac6f18296a72\",\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-005.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=33a3819cd56116e1424301aed8bc76bfd262b3ddec89267da0f7c633ab057773af8d0f3828d5f195787f21dd9018a2e48a1caa965d293ebb799b5172aef62b65de5fd9802b71c8cdcacbdd92b3c77f1b395efb5ca8a1eb47e05b977d36331fc7d6eb93927e6f55bae01fa845304c4c5f5d0de634a1a1afa801d11a7460e35cb35e1c2d4b82af702b21834cd5eea5cb41cc7b141190b168bf76a1bcb344364271722e4c5290f38ac210c0376f074d889103141a608824428310f4be725172c536c21da9e912c6c9b871052a2c04decdb628eefe56e4159e9c43a225ae59b08618ba6d7e669059c3224060672e7d31bada6bc5957dea6c6cc438f0c186c5342e0f7efcc238a247beae5644c6892649e1f7c0b8a58102dbb657fecafb0bb66db53785f67452f88a74848e9d09953bc7089324173dd7df1fbdb4ff32f74b05a5cf5f5e226e312dbdde030e89a2916ae8da87733bf483adc8d3414d0cda8eae163a354935d083c76b1724a7f73c9dc70d6e1cf2c30bbb789deee2b5d50455e685ed2aa6ae80c541ff047f67ecc48d2416ad9d9da7cf0ddb5e8ab5225b0e8d2641f328a50e8bbcb91b51f5d51befab2d922a88bd7b4ea3cb71e662f94e09508ef0018d21d379c545f0423bf494f9d38918c9b61863392084f06f557c291e65c3dac679870a09af0d5c2f56d0be9d56a0250f9e1dd2f376c75208384ecf8d49ae5741b2\",\n                \"http://localhost:4443/contractbook-user-uploads-dev/uploads/128d1081-0cb2-4567-ad05-ee5d4b5e3c0e/attachments/967261eb-c5a0-4ae2-8d00-5d80b0961a1b/preview/preview-006.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=file-service-mock%40contractbook-staging.iam.gserviceaccount.com%2F20250922%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20250922T135918Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=23e344a76ae26b50fca5d96da6720d2e3e5f5d558dbab361ee97ba7639eb06622d0d9d5159abbc349838b69cd097dca2eb03082eaa2e01834d48a9b8ba7fa9df7bd76965d7661b5c4cb9ead256c4dfdb28c9dfe67107bb037f84d238fb061e386a937b313fdf3cddf4de8e6fc5dfd6946d70f1a6e93198917f90525b5a07d2e411ab3fa4debae97c151bcf8015e1deba554595f3621b802f9bddf1fe67987876ca8869e3a7848f15ca55080802502e1b7f28d66f30e2aa16233754c88bdbc6d0f9b52e09c2a7fb2e4fd9f7a4462c5d7d9bbb8012e93120e901fd2b5a94cb1fb671e6d437fbddd2278bbfab814f57b7941a7ea6eb5e74db190134bcdd27fdc2f13963f7545686a6a9dc8467ebb7500efe813e87c3545d708c3ff9e2c5b9578c3ba6e7dba3e59875656f367e184fa2561a0bb1160c0cde1814b7472c90e5546683efd31d54f08f730ab04a28db6da6f1dda5809aeab51d0bd94cf6230b7c262043a0a2d311e0826cbbc930149db5ca7a28fb89dd55e1a27a28d9a9b307582f4be556c65949d0d87a7e73acba05910bef7ea75e19c9a09ff83935b04b1f6bd1a0bb4fc7ce3234603aeb563c8a362efe2a57d6c3bd6bb559f548f4014dc78f5bd7c5222f1cda76817467dd79bc85a717ef65290043e54341f92ff60a3268389a2dea1cc22570df3ed35499647323a0e085bcdf37e39328c9b275ef9935652f071fce\"\n              ]\n            }\n          ]\n        }\n      }'\n    ```\n\n    > **Note**\n    >\n    > A few things to keep in mind:\n    >\n    >   * this will overwrite any existing value of `attachments` attribute on the draft. If you wish to preserve existing values, make sure to fetch the draft and save the value of `attachments`, then combine a list of existing and new attachments before calling the API HTTP endpoint to update the draft,\n    >   * current limit on the uploaded file size is 48 megabytes\n\n### Scenario 3. Deleting a document\n\nSometimes a document has no use anymore and as such it can be desirable to delete such document. Public API v3 offers an endpoint to do just that.\n\nKnowing an ID of existing document (for the purpose of this example, a draft with ID value of <nobr>`370104af-57de-4699-8998-a81d533540ce`</nobr> is used), delete it by sending a `DELETE` request to `/v3/documents/:id` HTTP API endpoint:\n\n```shell title=\"Request example\"\ncurl https://api-staging.contractbook.com/v3/documents/370104af-57de-4699-8998-a81d533540ce \\\n  --request DELETE \\\n  --oauth2-bearer \"<access_token>\" \\\n  --header \"Content-Type: application/json\" \\\n  --silent\n```\n\n> **Note**\n>\n> Signed contract can't be deleted through the API. An attempt to do so will result in a error. To delete a signed contract, it's required to submit respective request through the UI. Such requests are reviewed by Contractbook team. More information about deleting signed contracts is available at [\"How to delete a signed contract?\"](https://contractbook.freshdesk.com/support/solutions/articles/206000046288-how-to-delete-a-signed-contract-)\n\n### Scenario 4. Using data fields\n\nData fields (formerly __editable fields__) are placeholders for values that can be filled in at different stages of the template and document lifecycle. Public API v3 allows for adding, updating, and removing them.\n\nData fields are stored in the `data_fields` list. It's a field present in template and document schemas. If making changes to data fields isn't intended, the content of this field shouldn't be touched.\n\nA data field might be present in the document body, but it doesn't have to. If it's not present in the document body, it's often referred to as __metadata__.\n\n#### Adding a data field\n\nTo add a data field to a template or document, add it to the `data_fields` list. Check the `data_fields` schema to see which properties are required.\nIf you are creating a document from a template and want to reuse the data fields from the template, it's enough to send matching `name` and `type` properties to use the existing data fields.\n\n```shell title=\"Request example\"\ncurl https://api-staging.contractbook.com/v3/documents/9f414a75-8ca4-4743-acae-d55fcb1fe228 \\\n  --request PATCH \\\n  --header \"Content-Type: application/json\" \\\n  --oauth2-bearer \"<access_token>\" \\\n  --silent \\\n  --data '{\n    \"document\": {\n      \"version\": \"84097321-d412-4bd2-bdf0-0c454c0fbf8c\",\n      \"data_fields\": [\n        {\n          \"name\": \"compensation\",\n          \"type\": \"number\",\n          \"value\": \"80000\"\n        },\n        {\n          \"name\": \"length\",\n          \"type\": \"number\",\n          \"value\": \"24\"\n        }\n      ]\n    }\n  }'\n```\n\nThe response looks like this (including only a list of data fields, for brevity):\n\n```shell title=\"Response example\"\n[\n  {\n    \"config\": {},\n    \"description\": null,\n    \"formatting\": null,\n    \"id\": \"d927a003-f63a-4e89-bc09-b98357337121\",\n    \"name\": \"compensation\",\n    \"required\": false,\n    \"source\": null,\n    \"source_mapping\": null,\n    \"source_sync_type\": null,\n    \"type\": \"number\",\n    \"value\": \"80000\"\n  },\n  {\n    \"config\": {},\n    \"description\": null,\n    \"formatting\": null,\n    \"id\": \"3ba3c610-1e8d-4d24-937c-116d197d1b67\",\n    \"name\": \"length\",\n    \"required\": false,\n    \"source\": null,\n    \"source_mapping\": null,\n    \"source_sync_type\": null,\n    \"type\": \"number\",\n    \"value\": \"24\"\n  }\n]\n```\n\n#### Updating the value of a data field\n\nUpdating of data fields works by replacing entire set of data fields on a document. It means that in case a document has many data fields, while only a single one must be updated - a request must contain all document data fields, including the one to be updated.\n\nUsing data fields from previous example's response, it's possible to add a new data field, as well as modify a value of existing data field by sending a `PATCH` request to `/v3/documents` HTTP API endpoint:\n\n```shell title=\"Request example\"\ncurl https://api-staging.contractbook.com/v3/documents/9f414a75-8ca4-4743-acae-d55fcb1fe228 \\\n  --request PATCH \\\n  --header \"Content-Type: application/json\" \\\n  --oauth2-bearer \"<access_token>\" \\\n  --silent \\\n  --data '{\n    \"document\": {\n      \"version\": \"0385e218-33ad-46d2-9ef7-2c01963b8b85\",\n      \"data_fields\": [\n        {\n          \"name\": \"compensation\",\n          \"type\": \"number\",\n          \"value\": \"86000\"\n        },\n        {\n          \"name\": \"length\",\n          \"type\": \"number\",\n          \"value\": \"24\"\n        },\n        {\n          \"name\": \"age\",\n          \"type\": \"number\",\n          \"value\": \"27\"\n        }\n      ]\n    }\n  }'\n```\n\n#### Removing a data field\n\nTo remove a data field, it must be removed from the list of `data_fields` when making a request. It's important to keep in mind, that the data field reference in document's AST will remain.\n\nUsing data fields from previous example's response, two data fields from the draft can be removed by sending a `PATCH` request to `/v3/documents` HTTP API endpoint:\n\n```shell title=\"Request example\"\ncurl https://api-staging.contractbook.com/v3/documents/9f414a75-8ca4-4743-acae-d55fcb1fe228 \\\n  --request PATCH \\\n  --header \"Content-Type: application/json\" \\\n  --oauth2-bearer \"<access_token>\" \\\n  --silent \\\n  --data '{\n    \"document\": {\n      \"version\": \"dfc0270e-10ac-41d8-a917-7fcccf86dbfa\",\n      \"data_fields\": [\n        {\n          \"name\": \"compensation\",\n          \"type\": \"number\",\n          \"value\": \"80000\"\n        }\n      ]\n    }\n  }'\n```\n\n<!-- vale Microsoft.HeadingAcronyms = NO -->\n### Scenario 5. Downloading the contract as PDF\n<!-- vale Microsoft.HeadingAcronyms = YES -->\n\nContractbook discourages printing the contracts, while offering a variety of tools for sharing & viewing the documents. It will also store all documents virtually forever too. However, in rare cases it may be necessary to download a document in a form of PDF file. This can be achieved by employing a dedicated endpoint offered by Public API.\n\nKnowing an ID of existing document (for the purpose of this example, an ID with a value of <nobr>`1f99b233-f660-4ecf-9cf1-9ba6ef299b9d`</nobr> is used), fetch the link to PDF by sending a `GET` request to `/v3/documents/:id/pdf` HTTP API endpoint and inspect the response:\n\n```shell title=\"Request example\"\ncurl https://api-staging.contractbook.com/v3/documents/1f99b233-f660-4ecf-9cf1-9ba6ef299b9d/pdf \\\n  --request GET \\\n  --oauth2-bearer \"<access_token>\" \\\n  --header \"Content-Type: application/json\" \\\n  --silent\n```\n\nThe response will contain a link to download the actual file, use it to download the file. The response will look like this:\n\n```json title=\"Response example\"\n{\n  \"location\": \"http://localhost:5115/static/msmo3r3gdchqdv13m57sq8k9\"\n}\n```\n\n> **Note**\n> In the event when *all* user's documents must be exported to PDF (such as backing them up, externally), make sure to consult one of the following articles:\n\n<!-- vale Microsoft.FirstPerson = NO -->\n> * [How can I download all contracts at once?](https://contractbook.freshdesk.com/support/solutions/articles/206000046202-how-can-i-download-all-my-contracts-at-once-)\n\n> * [How can I export contract data in a CSV format?](https://contractbook.freshdesk.com/support/solutions/articles/206000046303-can-i-export-my-contract-data-to-csv-)\n<!-- vale Microsoft.FirstPerson = YES -->\n\n### Scenario 6. Sharing a document with collaborators\n\nSome document automation workflows may require sharing the document with collaborators. For example, a document that was created automatically needs to be manually reviewed or updated by a human. Public API v3 offers endpoints that allow for these kinds of scenarios.\n\nSharing of a document requires to set what's known as a `role` for collaborator. Choosing the role is a powerful way to differentiate what different collaborators are capable of doing with the document. Possible roles include:\n\n* manager,\n* editor,\n* filler,\n* reviewer.\n\nExample of how to share and stop sharing the document can be seen below:\n\n1. knowing an ID of existing document (for the purpose of this example, an ID with a value of <nobr>`8fae9d83-b965-4642-a2e3-0a16c01c792e`</nobr> is used) and an email of another person, share the document by sending a POST HTTP request to `/v3/documents/:id/share` API endpoint:\n\n    ```shell title=\"Request example 1\"\n    curl https://api-staging.contractbook.com/v3/documents/8fae9d83-b965-4642-a2e3-0a16c01c792e/share \\\n      --request POST \\\n      --header \"Content-Type: application/json\" \\\n      --oauth2-bearer \"<access_token>\" \\\n      --silent \\\n      --data '{\n        \"message\": \"Please, look through this one\",\n        \"role\": \"reviewer\",\n        \"email\": \"user@example.com\"\n      }'\n    ```\n\n2. to stop sharing document with a collaborator, send a DELETE HTTP request to `/v3/documents/:id/share` API endpoint:\n\n    ```shell title=\"Request example 2\"\n    curl https://api-staging.contractbook.com/v3/documents/8fae9d83-b965-4642-a2e3-0a16c01c792e/share \\\n      --request DELETE \\\n      --header \"Content-Type: application/json\" \\\n      --oauth2-bearer \"<access_token>\" \\\n      --silent \\\n      --data '{\n        \"email\": \"user@example.com\"\n      }'\n    ```\n\n### Scenario 7. Receiving notifications for document life-cycle events\n\nIn certain situations, it may be useful to reactively obtain information about events happening to documents in Contractbook. For example, an action must be performed in response to the document being created, updated or signed. One way to know if the document's state has changed would be to fetch the document and inspect its state. However, another, a more efficient way exists, commonly known as \"webhooks\" mechanism.\n\nContractbook Public API v3 implements this mechanism & allows for scenarios which depend on receiving notifications about document's state change. As soon as document's state changes, Contractbook will send an HTTP request to the desired client's address.\n\n> **Note**\n>\n> An important security consideration must be made before using the webhook endpoint. Currently webhooks are unauthenticated. To add a layer of authentication a query parameter with predefined access token can be added. For example, if your endpoint would be:\n>\n> ```\n> https://example.com/webhook_notifications_from_contractbook\n> ```\n>\n> a notification would be sent to:\n>\n> ```\n> https://example.com/webhook_notifications_from_contractbook?access_token=PREDEFINEDVALUE\n> ```\n\nTo ensure security and proper handling of incoming events it's always recommended that, after receiving a webhook notification, your application makes a GET request to `/documents/:id` HTTP API to confirm current status of the document. There are two reasons for this:\n\n* the webhook is unauthenticated but the call to API is authenticated (using provided API key in `Authorization` header), so verifying the state of the document allows you to detect if the webhook notification you received was spoofed,\n\n* webhooks notifications are based on an asynchronous process with automated delivery retries. Inherently, sometimes they can arrive more than once, or with a delay or out of order. Treating them as a trigger for action and getting the state of the document from API allows you to easier handle those edge cases.\n\n> **Note**:\n>\n> Currently, a list of events includes:\n>\n>   * `contract.created`,\n>   * `contract.signed`,\n>   * `contract.rejected`,\n>   * `contract.changes_requested`,\n>   * `contract.edited`,\n>   * `contract.resent`,\n>   * `contract.sent_for_signature`,\n>   * `draft.created`,\n>   * `draft.sent`,\n>   * `draft.edited`,\n>   * `task.created`,\n>   * `task.updated`,\n>   * `task.deleted`,\n>   * `task.reminder`,\n>   * `task.status.updated`,\n>   * `template.created`,\n\nBelow scenario will perform two actions to documents, then observe the webhook payloads arriving to designated `callback_url`.\n\n<!-- vale Microsoft.FirstPerson = NO -->\n1. while creating the API key, make sure to specify the value of `webhooks_url` attribute, see \"[I want to integrate with a tool that can't be found in-app - what should I do?](https://contractbook.freshdesk.com/support/solutions/articles/206000046109-i-want-to-integrate-with-a-tool-i-cannot-find-in-app-what-should-i-do-)\" article. For the purpose of this example, a value of `https://example.com/webhook_notifications_from_contractbook` is used.\n<!-- vale Microsoft.FirstPerson = YES -->\n\n2. create a draft:\n\n    ```shell title=\"Request example 1\"\n    curl https://api-staging.contractbook.com/v3/templates/93ab78f1-d02e-4837-86db-63bfded4efdf/create_document \\\n      --request POST \\\n      --header \"Content-Type: application/json\" \\\n      --oauth2-bearer \"<access_token>\" \\\n      --silent \\\n      --data '{\n        \"document\": {\n          \"data_fields\": [],\n          \"message\": {\n            \"content\": \"Hi, Kenneth! Please review and sign this.\"\n          },\n          \"parties\": [\n            {\n              \"address\": \"3722 Crestview Terrace, Del Rio, TX 78840\",\n              \"id\": \"e5300b40-3053-4d0e-a881-182cd3b31a57\",\n              \"name\": \"Paul C. Caudillo\",\n              \"number\": \"409-645-2567\",\n              \"reference\": \"Sender\",\n              \"signees\": [\n                {\n                  \"email\": \"paul@example.com\",\n                  \"full_name\": \"Paul C. Caudillo\",\n                  \"id\": \"2da88cc0-3158-4541-af34-bd633591c31a\",\n                  \"order\": 0,\n                  \"title\": \"CEO\"\n                }\n              ],\n              \"type\": \"company\"\n            },\n            {\n              \"address\": \"664 Campfire Ave. Lemont, IL 60439\",\n              \"id\": \"7ca7c4f9-56f4-4d4d-b016-d8391b2375a4\",\n              \"name\": \"Kenneth B. Rojas\",\n              \"number\": \"412-786-7983\",\n              \"reference\": \"Recipient\",\n              \"signees\": [\n                {\n                  \"email\": \"kenneth@example.com\",\n                  \"full_name\": \"Kenneth B. Rojas\",\n                  \"id\": \"cdf01430-4da0-4768-b3be-c8800f6aba9f\",\n                  \"order\": 1,\n                  \"title\": \"Dr.\"\n                }\n              ],\n              \"type\": \"personal\"\n            }\n          ],\n          \"signing_order_mode\": \"strict\",\n          \"title\": \"Cooperation agreement between X and Y\",\n          \"to_be_signed_by\": \"others_only\"\n        }\n      }'\n    ```\n\n3. send the draft for signature,\n\n    ```shell title=\"Request example 2\"\n    curl https://api-staging.contractbook.com/v3/documents/3c5c2258-9885-4652-aeb3-a1aa8f1b5461/send \\\n      --request POST \\\n      --oauth2-bearer \"<access_token>\" \\\n      --header \"Content-Type: application/json\" \\\n      --silent\n    ```\n\n4. wait until the final party signs the contract,\n\n5. expect the following payloads to be sent as a POST request to `https://example.com/webhook_notifications_from_contractbook`:\n\n    ```json title=\"Webhook payload example 1\"\n    {\n      \"draft\": {\n        \"id\": \"3c5c2258-9885-4652-aeb3-a1aa8f1b5461\",\n        \"message\": {\n          \"content\": \"Hi, Kenneth! Please review and sign this.\"\n        },\n        \"title\": \"Cooperation agreement between X and Y\",\n        \"updated_at\": \"2025-09-22T14:00:21.232572Z\"\n      },\n      \"event\": \"draft.created\",\n      \"user\": {\n        \"email\": \"api-scenario-test-1758549620@example.com\",\n        \"id\": \"99b423a0-093a-402f-84de-5318536bebd3\"\n      }\n    }\n    ```\n\n    ```json title=\"Webhook payload example 2\"\n    {\n      \"comment\": null,\n      \"contract\": {\n        \"id\": \"3c5c2258-9885-4652-aeb3-a1aa8f1b5461\",\n        \"message\": {\n          \"content\": \"Hi, Kenneth! Please review and sign this.\"\n        },\n        \"state\": \"pending\",\n        \"title\": \"Cooperation agreement between X and Y\",\n        \"updated_at\": \"2025-09-22T14:00:21.455481Z\"\n      },\n      \"event\": \"contract.created\",\n      \"user\": {\n        \"email\": \"api-scenario-test-1758549620@example.com\",\n        \"id\": \"99b423a0-093a-402f-84de-5318536bebd3\"\n      }\n    }\n    ```\n\n## Appendix A - enhancing the `/v3/documents`\n\n### Overview\n\nThe `/v3/documents` endpoint allows you to retrieve a list of documents from our system. By making a `GET` request to this endpoint, you can access a collection of documents along with additional details. To enhance the information retrieved, you have the option to include more comprehensive data by utilizing the query parameter `full=true`.\n\n### Functionality\n\nWhen you set the `full` parameter to `true`, the following enhancements will be applied to the retrieved documents:\n\n1. **Full Parties Details**: Both company and personal party information associated with each document will be included.\n2. **Data Fields Inclusion**: The document will feature all data fields the requesting user can access.\n",
+      "type": "text/plain"
+    }
+  }
+}

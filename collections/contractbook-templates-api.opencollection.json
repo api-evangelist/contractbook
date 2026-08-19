@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Contractbook Attachments Templates API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Templates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/templates",
+            "params": [
+              {
+                "name": "exclude_spaces",
+                "value": "",
+                "type": "query",
+                "description": "Exclude templates from Spaces"
+              },
+              {
+                "name": "integration_filter",
+                "value": "",
+                "type": "query",
+                "description": "Exclude templates not connected to an external application according to the given rules"
+              }
+            ]
+          },
+          "docs": "Gets a list of templates"
+        },
+        {
+          "info": {
+            "name": "Get a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/templates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ]
+          },
+          "docs": "Gets a template by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

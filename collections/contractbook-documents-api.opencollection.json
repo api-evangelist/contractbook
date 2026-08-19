@@ -1,0 +1,259 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Contractbook Attachments Documents API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/documents",
+            "params": [
+              {
+                "name": "context[]",
+                "value": "[\"my_documents\", \"workspace\"]",
+                "type": "query",
+                "description": "Filters contracts by context.\n\nPossible values:\n- `my_documents` - returns only contracts that are directly accessible by the user (contracts owned by the user, contracts directly shared with the user or contracts where the user is a signee).\n- `team_documents` - returns contracts that are accessible by the user's team members.\n- `workspace` - returns contracts that are accessible to the user through contract spaces.\n\nDefault value is `my_documents`.\n\nIf you wish to get all available contracts, just pass all 3 values.\n"
+              },
+              {
+                "name": "full",
+                "value": "",
+                "type": "query",
+                "description": "Adds extra document data to the response, such as `data_fields` and full party details"
+              },
+              {
+                "name": "title",
+                "value": "",
+                "type": "query",
+                "description": "Filter by document title (case insensitive partial match)"
+              },
+              {
+                "name": "states[]",
+                "value": "[\"pending\", \"states\"]",
+                "type": "query",
+                "description": "Filter by document states"
+              },
+              {
+                "name": "types[]",
+                "value": "[\"draft\", \"contract\"]",
+                "type": "query",
+                "description": "Filter by document types"
+              },
+              {
+                "name": "tags[]",
+                "value": "[\"deals\", \"vacation\"]",
+                "type": "query",
+                "description": "Filter by tags"
+              },
+              {
+                "name": "owned",
+                "value": "",
+                "type": "query",
+                "description": "Whether to look for documents owned by the requester or not"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Page identifier. The next page identifier will be found in the response body"
+              },
+              {
+                "name": "signed_at_lt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by maximum date when the documents were signed (non-inclusive)"
+              },
+              {
+                "name": "signed_at_gte",
+                "value": "2022-01-02T00:00:00Z",
+                "type": "query",
+                "description": "Filter by minimum date when the documents were signed (inclusive)"
+              },
+              {
+                "name": "updated_at_lt",
+                "value": "2022-01-02T00:00:00Z",
+                "type": "query",
+                "description": "Filter by maximum date when the documents were updated (non-inclusive)"
+              },
+              {
+                "name": "updated_at_gte",
+                "value": "2022-01-02T00:00:00Z",
+                "type": "query",
+                "description": "Filter by minimum date when the documents were updated (inclusive)"
+              },
+              {
+                "name": "page_size",
+                "value": "7",
+                "type": "query",
+                "description": "Page size. The default is 25 and the max value is 100"
+              },
+              {
+                "name": "sort_column",
+                "value": "title",
+                "type": "query",
+                "description": "Column to use for sorting the documents (defaults to `created_at`)"
+              },
+              {
+                "name": "sort_direction",
+                "value": "asc",
+                "type": "query",
+                "description": "Order direction when sorting the documents"
+              },
+              {
+                "name": "integration_object_id",
+                "value": "00189000008btXMAAY",
+                "type": "query",
+                "description": "Filter by the ID of the integration object which the document is related to (e.g. Salesforce Opportunity ID)"
+              },
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "query",
+                "description": "Workspace ID where documents are contained. It should be used in combination with `context` parameter with value `workspace`"
+              }
+            ]
+          },
+          "docs": "Gets a paginated and filtered list of documents.\n\nThis endpoint supports cursor-based pagination. To fetch several pages of documents, repeat the following steps:\n\n1. fetch a page of documents, without specifying a cursor value,\n2. if there's a next page, the response will contain a non-empty `cursor` value:\n\n    ```json\n    {\n      \"documents\": [...],\n      \"pagination_meta\": {\n        \"cursor\": \"c3RyaW5nCg\"\n      }\n    }\n    ```\n\n3. make a subsequent `GET /v3/documents` request while including"
+        },
+        {
+          "info": {
+            "name": "Get a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Gets a document by ID"
+        },
+        {
+          "info": {
+            "name": "Update a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.contractbook.com/v3/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a document. Only drafts and stored contracts can be updated."
+        },
+        {
+          "info": {
+            "name": "Delete a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.contractbook.com/v3/documents/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Deletes a document specified by ID"
+        },
+        {
+          "info": {
+            "name": "Get a PDF copy of a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/documents/:id/pdf",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ]
+          },
+          "docs": "Gets a PDF copy of a document by ID"
+        },
+        {
+          "info": {
+            "name": "Send a document for signature",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.contractbook.com/v3/documents/:id/send",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a document in a draft state specified by ID"
+        },
+        {
+          "info": {
+            "name": "Create a new document from a template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.contractbook.com/v3/templates/:id/create_document",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Template ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new document from a template. The template must be specified by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Contractbook Attachments Spaces API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Spaces",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a child space",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.contractbook.com/v3/spaces/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Parent Space ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a child space within a parent space"
+        },
+        {
+          "info": {
+            "name": "Get a space tree",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.contractbook.com/v3/spaces/:id/tree",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Space ID"
+              }
+            ]
+          },
+          "docs": "Gets a space tree by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

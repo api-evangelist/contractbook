@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Contractbook Attachments Document sharing API",
+    "version": "3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Document sharing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Share a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.contractbook.com/v3/documents/:id/share",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Shares a document to a user specified by email"
+        },
+        {
+          "info": {
+            "name": "Unshare a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.contractbook.com/v3/documents/:id/share",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Document ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unshares a document from a user specified by profile ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
