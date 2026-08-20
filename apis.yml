@@ -28,6 +28,15 @@ tags:
 - CLM
 - Contract Lifecycle
 - Legal
+- E-Signature
+- Contracts
+- Document Automation
+- Legal Tech
+tags_raw:
+- Contract Management
+- CLM
+- Contract Lifecycle
+- Legal
 - eSignature
 - Contracts
 - Document Automation
@@ -39,6 +48,12 @@ apis:
 - aid: contractbook:contractbook-document-webhooks
   name: Contractbook Document Webhooks
   tags:
+  - Webhook
+  - Notification
+  - Event
+  - CLM
+  - Contract Lifecycle
+  tags_raw:
   - Webhooks
   - Notifications
   - Events
@@ -123,6 +138,8 @@ apis:
   humanURL: https://api.contractbook.com/v3/docs
   baseURL: https://api.contractbook.com/v3
   tags:
+  - Document Sharing
+  tags_raw:
   - Document sharing
   properties:
   - type: OpenAPI
