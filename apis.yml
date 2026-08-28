@@ -9,6 +9,18 @@ description: Contractbook is a contract lifecycle management (CLM) platform that
   run automations, upload attachments, and receive webhook notifications on document life-cycle
   events. Contractbook covers the full contract lifecycle - drafting, negotiation, signing,
   storage, and post-signature management - for legal, sales, HR, and procurement teams.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
