@@ -40,7 +40,7 @@ tags:
 - CLM
 - Contract Lifecycle
 - Legal
-- eSignature
+- E-Signature
 - Contracts
 - Document Automation
 - Legal Tech
@@ -150,7 +150,7 @@ apis:
   humanURL: https://api.contractbook.com/v3/docs
   baseURL: https://api.contractbook.com/v3
   tags:
-  - Document sharing
+  - Document Sharing
   tags_raw:
   - Document sharing
   properties:
