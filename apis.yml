@@ -37,7 +37,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/contractbook.png
 tags:
 - Contract Management
-- CLM
+- Contract Lifecycle Management
 - Contract Lifecycle
 - Legal
 - E-Signature
@@ -63,7 +63,7 @@ apis:
   - Webhook
   - Notification
   - Event
-  - CLM
+  - Contract Lifecycle Management
   - Contract Lifecycle
   tags_raw:
   - Webhooks
