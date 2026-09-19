@@ -122,6 +122,8 @@ apis:
   humanURL: https://api.contractbook.com/v3/docs
   baseURL: https://api.contractbook.com/v3
   tags:
+  - Automation
+  tags_raw:
   - Automations
   properties:
   - type: OpenAPI
@@ -208,6 +210,8 @@ apis:
   humanURL: https://api.contractbook.com/v3/docs
   baseURL: https://api.contractbook.com/v3
   tags:
+  - Space
+  tags_raw:
   - Spaces
   properties:
   - type: OpenAPI
