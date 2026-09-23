@@ -1,12 +1,7 @@
 {
   "provider": "contractbook",
   "sources": [
-    "contractbook-attachments-api-openapi.yml",
-    "contractbook-automations-api-openapi.yml",
-    "contractbook-document-sharing-api-openapi.yml",
-    "contractbook-documents-api-openapi.yml",
-    "contractbook-spaces-api-openapi.yml",
-    "contractbook-templates-api-openapi.yml"
+    "_original/contractbook-openapi.json"
   ],
   "outputs": [
     "contractbook-attachments-api-openapi.yml",
@@ -19,6 +14,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "contractbook-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "contractbook-openapi.json: declared missing tag: Attachments",
+    "contractbook-openapi.json: declared missing tag: Automations",
+    "contractbook-openapi.json: declared missing tag: Document sharing",
+    "contractbook-openapi.json: declared missing tag: Documents",
+    "contractbook-openapi.json: declared missing tag: Spaces",
+    "contractbook-openapi.json: declared missing tag: Templates",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "contractbook-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "contractbook-automations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "contractbook-document-sharing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "contractbook-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "contractbook-spaces-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "contractbook-templates-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
