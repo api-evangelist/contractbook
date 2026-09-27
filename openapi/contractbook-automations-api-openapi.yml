@@ -167,30 +167,43 @@ paths:
       - Automations
 components:
   schemas:
-    ForbiddenError:
+    AutomationIndexResponse:
       additionalProperties: false
-      description: Forbidden
+      description: A list of automations
       properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
+        automations:
+          items:
+            additionalProperties: false
+            description: Preview of an automation
+            properties:
+              id:
+                description: Automation ID
+                example: 6b6314b6-56f9-4454-869a-84c96682cea9
+                format: uuid
+                maxLength: 36
+                minLength: 36
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                type: string
+              inserted_at:
+                description: Date and time when the automation was created
+                format: date-time
+                type: string
+              name:
+                description: Automation Name
+                example: Generate Employment agreement
+                type: string
+              published:
+                description: Is automation published?
+                example: true
+                type: boolean
+              updated_at:
+                description: Date and time when the automation was las updated
+                format: date-time
+                type: string
+            title: AutomationPreview
+            type: object
+          type: array
+      title: AutomationIndexResponse
       type: object
     UnprocessableContentError:
       additionalProperties: false
@@ -319,6 +332,31 @@ components:
       - error
       title: BadRequestError
       type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
     NotFoundError:
       additionalProperties: false
       description: Not Found
@@ -373,44 +411,6 @@ components:
       - object_type
       - object_id
       title: AutomationRunRequest
-      type: object
-    AutomationIndexResponse:
-      additionalProperties: false
-      description: A list of automations
-      properties:
-        automations:
-          items:
-            additionalProperties: false
-            description: Preview of an automation
-            properties:
-              id:
-                description: Automation ID
-                example: 6b6314b6-56f9-4454-869a-84c96682cea9
-                format: uuid
-                maxLength: 36
-                minLength: 36
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                type: string
-              inserted_at:
-                description: Date and time when the automation was created
-                format: date-time
-                type: string
-              name:
-                description: Automation Name
-                example: Generate Employment agreement
-                type: string
-              published:
-                description: Is automation published?
-                example: true
-                type: boolean
-              updated_at:
-                description: Date and time when the automation was las updated
-                format: date-time
-                type: string
-            title: AutomationPreview
-            type: object
-          type: array
-      title: AutomationIndexResponse
       type: object
   securitySchemes:
     authorization:

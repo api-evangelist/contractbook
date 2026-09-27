@@ -137,30 +137,83 @@ paths:
       - Document sharing
 components:
   schemas:
-    ForbiddenError:
+    DocumentShareRequest:
       additionalProperties: false
-      description: Forbidden
+      description: Document sharing parameters
       properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
+        assigned_data_field_ids:
+          default: []
+          description: List of data fields IDs this user can update if their role is set to filler
+          items:
+            example: d5bcbcdb-552a-4419-bbff-c7fe3cc6837c
+            format: uuid
+            minLength: 36
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+            type: string
+          type: array
+        can_access_private_comments:
+          description: 'Allows accessing private comments if set to **true**.
+
+
+            It is always **true** for **manager** role.
+
+
+            For other roles, it can be set using this parameter.
+
+            '
+          type: boolean
+        can_access_private_history:
+          description: Allows accessing private comments if set to **true**.
+          type: boolean
+        can_send_for_signature:
+          description: 'Allows sending for signature if set to **true**.
+
+
+            It is always **true** for **manager** role and always **false** for **reviewer** role.
+
+
+            For other roles, it can be set using this parameter.
+
+            '
+          type: boolean
+        email:
+          description: User's email
+          format: email
+          maxLength: 255
+          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
+          type: string
+        message:
+          description: Message to the user. If you don't have it, send an empty string.
+          maxLength: 10000
+          minLength: 1
+          type: string
+        role:
+          description: User's role
+          enum:
+          - manager
+          - editor
+          - filler
+          - reviewer
+          type: string
       required:
-      - error
-      title: ForbiddenError
+      - email
+      - role
+      - message
+      title: DocumentShareRequest
+      type: object
+    DocumentUnshareRequest:
+      additionalProperties: false
+      description: Document unsharing parameters
+      properties:
+        email:
+          description: User's email
+          format: email
+          maxLength: 255
+          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
+          type: string
+      required:
+      - email
+      title: DocumentUnshareRequest
       type: object
     UnprocessableContentError:
       additionalProperties: false
@@ -238,6 +291,31 @@ components:
       - error
       title: UnauthorizedError
       type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
     BadRequestError:
       additionalProperties: false
       description: Bad Request
@@ -289,70 +367,6 @@ components:
       - error
       title: BadRequestError
       type: object
-    DocumentShareRequest:
-      additionalProperties: false
-      description: Document sharing parameters
-      properties:
-        assigned_data_field_ids:
-          default: []
-          description: List of data fields IDs this user can update if their role is set to filler
-          items:
-            example: d5bcbcdb-552a-4419-bbff-c7fe3cc6837c
-            format: uuid
-            minLength: 36
-            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-            type: string
-          type: array
-        can_access_private_comments:
-          description: 'Allows accessing private comments if set to **true**.
-
-
-            It is always **true** for **manager** role.
-
-
-            For other roles, it can be set using this parameter.
-
-            '
-          type: boolean
-        can_access_private_history:
-          description: Allows accessing private comments if set to **true**.
-          type: boolean
-        can_send_for_signature:
-          description: 'Allows sending for signature if set to **true**.
-
-
-            It is always **true** for **manager** role and always **false** for **reviewer** role.
-
-
-            For other roles, it can be set using this parameter.
-
-            '
-          type: boolean
-        email:
-          description: User's email
-          format: email
-          maxLength: 255
-          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
-          type: string
-        message:
-          description: Message to the user. If you don't have it, send an empty string.
-          maxLength: 10000
-          minLength: 1
-          type: string
-        role:
-          description: User's role
-          enum:
-          - manager
-          - editor
-          - filler
-          - reviewer
-          type: string
-      required:
-      - email
-      - role
-      - message
-      title: DocumentShareRequest
-      type: object
     NotFoundError:
       additionalProperties: false
       description: Not Found
@@ -377,20 +391,6 @@ components:
       required:
       - error
       title: NotFoundError
-      type: object
-    DocumentUnshareRequest:
-      additionalProperties: false
-      description: Document unsharing parameters
-      properties:
-        email:
-          description: User's email
-          format: email
-          maxLength: 255
-          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
-          type: string
-      required:
-      - email
-      title: DocumentUnshareRequest
       type: object
   securitySchemes:
     authorization:

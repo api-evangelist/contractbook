@@ -35,6 +35,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/contractbook.png
+x-docs-platform: stoplight
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-24
 tags:
 - Contract Management
 - Contract Lifecycle Management
@@ -210,9 +213,11 @@ apis:
   humanURL: https://api.contractbook.com/v3/docs
   baseURL: https://api.contractbook.com/v3
   tags:
+  - Spaces
   - Space
   tags_raw:
   - Spaces
+  - Space
   properties:
   - type: OpenAPI
     url: openapi/contractbook-spaces-api-openapi.yml

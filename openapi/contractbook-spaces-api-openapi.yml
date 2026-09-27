@@ -111,31 +111,6 @@ paths:
       - Spaces
 components:
   schemas:
-    ForbiddenError:
-      additionalProperties: false
-      description: Forbidden
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
-      type: object
     SpaceCreateRequest:
       additionalProperties: false
       description: Request body for creating a child space
@@ -147,31 +122,6 @@ components:
       required:
       - name
       title: SpaceCreateRequest
-      type: object
-    UnauthorizedError:
-      additionalProperties: false
-      description: Unauthorized
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Unauthorized
-              type: string
-            type:
-              description: HTTP error message
-              example: unauthorized
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnauthorizedError
       type: object
     SpaceShowTreeResponse:
       additionalProperties: false
@@ -205,6 +155,56 @@ components:
       - name
       - spaces
       title: SpaceShowTreeResponse
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
       type: object
     NotFoundError:
       additionalProperties: false

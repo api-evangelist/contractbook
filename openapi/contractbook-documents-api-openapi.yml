@@ -611,31 +611,6 @@ paths:
       - Documents
 components:
   schemas:
-    ForbiddenError:
-      additionalProperties: false
-      description: Forbidden
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
-      type: object
     DocumentSendRequest:
       additionalProperties: false
       description: Document send parameters
@@ -646,158 +621,6 @@ components:
           type: boolean
       title: DocumentSendRequest
       type: object
-    UnprocessableContentError:
-      additionalProperties: false
-      description: Unprocessable Content
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            failures:
-              description: List of request errors
-              items:
-                additionalProperties: false
-                description: Error description
-                properties:
-                  detail:
-                    description: Details of the error
-                    type: string
-                  source:
-                    additionalProperties: false
-                    properties:
-                      pointer:
-                        description: Failing field name or reference
-                        type: string
-                    required:
-                    - pointer
-                    type: object
-                  title:
-                    description: Title of the error
-                    type: string
-                required:
-                - title
-                - detail
-                type: object
-              type: array
-            message:
-              description: Error details message
-              example: Unprocessable Content
-              type: string
-            type:
-              description: HTTP error message
-              example: unprocessable_entity
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnprocessableContentError
-      type: object
-    PaymentRequiredError:
-      additionalProperties: false
-      description: Payment Required
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Payment Required
-              type: string
-            type:
-              description: HTTP error message
-              example: payment_required
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: PaymentRequiredError
-      type: object
-    UnauthorizedError:
-      additionalProperties: false
-      description: Unauthorized
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Unauthorized
-              type: string
-            type:
-              description: HTTP error message
-              example: unauthorized
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnauthorizedError
-      type: object
-    BadRequestError:
-      additionalProperties: false
-      description: Bad Request
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            failures:
-              description: List of request errors
-              items:
-                additionalProperties: false
-                description: Error description
-                properties:
-                  detail:
-                    description: Details of the error
-                    type: string
-                  source:
-                    additionalProperties: false
-                    properties:
-                      pointer:
-                        description: Failing field name or reference
-                        type: string
-                    required:
-                    - pointer
-                    type: object
-                  title:
-                    description: Title of the error
-                    type: string
-                required:
-                - title
-                - detail
-                type: object
-              type: array
-            message:
-              description: Error details message
-              example: Bad Request
-              type: string
-            type:
-              description: HTTP error message
-              example: bad_request
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: BadRequestError
-      type: object
     DocumentPdfShowAcceptedResponse:
       additionalProperties: false
       description: Used to indicate the PDF is not yet ready for download
@@ -806,6 +629,43 @@ components:
           description: Information message containing details
           type: string
       title: DocumentPdfShowAcceptedResponse
+      type: object
+    DocumentPdfShowResponse:
+      additionalProperties: false
+      description: An object with an URL to the PDF file
+      properties:
+        location:
+          description: The URL, that can be used to download the PDF file
+          format: url
+          type: string
+      required:
+      - location
+      title: DocumentPdfShowResponse
+      type: object
+    ConflictError:
+      additionalProperties: false
+      description: Conflict
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Conflict
+              type: string
+            type:
+              description: HTTP error message
+              example: conflict
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ConflictError
       type: object
     DocumentCreateRequest:
       additionalProperties: false
@@ -1181,20 +1041,46 @@ components:
           type: object
       title: DocumentCreateRequest
       type: object
-    ConflictError:
+    UnprocessableContentError:
       additionalProperties: false
-      description: Conflict
+      description: Unprocessable Content
       properties:
         error:
           additionalProperties: false
           properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
             message:
               description: Error details message
-              example: Conflict
+              example: Unprocessable Content
               type: string
             type:
               description: HTTP error message
-              example: conflict
+              example: unprocessable_entity
               type: string
           readOnly: true
           required:
@@ -1204,7 +1090,7 @@ components:
       readOnly: true
       required:
       - error
-      title: ConflictError
+      title: UnprocessableContentError
       type: object
     DocumentShowResponse:
       additionalProperties: false
@@ -2095,20 +1981,20 @@ components:
       - document
       title: DocumentUpdateRequest
       type: object
-    NotFoundError:
+    ServiceUnavailableError:
       additionalProperties: false
-      description: Not Found
+      description: Service Unavailable
       properties:
         error:
           additionalProperties: false
           properties:
             message:
               description: Error details message
-              example: Not Found
+              example: Service Unavailable
               type: string
             type:
               description: HTTP error message
-              example: not_found
+              example: service_unavailable
               type: string
           readOnly: true
           required:
@@ -2118,7 +2004,133 @@ components:
       readOnly: true
       required:
       - error
-      title: NotFoundError
+      title: ServiceUnavailableError
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
+    BadRequestError:
+      additionalProperties: false
+      description: Bad Request
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
+            message:
+              description: Error details message
+              example: Bad Request
+              type: string
+            type:
+              description: HTTP error message
+              example: bad_request
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: BadRequestError
+      type: object
+    PaymentRequiredError:
+      additionalProperties: false
+      description: Payment Required
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Payment Required
+              type: string
+            type:
+              description: HTTP error message
+              example: payment_required
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: PaymentRequiredError
       type: object
     DataField:
       description: Data field
@@ -2225,32 +2237,20 @@ components:
       - source_sync_type
       title: DataField
       type: object
-    DocumentPdfShowResponse:
+    NotFoundError:
       additionalProperties: false
-      description: An object with an URL to the PDF file
-      properties:
-        location:
-          description: The URL, that can be used to download the PDF file
-          format: url
-          type: string
-      required:
-      - location
-      title: DocumentPdfShowResponse
-      type: object
-    ServiceUnavailableError:
-      additionalProperties: false
-      description: Service Unavailable
+      description: Not Found
       properties:
         error:
           additionalProperties: false
           properties:
             message:
               description: Error details message
-              example: Service Unavailable
+              example: Not Found
               type: string
             type:
               description: HTTP error message
-              example: service_unavailable
+              example: not_found
               type: string
           readOnly: true
           required:
@@ -2260,7 +2260,7 @@ components:
       readOnly: true
       required:
       - error
-      title: ServiceUnavailableError
+      title: NotFoundError
       type: object
     DocumentIndexResponse:
       additionalProperties: false
