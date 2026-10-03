@@ -60,6 +60,40 @@ paths:
       - Attachments
 components:
   schemas:
+    FileUploadRequest:
+      additionalProperties: false
+      description: Payload with file
+      properties:
+        file:
+          description: '**Accepted MIME types:**
+
+            application/msword,
+
+            application/pdf,
+
+            application/vnd.ms-excel,
+
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
+
+            application/vnd.openxmlformats-officedocument.wordprocessingml.document,
+
+            application/zip,
+
+            image/jpeg,
+
+            image/png,
+
+            text/csv,
+
+            text/plain
+
+            '
+          format: binary
+          type: string
+      required:
+      - file
+      title: FileUploadRequest
+      type: object
     UnauthorizedError:
       additionalProperties: false
       description: Unauthorized
@@ -84,6 +118,30 @@ components:
       required:
       - error
       title: UnauthorizedError
+      type: object
+    FileUploadResponse:
+      additionalProperties: false
+      description: Document attachment
+      properties:
+        original:
+          description: URL of the attachment
+          example: http://example.com/image.png
+          format: uri
+          type: string
+        preview:
+          description: 'If the original is a document, this field will hold an list URL with image
+
+            previews of each page
+
+            '
+          items:
+            example: http://example.com/image.png
+            format: uri
+            type: string
+          type: array
+      required:
+      - original
+      title: FileUploadResponse
       type: object
     BadRequestError:
       additionalProperties: false
@@ -135,64 +193,6 @@ components:
       required:
       - error
       title: BadRequestError
-      type: object
-    FileUploadRequest:
-      additionalProperties: false
-      description: Payload with file
-      properties:
-        file:
-          description: '**Accepted MIME types:**
-
-            application/msword,
-
-            application/pdf,
-
-            application/vnd.ms-excel,
-
-            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,
-
-            application/vnd.openxmlformats-officedocument.wordprocessingml.document,
-
-            application/zip,
-
-            image/jpeg,
-
-            image/png,
-
-            text/csv,
-
-            text/plain
-
-            '
-          format: binary
-          type: string
-      required:
-      - file
-      title: FileUploadRequest
-      type: object
-    FileUploadResponse:
-      additionalProperties: false
-      description: Document attachment
-      properties:
-        original:
-          description: URL of the attachment
-          example: http://example.com/image.png
-          format: uri
-          type: string
-        preview:
-          description: 'If the original is a document, this field will hold an list URL with image
-
-            previews of each page
-
-            '
-          items:
-            example: http://example.com/image.png
-            format: uri
-            type: string
-          type: array
-      required:
-      - original
-      title: FileUploadResponse
       type: object
   securitySchemes:
     authorization:

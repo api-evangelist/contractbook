@@ -111,6 +111,48 @@ paths:
       - Spaces
 components:
   schemas:
+    NotFoundError:
+      additionalProperties: false
+      description: Not Found
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: NotFoundError
+      type: object
+    SpaceCreateChildResponse:
+      additionalProperties: false
+      description: Response for creating a child space
+      properties:
+        id:
+          description: Space ID
+          format: uuid
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          type: string
+        name:
+          description: Space name
+          type: string
+      required:
+      - id
+      - name
+      title: SpaceCreateChildResponse
+      type: object
     SpaceCreateRequest:
       additionalProperties: false
       description: Request body for creating a child space
@@ -156,31 +198,6 @@ components:
       - spaces
       title: SpaceShowTreeResponse
       type: object
-    UnauthorizedError:
-      additionalProperties: false
-      description: Unauthorized
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Unauthorized
-              type: string
-            type:
-              description: HTTP error message
-              example: unauthorized
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnauthorizedError
-      type: object
     ForbiddenError:
       additionalProperties: false
       description: Forbidden
@@ -206,20 +223,20 @@ components:
       - error
       title: ForbiddenError
       type: object
-    NotFoundError:
+    UnauthorizedError:
       additionalProperties: false
-      description: Not Found
+      description: Unauthorized
       properties:
         error:
           additionalProperties: false
           properties:
             message:
               description: Error details message
-              example: Not Found
+              example: Unauthorized
               type: string
             type:
               description: HTTP error message
-              example: not_found
+              example: unauthorized
               type: string
           readOnly: true
           required:
@@ -229,24 +246,7 @@ components:
       readOnly: true
       required:
       - error
-      title: NotFoundError
-      type: object
-    SpaceCreateChildResponse:
-      additionalProperties: false
-      description: Response for creating a child space
-      properties:
-        id:
-          description: Space ID
-          format: uuid
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          type: string
-        name:
-          description: Space name
-          type: string
-      required:
-      - id
-      - name
-      title: SpaceCreateChildResponse
+      title: UnauthorizedError
       type: object
   securitySchemes:
     authorization:

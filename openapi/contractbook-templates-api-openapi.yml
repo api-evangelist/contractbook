@@ -112,31 +112,6 @@ paths:
       - Templates
 components:
   schemas:
-    UnauthorizedError:
-      additionalProperties: false
-      description: Unauthorized
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Unauthorized
-              type: string
-            type:
-              description: HTTP error message
-              example: unauthorized
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnauthorizedError
-      type: object
     NotFoundError:
       additionalProperties: false
       description: Not Found
@@ -161,85 +136,6 @@ components:
       required:
       - error
       title: NotFoundError
-      type: object
-    TemplateIndexResponse:
-      additionalProperties: false
-      description: List of template previews
-      properties:
-        templates:
-          description: List of template previews
-          items:
-            additionalProperties: false
-            properties:
-              created_at:
-                description: The date and time when the template was created
-                format: date-time
-                type: string
-              description:
-                description: Description of the template
-                type: string
-              id:
-                description: Template ID
-                format: uuid
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                type: string
-              language:
-                description: Language
-                type: string
-              location:
-                properties:
-                  id:
-                    description: ID of location
-                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$|^root$
-                    type: string
-                  name:
-                    type: string
-                  type:
-                    description: Where the template is located
-                    enum:
-                    - none
-                    - folder
-                    - workspace
-                    - category
-                    type: string
-                type: object
-              owned:
-                description: Tells if the templates is owned by the requesting user
-                type: boolean
-              owner_id:
-                description: Template owner ID
-                format: uuid
-                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                type: string
-              slug:
-                description: Template slug
-                type:
-                - string
-                - 'null'
-              title:
-                description: Template title
-                type:
-                - string
-                - 'null'
-              updated_at:
-                description: The date and time of the last time the template was edited
-                format: date-time
-                type: string
-            required:
-            - created_at
-            - description
-            - id
-            - language
-            - owned
-            - owner_id
-            - slug
-            - title
-            - updated_at
-            type: object
-          type: array
-      required:
-      - templates
-      title: TemplateIndexResponse
       type: object
     TemplateShowResponse:
       additionalProperties: false
@@ -587,6 +483,110 @@ components:
       required:
       - template
       title: TemplateShowResponse
+      type: object
+    TemplateIndexResponse:
+      additionalProperties: false
+      description: List of template previews
+      properties:
+        templates:
+          description: List of template previews
+          items:
+            additionalProperties: false
+            properties:
+              created_at:
+                description: The date and time when the template was created
+                format: date-time
+                type: string
+              description:
+                description: Description of the template
+                type: string
+              id:
+                description: Template ID
+                format: uuid
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                type: string
+              language:
+                description: Language
+                type: string
+              location:
+                properties:
+                  id:
+                    description: ID of location
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$|^root$
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    description: Where the template is located
+                    enum:
+                    - none
+                    - folder
+                    - workspace
+                    - category
+                    type: string
+                type: object
+              owned:
+                description: Tells if the templates is owned by the requesting user
+                type: boolean
+              owner_id:
+                description: Template owner ID
+                format: uuid
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                type: string
+              slug:
+                description: Template slug
+                type:
+                - string
+                - 'null'
+              title:
+                description: Template title
+                type:
+                - string
+                - 'null'
+              updated_at:
+                description: The date and time of the last time the template was edited
+                format: date-time
+                type: string
+            required:
+            - created_at
+            - description
+            - id
+            - language
+            - owned
+            - owner_id
+            - slug
+            - title
+            - updated_at
+            type: object
+          type: array
+      required:
+      - templates
+      title: TemplateIndexResponse
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
       type: object
   securitySchemes:
     authorization:
