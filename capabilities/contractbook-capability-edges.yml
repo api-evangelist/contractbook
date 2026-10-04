@@ -1,0 +1,35 @@
+slug: contractbook
+provider: Contractbook
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Documents
+  spec_file: contractbook-documents-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.85
+  evidence: POST /templates/{id}/create_document "Create a new document from a template"; POST /documents/{id}/send
+    "Send a document for signature"; GET /documents/{id}/pdf "Get a PDF copy of a document"
+  reason: Drafting documents from templates and sending them for electronic signature on a stated CLM
+    platform is contract lifecycle management from drafting to execution. Clear fit to BC-150.10.
+- tag: Templates
+  spec_file: contractbook-templates-api-openapi.yml
+  capability_id: BC-150.10
+  capability_id_l1: BC-150
+  capability_name: Contract Management
+  confidence: 0.8
+  evidence: 'GET /templates ''Get a list of templates''; vendor: ''generate pre-filled contract drafts
+    ... manage templates'''
+  reason: Templates here are contract document templates in a contract lifecycle management platform,
+    directly supporting contract drafting/lifecycle management.
