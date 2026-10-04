@@ -611,153 +611,396 @@ paths:
       - Documents
 components:
   schemas:
-    NotFoundError:
+    DocumentUpdateRequest:
       additionalProperties: false
-      description: Not Found
+      description: Used to update the document
       properties:
-        error:
+        document:
           additionalProperties: false
+          description: Document parameters
           properties:
-            message:
-              description: Error details message
-              example: Not Found
-              type: string
-            type:
-              description: HTTP error message
-              example: not_found
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: NotFoundError
-      type: object
-    UnprocessableContentError:
-      additionalProperties: false
-      description: Unprocessable Content
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            failures:
-              description: List of request errors
+            attachments:
+              description: Document attachments
               items:
                 additionalProperties: false
-                description: Error description
+                description: Document attachment
                 properties:
-                  detail:
-                    description: Details of the error
+                  filename:
+                    description: 'Optional attachment name. We will use it when the user downloads the attachment, as well as display it next to the attachment in the app and in the PDF.
+
+                      '
+                    example: Document attachment 1
+                    type:
+                    - string
+                    - 'null'
+                  original:
+                    description: URL of the attachment
+                    example: https://example.com/image.png
+                    format: uri
                     type: string
-                  source:
+                  preview:
+                    description: 'If the original is a document, this field will hold an list URL with image
+
+                      previews of each page
+
+                      '
+                    items:
+                      description: Preview URL
+                      example: https://example.com/preview.png
+                      format: url
+                      type: string
+                    type: array
+                type: object
+              type:
+              - array
+              - 'null'
+            attachments_signed_separately:
+              description: Indicates if the attachments should be signed and sealed separately
+              example: true
+              type: boolean
+            company_logo_url:
+              description: The URL of the logo shown in the contract
+              format: uri
+              type:
+              - string
+              - 'null'
+            data_fields:
+              description: Data fields in the document
+              items:
+                description: Create or update data field schema
+                properties:
+                  config:
                     additionalProperties: false
+                    description: Additional config for this data field. Contains `options` for `select`, or `label` for `checkbox`.
                     properties:
-                      pointer:
-                        description: Failing field name or reference
-                        type: string
-                    required:
-                    - pointer
+                      label:
+                        required: false
+                        type:
+                        - string
+                        - 'null'
+                      options:
+                        items:
+                          type: string
+                        required: false
+                        type: array
                     type: object
-                  title:
-                    description: Title of the error
+                  description:
+                    description: Description
+                    type:
+                    - string
+                    - 'null'
+                  formatting:
+                    additionalProperties: false
+                    description: Formatting
+                    properties:
+                      fractional:
+                        type:
+                        - boolean
+                        - 'null'
+                      grouping:
+                        enum:
+                        - ''
+                        - dot
+                        - comma
+                        - space
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  id:
+                    description: Unique ID
+                    format: uuid
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
                     type: string
+                  name:
+                    description: Name
+                    type: string
+                  required:
+                    description: Whether this data field must be filled to send the document for signature
+                    type: boolean
+                  source:
+                    description: Source of data for this data field
+                    enum:
+                    - drafter_questionnaire
+                    - ai
+                    - salesforce
+                    type:
+                    - string
+                    - 'null'
+                  source_mapping:
+                    description: Integration data mapping for this data field. Revealed only when connected to the same integration instance.
+                    type:
+                    - string
+                    - 'null'
+                  source_sync_type:
+                    description: Integration sync mode for this data field. Revealed only when connected to the same integration instance.
+                    enum:
+                    - downstream
+                    - upstream
+                    - bidirectional
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                    description: Type
+                    enum:
+                    - text
+                    - number
+                    - date
+                    - select
+                    - checkbox
+                    type: string
+                  value:
+                    description: Value
+                    type:
+                    - string
+                    - 'null'
                 required:
-                - title
-                - detail
+                - value
+                - name
+                - type
+                title: DataFieldCreateOrUpdate
                 type: object
               type: array
+            dynamic_tables:
+              items:
+                additionalProperties: false
+                description: Fill the data of the dynamic tables placeholders placed inside your template
+                properties:
+                  attrs:
+                    description: Attributes of the dynamic table
+                    properties:
+                      columns:
+                        description: Column names
+                        items:
+                          description: Column name
+                          type: string
+                        type: array
+                      id:
+                        description: Dynamic table ID
+                        type: string
+                      rows:
+                        description: Data for the table rows
+                        items:
+                          description: Table row
+                          items:
+                            description: Cell value
+                            type: string
+                          type: array
+                        type: array
+                    required:
+                    - id
+                    - columns
+                    - rows
+                    type: object
+                required:
+                - attrs
+                type: object
+              type: array
+            language:
+              description: Language
+              example: en
+              type:
+              - string
+              - 'null'
             message:
-              description: Error details message
-              example: Unprocessable Content
+              additionalProperties: false
+              properties:
+                content:
+                  description: Message content
+                  example: Hello!
+                  type: string
+              type: object
+            parties:
+              description: Parties and signees
+              items:
+                additionalProperties: false
+                description: Party
+                properties:
+                  address:
+                    description: Address
+                    example: 123 Main Street
+                    type:
+                    - string
+                    - 'null'
+                  id:
+                    description: Unique ID
+                    format: uuid
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    type:
+                    - string
+                    - 'null'
+                  name:
+                    description: Name
+                    example: Jane Doe
+                    type:
+                    - string
+                    - 'null'
+                  number:
+                    description: Company's VAT number or CVR
+                    type:
+                    - string
+                    - 'null'
+                  reference:
+                    description: How the party will be referred to in the document
+                    example: Sender
+                    type:
+                    - string
+                    - 'null'
+                  signees:
+                    description: Party's signees
+                    items:
+                      additionalProperties: false
+                      properties:
+                        changes_requested_at:
+                          description: Date and time when the signee requested changes to the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        email:
+                          description: Signee's email address
+                          format: email
+                          type:
+                          - string
+                          - 'null'
+                        full_name:
+                          description: Signee's full name
+                          example: Jane Doe
+                          type:
+                          - string
+                          - 'null'
+                        id:
+                          description: Unique ID
+                          format: uuid
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                          type:
+                          - string
+                          - 'null'
+                        opened_at:
+                          description: Date and time when the signee opened the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        order:
+                          description: Signee's signing order. When the signing order mode is set to `grouped`, then this number represents the signee's group number.
+                          minimum: 0
+                          type: integer
+                        rejected_at:
+                          description: Date and time when the signee rejected the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        signature_verification_methods:
+                          description: List of allowed signature types for the signee
+                          example:
+                          - sms
+                          - basic
+                          - wet_signature
+                          items:
+                            enum:
+                            - sms
+                            - basic
+                            - wet_signature
+                            - criipto_dk_mitid_substantial
+                            - criipto_dk_mitid_business
+                            - criipto_no_bankid
+                            - criipto_se_bankid_same_device
+                            - criipto_se_bankid_another_device
+                            - criipto_fi_bankid
+                            - criipto_fi_bankid_mobile
+                            type: string
+                          type:
+                          - array
+                          - 'null'
+                        signed_at:
+                          description: Date and time when the signee signed the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          description: Signee's title
+                          example: Software Engineer
+                          type:
+                          - string
+                          - 'null'
+                      type: object
+                    type: array
+                  type:
+                    description: Type
+                    enum:
+                    - personal
+                    - company
+                    type: string
+                type: object
+              type: array
+            signing_order_mode:
+              description: The signing order mode. When it's set to grouped, each signee in `parties.signees`, should have the order field set to the group's number starting from 0.
+              enum:
+              - random
+              - strict
+              - grouped
+              example: grouped
               type: string
-            type:
-              description: HTTP error message
-              example: unprocessable_entity
+            tags:
+              description: Document's tags
+              items:
+                example: tags
+                minLength: 1
+                type: string
+              type: array
+            title:
+              description: Document title
               type: string
-          readOnly: true
-          required:
-          - type
-          - message
+            to_be_signed_by:
+              description: Who should sign the document
+              enum:
+              - owner_and_others
+              - others_only
+              - owner_only
+              example: owner_only
+              type: string
+            version:
+              description: 'The version has to be provided on update and match the latest document''s version.
+
+
+                You can get it from the response when you get a document by ID.
+
+                It is also available in the response from document create or update actions.
+
+                '
+              format: uuid
+              pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              type: string
+          title: DocumentUpdateAttibutes
           type: object
-      readOnly: true
       required:
-      - error
-      title: UnprocessableContentError
+      - document
+      title: DocumentUpdateRequest
       type: object
-    DocumentSendRequest:
+    ServiceUnavailableError:
       additionalProperties: false
-      description: Document send parameters
-      properties:
-        autosign:
-          default: true
-          description: "Whether to automatically sign the document by the sending party during sending.\n\nThis flag will work only if owner of the account which holds the API key is\none of the signees and:\n\n1. The order of signatures on the document is set to:\n   - `random`.\n   - `strict` and the owner is the first signee.\n   - `grouped` and the owner is in the first group of signees.\n2. The owner signature method is any of the following:\n   - SMS (`sms`)\n   - sign with a click (`basic`)\n"
-          type: boolean
-      title: DocumentSendRequest
-      type: object
-    DocumentPdfShowResponse:
-      additionalProperties: false
-      description: An object with an URL to the PDF file
-      properties:
-        location:
-          description: The URL, that can be used to download the PDF file
-          format: url
-          type: string
-      required:
-      - location
-      title: DocumentPdfShowResponse
-      type: object
-    DocumentPdfShowAcceptedResponse:
-      additionalProperties: false
-      description: Used to indicate the PDF is not yet ready for download
-      properties:
-        message:
-          description: Information message containing details
-          type: string
-      title: DocumentPdfShowAcceptedResponse
-      type: object
-    BadRequestError:
-      additionalProperties: false
-      description: Bad Request
+      description: Service Unavailable
       properties:
         error:
           additionalProperties: false
           properties:
-            failures:
-              description: List of request errors
-              items:
-                additionalProperties: false
-                description: Error description
-                properties:
-                  detail:
-                    description: Details of the error
-                    type: string
-                  source:
-                    additionalProperties: false
-                    properties:
-                      pointer:
-                        description: Failing field name or reference
-                        type: string
-                    required:
-                    - pointer
-                    type: object
-                  title:
-                    description: Title of the error
-                    type: string
-                required:
-                - title
-                - detail
-                type: object
-              type: array
             message:
               description: Error details message
-              example: Bad Request
+              example: Service Unavailable
               type: string
             type:
               description: HTTP error message
-              example: bad_request
+              example: service_unavailable
               type: string
           readOnly: true
           required:
@@ -767,7 +1010,32 @@ components:
       readOnly: true
       required:
       - error
-      title: BadRequestError
+      title: ServiceUnavailableError
+      type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
       type: object
     DocumentShowResponse:
       additionalProperties: false
@@ -1282,6 +1550,465 @@ components:
               - 'null'
       title: DocumentShowResponse
       type: object
+    DocumentCreateRequest:
+      additionalProperties: false
+      description: Used to create document draft from a template
+      properties:
+        document:
+          additionalProperties: false
+          description: Document parameters
+          properties:
+            attachments:
+              description: Document attachments
+              items:
+                additionalProperties: false
+                description: Document attachment
+                properties:
+                  filename:
+                    description: 'Optional attachment name. We will use it when the user downloads the attachment, as well as display it next to the attachment in the app and in the PDF.
+
+                      '
+                    example: Document attachment 1
+                    type:
+                    - string
+                    - 'null'
+                  original:
+                    description: URL of the attachment
+                    example: https://example.com/image.png
+                    format: uri
+                    type: string
+                  preview:
+                    description: 'If the original is a document, this field will hold an list URL with image
+
+                      previews of each page
+
+                      '
+                    items:
+                      description: Preview URL
+                      example: https://example.com/preview.png
+                      format: url
+                      type: string
+                    type: array
+                type: object
+              type:
+              - array
+              - 'null'
+            attachments_signed_separately:
+              description: Indicates if the attachments should be signed and sealed separately
+              example: true
+              type: boolean
+            company_logo_url:
+              description: The URL of the logo shown in the contract
+              format: uri
+              type:
+              - string
+              - 'null'
+            data_fields:
+              description: Data fields in the document
+              items:
+                description: Create or update data field schema
+                properties:
+                  config:
+                    additionalProperties: false
+                    description: Additional config for this data field. Contains `options` for `select`, or `label` for `checkbox`.
+                    properties:
+                      label:
+                        required: false
+                        type:
+                        - string
+                        - 'null'
+                      options:
+                        items:
+                          type: string
+                        required: false
+                        type: array
+                    type: object
+                  description:
+                    description: Description
+                    type:
+                    - string
+                    - 'null'
+                  formatting:
+                    additionalProperties: false
+                    description: Formatting
+                    properties:
+                      fractional:
+                        type:
+                        - boolean
+                        - 'null'
+                      grouping:
+                        enum:
+                        - ''
+                        - dot
+                        - comma
+                        - space
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  id:
+                    description: Unique ID
+                    format: uuid
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    type: string
+                  name:
+                    description: Name
+                    type: string
+                  required:
+                    description: Whether this data field must be filled to send the document for signature
+                    type: boolean
+                  source:
+                    description: Source of data for this data field
+                    enum:
+                    - drafter_questionnaire
+                    - ai
+                    - salesforce
+                    type:
+                    - string
+                    - 'null'
+                  source_mapping:
+                    description: Integration data mapping for this data field. Revealed only when connected to the same integration instance.
+                    type:
+                    - string
+                    - 'null'
+                  source_sync_type:
+                    description: Integration sync mode for this data field. Revealed only when connected to the same integration instance.
+                    enum:
+                    - downstream
+                    - upstream
+                    - bidirectional
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                    description: Type
+                    enum:
+                    - text
+                    - number
+                    - date
+                    - select
+                    - checkbox
+                    type: string
+                  value:
+                    description: Value
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - value
+                - name
+                - type
+                title: DataFieldCreateOrUpdate
+                type: object
+              type: array
+            dynamic_tables:
+              items:
+                additionalProperties: false
+                description: Fill the data of the dynamic tables placeholders placed inside your template
+                properties:
+                  attrs:
+                    description: Attributes of the dynamic table
+                    properties:
+                      columns:
+                        description: Column names
+                        items:
+                          description: Column name
+                          type: string
+                        type: array
+                      id:
+                        description: Dynamic table ID
+                        type: string
+                      rows:
+                        description: Data for the table rows
+                        items:
+                          description: Table row
+                          items:
+                            description: Cell value
+                            type: string
+                          type: array
+                        type: array
+                    required:
+                    - id
+                    - columns
+                    - rows
+                    type: object
+                required:
+                - attrs
+                type: object
+              type: array
+            language:
+              description: Language
+              example: en
+              type:
+              - string
+              - 'null'
+            message:
+              additionalProperties: false
+              properties:
+                content:
+                  description: Message content
+                  example: Hello!
+                  type: string
+              type: object
+            parties:
+              description: Parties and signees
+              items:
+                additionalProperties: false
+                description: Party
+                properties:
+                  address:
+                    description: Address
+                    example: 123 Main Street
+                    type:
+                    - string
+                    - 'null'
+                  id:
+                    description: Unique ID
+                    format: uuid
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    type:
+                    - string
+                    - 'null'
+                  name:
+                    description: Name
+                    example: Jane Doe
+                    type:
+                    - string
+                    - 'null'
+                  number:
+                    description: Company's VAT number or CVR
+                    type:
+                    - string
+                    - 'null'
+                  reference:
+                    description: How the party will be referred to in the document
+                    example: Sender
+                    type:
+                    - string
+                    - 'null'
+                  signees:
+                    description: Party's signees
+                    items:
+                      additionalProperties: false
+                      properties:
+                        changes_requested_at:
+                          description: Date and time when the signee requested changes to the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        email:
+                          description: Signee's email address
+                          format: email
+                          type:
+                          - string
+                          - 'null'
+                        full_name:
+                          description: Signee's full name
+                          example: Jane Doe
+                          type:
+                          - string
+                          - 'null'
+                        id:
+                          description: Unique ID
+                          format: uuid
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                          type:
+                          - string
+                          - 'null'
+                        opened_at:
+                          description: Date and time when the signee opened the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        order:
+                          description: Signee's signing order. When the signing order mode is set to `grouped`, then this number represents the signee's group number.
+                          minimum: 0
+                          type: integer
+                        rejected_at:
+                          description: Date and time when the signee rejected the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        signature_verification_methods:
+                          description: List of allowed signature types for the signee
+                          example:
+                          - sms
+                          - basic
+                          - wet_signature
+                          items:
+                            enum:
+                            - sms
+                            - basic
+                            - wet_signature
+                            - criipto_dk_mitid_substantial
+                            - criipto_dk_mitid_business
+                            - criipto_no_bankid
+                            - criipto_se_bankid_same_device
+                            - criipto_se_bankid_another_device
+                            - criipto_fi_bankid
+                            - criipto_fi_bankid_mobile
+                            type: string
+                          type:
+                          - array
+                          - 'null'
+                        signed_at:
+                          description: Date and time when the signee signed the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          description: Signee's title
+                          example: Software Engineer
+                          type:
+                          - string
+                          - 'null'
+                      type: object
+                    type: array
+                  type:
+                    description: Type
+                    enum:
+                    - personal
+                    - company
+                    type: string
+                type: object
+              type: array
+            signing_order_mode:
+              description: The signing order mode. When it's set to grouped, each signee in `parties.signees`, should have the order field set to the group's number starting from 0.
+              enum:
+              - random
+              - strict
+              - grouped
+              example: strict
+              type: string
+            tags:
+              description: Document's tags
+              items:
+                example: tags
+                minLength: 1
+                type: string
+              type: array
+            title:
+              description: Document title
+              type: string
+            to_be_signed_by:
+              description: Who should sign the document
+              enum:
+              - owner_and_others
+              - others_only
+              - owner_only
+              example: owner_only
+              type: string
+            version:
+              description: 'The version has to be provided on update and match the latest document''s version.
+
+
+                You can get it from the response when you get a document by ID.
+
+                It is also available in the response from document create or update actions.
+
+                '
+              format: uuid
+              pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              type: string
+          title: DocumentUpdateAttibutes
+          type: object
+      title: DocumentCreateRequest
+      type: object
+    BadRequestError:
+      additionalProperties: false
+      description: Bad Request
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
+            message:
+              description: Error details message
+              example: Bad Request
+              type: string
+            type:
+              description: HTTP error message
+              example: bad_request
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: BadRequestError
+      type: object
+    NotFoundError:
+      additionalProperties: false
+      description: Not Found
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: NotFoundError
+      type: object
+    DocumentPdfShowAcceptedResponse:
+      additionalProperties: false
+      description: Used to indicate the PDF is not yet ready for download
+      properties:
+        message:
+          description: Information message containing details
+          type: string
+      title: DocumentPdfShowAcceptedResponse
+      type: object
     DocumentIndexResponse:
       additionalProperties: false
       description: Paginated list of documents
@@ -1680,831 +2407,6 @@ components:
       - error
       title: PaymentRequiredError
       type: object
-    DocumentUpdateRequest:
-      additionalProperties: false
-      description: Used to update the document
-      properties:
-        document:
-          additionalProperties: false
-          description: Document parameters
-          properties:
-            attachments:
-              description: Document attachments
-              items:
-                additionalProperties: false
-                description: Document attachment
-                properties:
-                  filename:
-                    description: 'Optional attachment name. We will use it when the user downloads the attachment, as well as display it next to the attachment in the app and in the PDF.
-
-                      '
-                    example: Document attachment 1
-                    type:
-                    - string
-                    - 'null'
-                  original:
-                    description: URL of the attachment
-                    example: https://example.com/image.png
-                    format: uri
-                    type: string
-                  preview:
-                    description: 'If the original is a document, this field will hold an list URL with image
-
-                      previews of each page
-
-                      '
-                    items:
-                      description: Preview URL
-                      example: https://example.com/preview.png
-                      format: url
-                      type: string
-                    type: array
-                type: object
-              type:
-              - array
-              - 'null'
-            attachments_signed_separately:
-              description: Indicates if the attachments should be signed and sealed separately
-              example: true
-              type: boolean
-            company_logo_url:
-              description: The URL of the logo shown in the contract
-              format: uri
-              type:
-              - string
-              - 'null'
-            data_fields:
-              description: Data fields in the document
-              items:
-                description: Create or update data field schema
-                properties:
-                  config:
-                    additionalProperties: false
-                    description: Additional config for this data field. Contains `options` for `select`, or `label` for `checkbox`.
-                    properties:
-                      label:
-                        required: false
-                        type:
-                        - string
-                        - 'null'
-                      options:
-                        items:
-                          type: string
-                        required: false
-                        type: array
-                    type: object
-                  description:
-                    description: Description
-                    type:
-                    - string
-                    - 'null'
-                  formatting:
-                    additionalProperties: false
-                    description: Formatting
-                    properties:
-                      fractional:
-                        type:
-                        - boolean
-                        - 'null'
-                      grouping:
-                        enum:
-                        - ''
-                        - dot
-                        - comma
-                        - space
-                        type:
-                        - string
-                        - 'null'
-                    type:
-                    - object
-                    - 'null'
-                  id:
-                    description: Unique ID
-                    format: uuid
-                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                    type: string
-                  name:
-                    description: Name
-                    type: string
-                  required:
-                    description: Whether this data field must be filled to send the document for signature
-                    type: boolean
-                  source:
-                    description: Source of data for this data field
-                    enum:
-                    - drafter_questionnaire
-                    - ai
-                    - salesforce
-                    type:
-                    - string
-                    - 'null'
-                  source_mapping:
-                    description: Integration data mapping for this data field. Revealed only when connected to the same integration instance.
-                    type:
-                    - string
-                    - 'null'
-                  source_sync_type:
-                    description: Integration sync mode for this data field. Revealed only when connected to the same integration instance.
-                    enum:
-                    - downstream
-                    - upstream
-                    - bidirectional
-                    type:
-                    - string
-                    - 'null'
-                  type:
-                    description: Type
-                    enum:
-                    - text
-                    - number
-                    - date
-                    - select
-                    - checkbox
-                    type: string
-                  value:
-                    description: Value
-                    type:
-                    - string
-                    - 'null'
-                required:
-                - value
-                - name
-                - type
-                title: DataFieldCreateOrUpdate
-                type: object
-              type: array
-            dynamic_tables:
-              items:
-                additionalProperties: false
-                description: Fill the data of the dynamic tables placeholders placed inside your template
-                properties:
-                  attrs:
-                    description: Attributes of the dynamic table
-                    properties:
-                      columns:
-                        description: Column names
-                        items:
-                          description: Column name
-                          type: string
-                        type: array
-                      id:
-                        description: Dynamic table ID
-                        type: string
-                      rows:
-                        description: Data for the table rows
-                        items:
-                          description: Table row
-                          items:
-                            description: Cell value
-                            type: string
-                          type: array
-                        type: array
-                    required:
-                    - id
-                    - columns
-                    - rows
-                    type: object
-                required:
-                - attrs
-                type: object
-              type: array
-            language:
-              description: Language
-              example: en
-              type:
-              - string
-              - 'null'
-            message:
-              additionalProperties: false
-              properties:
-                content:
-                  description: Message content
-                  example: Hello!
-                  type: string
-              type: object
-            parties:
-              description: Parties and signees
-              items:
-                additionalProperties: false
-                description: Party
-                properties:
-                  address:
-                    description: Address
-                    example: 123 Main Street
-                    type:
-                    - string
-                    - 'null'
-                  id:
-                    description: Unique ID
-                    format: uuid
-                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                    type:
-                    - string
-                    - 'null'
-                  name:
-                    description: Name
-                    example: Jane Doe
-                    type:
-                    - string
-                    - 'null'
-                  number:
-                    description: Company's VAT number or CVR
-                    type:
-                    - string
-                    - 'null'
-                  reference:
-                    description: How the party will be referred to in the document
-                    example: Sender
-                    type:
-                    - string
-                    - 'null'
-                  signees:
-                    description: Party's signees
-                    items:
-                      additionalProperties: false
-                      properties:
-                        changes_requested_at:
-                          description: Date and time when the signee requested changes to the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        email:
-                          description: Signee's email address
-                          format: email
-                          type:
-                          - string
-                          - 'null'
-                        full_name:
-                          description: Signee's full name
-                          example: Jane Doe
-                          type:
-                          - string
-                          - 'null'
-                        id:
-                          description: Unique ID
-                          format: uuid
-                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                          type:
-                          - string
-                          - 'null'
-                        opened_at:
-                          description: Date and time when the signee opened the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        order:
-                          description: Signee's signing order. When the signing order mode is set to `grouped`, then this number represents the signee's group number.
-                          minimum: 0
-                          type: integer
-                        rejected_at:
-                          description: Date and time when the signee rejected the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        signature_verification_methods:
-                          description: List of allowed signature types for the signee
-                          example:
-                          - sms
-                          - basic
-                          - wet_signature
-                          items:
-                            enum:
-                            - sms
-                            - basic
-                            - wet_signature
-                            - criipto_dk_mitid_substantial
-                            - criipto_dk_mitid_business
-                            - criipto_no_bankid
-                            - criipto_se_bankid_same_device
-                            - criipto_se_bankid_another_device
-                            - criipto_fi_bankid
-                            - criipto_fi_bankid_mobile
-                            type: string
-                          type:
-                          - array
-                          - 'null'
-                        signed_at:
-                          description: Date and time when the signee signed the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        title:
-                          description: Signee's title
-                          example: Software Engineer
-                          type:
-                          - string
-                          - 'null'
-                      type: object
-                    type: array
-                  type:
-                    description: Type
-                    enum:
-                    - personal
-                    - company
-                    type: string
-                type: object
-              type: array
-            signing_order_mode:
-              description: The signing order mode. When it's set to grouped, each signee in `parties.signees`, should have the order field set to the group's number starting from 0.
-              enum:
-              - random
-              - strict
-              - grouped
-              example: grouped
-              type: string
-            tags:
-              description: Document's tags
-              items:
-                example: tags
-                minLength: 1
-                type: string
-              type: array
-            title:
-              description: Document title
-              type: string
-            to_be_signed_by:
-              description: Who should sign the document
-              enum:
-              - owner_and_others
-              - others_only
-              - owner_only
-              example: owner_only
-              type: string
-            version:
-              description: 'The version has to be provided on update and match the latest document''s version.
-
-
-                You can get it from the response when you get a document by ID.
-
-                It is also available in the response from document create or update actions.
-
-                '
-              format: uuid
-              pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              type: string
-          title: DocumentUpdateAttibutes
-          type: object
-      required:
-      - document
-      title: DocumentUpdateRequest
-      type: object
-    ConflictError:
-      additionalProperties: false
-      description: Conflict
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Conflict
-              type: string
-            type:
-              description: HTTP error message
-              example: conflict
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ConflictError
-      type: object
-    ServiceUnavailableError:
-      additionalProperties: false
-      description: Service Unavailable
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Service Unavailable
-              type: string
-            type:
-              description: HTTP error message
-              example: service_unavailable
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ServiceUnavailableError
-      type: object
-    DocumentCreateRequest:
-      additionalProperties: false
-      description: Used to create document draft from a template
-      properties:
-        document:
-          additionalProperties: false
-          description: Document parameters
-          properties:
-            attachments:
-              description: Document attachments
-              items:
-                additionalProperties: false
-                description: Document attachment
-                properties:
-                  filename:
-                    description: 'Optional attachment name. We will use it when the user downloads the attachment, as well as display it next to the attachment in the app and in the PDF.
-
-                      '
-                    example: Document attachment 1
-                    type:
-                    - string
-                    - 'null'
-                  original:
-                    description: URL of the attachment
-                    example: https://example.com/image.png
-                    format: uri
-                    type: string
-                  preview:
-                    description: 'If the original is a document, this field will hold an list URL with image
-
-                      previews of each page
-
-                      '
-                    items:
-                      description: Preview URL
-                      example: https://example.com/preview.png
-                      format: url
-                      type: string
-                    type: array
-                type: object
-              type:
-              - array
-              - 'null'
-            attachments_signed_separately:
-              description: Indicates if the attachments should be signed and sealed separately
-              example: true
-              type: boolean
-            company_logo_url:
-              description: The URL of the logo shown in the contract
-              format: uri
-              type:
-              - string
-              - 'null'
-            data_fields:
-              description: Data fields in the document
-              items:
-                description: Create or update data field schema
-                properties:
-                  config:
-                    additionalProperties: false
-                    description: Additional config for this data field. Contains `options` for `select`, or `label` for `checkbox`.
-                    properties:
-                      label:
-                        required: false
-                        type:
-                        - string
-                        - 'null'
-                      options:
-                        items:
-                          type: string
-                        required: false
-                        type: array
-                    type: object
-                  description:
-                    description: Description
-                    type:
-                    - string
-                    - 'null'
-                  formatting:
-                    additionalProperties: false
-                    description: Formatting
-                    properties:
-                      fractional:
-                        type:
-                        - boolean
-                        - 'null'
-                      grouping:
-                        enum:
-                        - ''
-                        - dot
-                        - comma
-                        - space
-                        type:
-                        - string
-                        - 'null'
-                    type:
-                    - object
-                    - 'null'
-                  id:
-                    description: Unique ID
-                    format: uuid
-                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                    type: string
-                  name:
-                    description: Name
-                    type: string
-                  required:
-                    description: Whether this data field must be filled to send the document for signature
-                    type: boolean
-                  source:
-                    description: Source of data for this data field
-                    enum:
-                    - drafter_questionnaire
-                    - ai
-                    - salesforce
-                    type:
-                    - string
-                    - 'null'
-                  source_mapping:
-                    description: Integration data mapping for this data field. Revealed only when connected to the same integration instance.
-                    type:
-                    - string
-                    - 'null'
-                  source_sync_type:
-                    description: Integration sync mode for this data field. Revealed only when connected to the same integration instance.
-                    enum:
-                    - downstream
-                    - upstream
-                    - bidirectional
-                    type:
-                    - string
-                    - 'null'
-                  type:
-                    description: Type
-                    enum:
-                    - text
-                    - number
-                    - date
-                    - select
-                    - checkbox
-                    type: string
-                  value:
-                    description: Value
-                    type:
-                    - string
-                    - 'null'
-                required:
-                - value
-                - name
-                - type
-                title: DataFieldCreateOrUpdate
-                type: object
-              type: array
-            dynamic_tables:
-              items:
-                additionalProperties: false
-                description: Fill the data of the dynamic tables placeholders placed inside your template
-                properties:
-                  attrs:
-                    description: Attributes of the dynamic table
-                    properties:
-                      columns:
-                        description: Column names
-                        items:
-                          description: Column name
-                          type: string
-                        type: array
-                      id:
-                        description: Dynamic table ID
-                        type: string
-                      rows:
-                        description: Data for the table rows
-                        items:
-                          description: Table row
-                          items:
-                            description: Cell value
-                            type: string
-                          type: array
-                        type: array
-                    required:
-                    - id
-                    - columns
-                    - rows
-                    type: object
-                required:
-                - attrs
-                type: object
-              type: array
-            language:
-              description: Language
-              example: en
-              type:
-              - string
-              - 'null'
-            message:
-              additionalProperties: false
-              properties:
-                content:
-                  description: Message content
-                  example: Hello!
-                  type: string
-              type: object
-            parties:
-              description: Parties and signees
-              items:
-                additionalProperties: false
-                description: Party
-                properties:
-                  address:
-                    description: Address
-                    example: 123 Main Street
-                    type:
-                    - string
-                    - 'null'
-                  id:
-                    description: Unique ID
-                    format: uuid
-                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                    type:
-                    - string
-                    - 'null'
-                  name:
-                    description: Name
-                    example: Jane Doe
-                    type:
-                    - string
-                    - 'null'
-                  number:
-                    description: Company's VAT number or CVR
-                    type:
-                    - string
-                    - 'null'
-                  reference:
-                    description: How the party will be referred to in the document
-                    example: Sender
-                    type:
-                    - string
-                    - 'null'
-                  signees:
-                    description: Party's signees
-                    items:
-                      additionalProperties: false
-                      properties:
-                        changes_requested_at:
-                          description: Date and time when the signee requested changes to the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        email:
-                          description: Signee's email address
-                          format: email
-                          type:
-                          - string
-                          - 'null'
-                        full_name:
-                          description: Signee's full name
-                          example: Jane Doe
-                          type:
-                          - string
-                          - 'null'
-                        id:
-                          description: Unique ID
-                          format: uuid
-                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-                          type:
-                          - string
-                          - 'null'
-                        opened_at:
-                          description: Date and time when the signee opened the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        order:
-                          description: Signee's signing order. When the signing order mode is set to `grouped`, then this number represents the signee's group number.
-                          minimum: 0
-                          type: integer
-                        rejected_at:
-                          description: Date and time when the signee rejected the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        signature_verification_methods:
-                          description: List of allowed signature types for the signee
-                          example:
-                          - sms
-                          - basic
-                          - wet_signature
-                          items:
-                            enum:
-                            - sms
-                            - basic
-                            - wet_signature
-                            - criipto_dk_mitid_substantial
-                            - criipto_dk_mitid_business
-                            - criipto_no_bankid
-                            - criipto_se_bankid_same_device
-                            - criipto_se_bankid_another_device
-                            - criipto_fi_bankid
-                            - criipto_fi_bankid_mobile
-                            type: string
-                          type:
-                          - array
-                          - 'null'
-                        signed_at:
-                          description: Date and time when the signee signed the document
-                          format: date-time
-                          readOnly: true
-                          type:
-                          - string
-                          - 'null'
-                        title:
-                          description: Signee's title
-                          example: Software Engineer
-                          type:
-                          - string
-                          - 'null'
-                      type: object
-                    type: array
-                  type:
-                    description: Type
-                    enum:
-                    - personal
-                    - company
-                    type: string
-                type: object
-              type: array
-            signing_order_mode:
-              description: The signing order mode. When it's set to grouped, each signee in `parties.signees`, should have the order field set to the group's number starting from 0.
-              enum:
-              - random
-              - strict
-              - grouped
-              example: strict
-              type: string
-            tags:
-              description: Document's tags
-              items:
-                example: tags
-                minLength: 1
-                type: string
-              type: array
-            title:
-              description: Document title
-              type: string
-            to_be_signed_by:
-              description: Who should sign the document
-              enum:
-              - owner_and_others
-              - others_only
-              - owner_only
-              example: owner_only
-              type: string
-            version:
-              description: 'The version has to be provided on update and match the latest document''s version.
-
-
-                You can get it from the response when you get a document by ID.
-
-                It is also available in the response from document create or update actions.
-
-                '
-              format: uuid
-              pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-              type: string
-          title: DocumentUpdateAttibutes
-          type: object
-      title: DocumentCreateRequest
-      type: object
-    ForbiddenError:
-      additionalProperties: false
-      description: Forbidden
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
-      type: object
     DataField:
       description: Data field
       properties:
@@ -2634,6 +2536,104 @@ components:
       required:
       - error
       title: UnauthorizedError
+      type: object
+    DocumentSendRequest:
+      additionalProperties: false
+      description: Document send parameters
+      properties:
+        autosign:
+          default: true
+          description: "Whether to automatically sign the document by the sending party during sending.\n\nThis flag will work only if owner of the account which holds the API key is\none of the signees and:\n\n1. The order of signatures on the document is set to:\n   - `random`.\n   - `strict` and the owner is the first signee.\n   - `grouped` and the owner is in the first group of signees.\n2. The owner signature method is any of the following:\n   - SMS (`sms`)\n   - sign with a click (`basic`)\n"
+          type: boolean
+      title: DocumentSendRequest
+      type: object
+    UnprocessableContentError:
+      additionalProperties: false
+      description: Unprocessable Content
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
+            message:
+              description: Error details message
+              example: Unprocessable Content
+              type: string
+            type:
+              description: HTTP error message
+              example: unprocessable_entity
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnprocessableContentError
+      type: object
+    DocumentPdfShowResponse:
+      additionalProperties: false
+      description: An object with an URL to the PDF file
+      properties:
+        location:
+          description: The URL, that can be used to download the PDF file
+          format: url
+          type: string
+      required:
+      - location
+      title: DocumentPdfShowResponse
+      type: object
+    ConflictError:
+      additionalProperties: false
+      description: Conflict
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Conflict
+              type: string
+            type:
+              description: HTTP error message
+              example: conflict
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ConflictError
       type: object
   securitySchemes:
     authorization:

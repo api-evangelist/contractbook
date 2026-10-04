@@ -111,6 +111,31 @@ paths:
       - Spaces
 components:
   schemas:
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
     NotFoundError:
       additionalProperties: false
       description: Not Found
@@ -153,18 +178,6 @@ components:
       - name
       title: SpaceCreateChildResponse
       type: object
-    SpaceCreateRequest:
-      additionalProperties: false
-      description: Request body for creating a child space
-      properties:
-        name:
-          description: Name of the space
-          example: My New Space
-          type: string
-      required:
-      - name
-      title: SpaceCreateRequest
-      type: object
     SpaceShowTreeResponse:
       additionalProperties: false
       description: Space tree structure with nested child spaces
@@ -198,31 +211,6 @@ components:
       - spaces
       title: SpaceShowTreeResponse
       type: object
-    ForbiddenError:
-      additionalProperties: false
-      description: Forbidden
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
-      type: object
     UnauthorizedError:
       additionalProperties: false
       description: Unauthorized
@@ -247,6 +235,18 @@ components:
       required:
       - error
       title: UnauthorizedError
+      type: object
+    SpaceCreateRequest:
+      additionalProperties: false
+      description: Request body for creating a child space
+      properties:
+        name:
+          description: Name of the space
+          example: My New Space
+          type: string
+      required:
+      - name
+      title: SpaceCreateRequest
       type: object
   securitySchemes:
     authorization:

@@ -167,20 +167,20 @@ paths:
       - Automations
 components:
   schemas:
-    NotFoundError:
+    ForbiddenError:
       additionalProperties: false
-      description: Not Found
+      description: Forbidden
       properties:
         error:
           additionalProperties: false
           properties:
             message:
               description: Error details message
-              example: Not Found
+              example: Forbidden
               type: string
             type:
               description: HTTP error message
-              example: not_found
+              example: forbidden
               type: string
           readOnly: true
           required:
@@ -190,58 +190,37 @@ components:
       readOnly: true
       required:
       - error
-      title: NotFoundError
+      title: ForbiddenError
       type: object
-    UnprocessableContentError:
+    AutomationRunRequest:
       additionalProperties: false
-      description: Unprocessable Content
+      description: Payload that will be passed to the automation when running it
       properties:
-        error:
-          additionalProperties: false
-          properties:
-            failures:
-              description: List of request errors
-              items:
-                additionalProperties: false
-                description: Error description
-                properties:
-                  detail:
-                    description: Details of the error
-                    type: string
-                  source:
-                    additionalProperties: false
-                    properties:
-                      pointer:
-                        description: Failing field name or reference
-                        type: string
-                    required:
-                    - pointer
-                    type: object
-                  title:
-                    description: Title of the error
-                    type: string
-                required:
-                - title
-                - detail
-                type: object
-              type: array
-            message:
-              description: Error details message
-              example: Unprocessable Content
-              type: string
-            type:
-              description: HTTP error message
-              example: unprocessable_entity
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
+        attachments:
+          description: Publicly accesible links to files
+          example:
+          - https://contractbook.com/file.pdf
+          items:
+            type: string
+          type: array
+        contacts:
+          description: List of Salesforce Contact IDs
+          example:
+          - 0030900000Ujt0BAAR
+          - 0030900000Ujt0GAAR
+          items:
+            type: string
+          type: array
+        object_id:
+          example: 0060900000FpKajAAF
+          type: string
+        object_type:
+          example: Opportunity
+          type: string
       required:
-      - error
-      title: UnprocessableContentError
+      - object_type
+      - object_id
+      title: AutomationRunRequest
       type: object
     BadRequestError:
       additionalProperties: false
@@ -294,35 +273,106 @@ components:
       - error
       title: BadRequestError
       type: object
-    AutomationRunRequest:
+    NotFoundError:
       additionalProperties: false
-      description: Payload that will be passed to the automation when running it
+      description: Not Found
       properties:
-        attachments:
-          description: Publicly accesible links to files
-          example:
-          - https://contractbook.com/file.pdf
-          items:
-            type: string
-          type: array
-        contacts:
-          description: List of Salesforce Contact IDs
-          example:
-          - 0030900000Ujt0BAAR
-          - 0030900000Ujt0GAAR
-          items:
-            type: string
-          type: array
-        object_id:
-          example: 0060900000FpKajAAF
-          type: string
-        object_type:
-          example: Opportunity
-          type: string
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
       required:
-      - object_type
-      - object_id
-      title: AutomationRunRequest
+      - error
+      title: NotFoundError
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+    UnprocessableContentError:
+      additionalProperties: false
+      description: Unprocessable Content
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
+            message:
+              description: Error details message
+              example: Unprocessable Content
+              type: string
+            type:
+              description: HTTP error message
+              example: unprocessable_entity
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnprocessableContentError
       type: object
     AutomationIndexResponse:
       additionalProperties: false
@@ -361,56 +411,6 @@ components:
             type: object
           type: array
       title: AutomationIndexResponse
-      type: object
-    ForbiddenError:
-      additionalProperties: false
-      description: Forbidden
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
-      type: object
-    UnauthorizedError:
-      additionalProperties: false
-      description: Unauthorized
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Unauthorized
-              type: string
-            type:
-              description: HTTP error message
-              example: unauthorized
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnauthorizedError
       type: object
   securitySchemes:
     authorization:
