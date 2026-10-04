@@ -1,21 +1,19 @@
-# Kin Score artifact — contractbook — 2026-08-27T103455
+# Kin Score artifact — contractbook — 2026-09-22T213221
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: contractbook
-  schema_version: 0.15.1
-  scored_at: '2026-08-27'
-  run_ts: 2026-08-27T103455
-  composite: 40.5
-  band: developing
+  schema_version: 0.22.0
+  scored_at: '2026-09-22'
+  run_ts: 2026-09-22T213221
+  composite: 38.7
+  band: thin
   facets:
-    discoverability: 74.1
-    contract_quality: 51.8
-    governance: 0.0
-    operational_transparency: 39.5
-    developer_ergonomics: 35.7
-    commercial_clarity: 39.5
+    discoverability: 68.5
+    contract_quality: 52.4
     contract_governance: 0.0
+    operational_transparency: 39.5
+    developer_ergonomics: 32.1
     access_clarity: 39.5
   agent_readiness:
     score: 32.4
