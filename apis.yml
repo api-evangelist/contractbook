@@ -41,7 +41,6 @@ x-docs-platform-checked: 2026-09-24
 tags:
 - Contract Management
 - Contract Lifecycle Management
-- Contract Lifecycle
 - Legal
 - E-Signature
 - Contracts
@@ -67,7 +66,6 @@ apis:
   - Notification
   - Event
   - Contract Lifecycle Management
-  - Contract Lifecycle
   tags_raw:
   - Webhooks
   - Notifications
