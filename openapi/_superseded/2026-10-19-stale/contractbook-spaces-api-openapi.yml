@@ -1,0 +1,254 @@
+openapi: 3.2.0
+info:
+  description: '> **Note**
+
+    >
+
+    > Looking for documentation for **Public API v2**?'
+  title: Contractbook Spaces API
+  version: '3.0'
+  x-logo:
+    altText: Contractbook logo
+    backgroundColor: '#FFFFFF'
+    url: public/contractbook-logo.svg
+servers:
+- description: Production server
+  url: https://api.contractbook.com/v3/
+  variables: {}
+- description: Staging server
+  url: https://api-staging.contractbook.com/v3/
+  variables: {}
+security: []
+tags:
+- name: Spaces
+paths:
+  /spaces/{id}:
+    post:
+      callbacks: {}
+      deprecated: false
+      description: Creates a child space within a parent space
+      operationId: create_child_space
+      parameters:
+      - description: Parent Space ID
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1e013958-867e-43fb-8210-c98ab139beb6
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpaceCreateRequest'
+        description: Space creation parameters
+        required: false
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpaceCreateChildResponse'
+          description: Created
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Not Found
+      summary: Create a child space
+      tags:
+      - Spaces
+  /spaces/{id}/tree:
+    get:
+      callbacks: {}
+      deprecated: false
+      description: Gets a space tree by ID
+      operationId: get_space_tree
+      parameters:
+      - description: Space ID
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1e013958-867e-43fb-8210-c98ab139beb6
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpaceShowTreeResponse'
+          description: Space
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Not Found
+      summary: Get a space tree
+      tags:
+      - Spaces
+components:
+  schemas:
+    SpaceShowTreeResponse:
+      additionalProperties: false
+      description: Space tree structure with nested child spaces
+      properties:
+        id:
+          description: Space ID
+          format: uuid
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          type: string
+        name:
+          description: Space name
+          type: string
+        spaces:
+          description: Child spaces
+          items:
+            description: Child space with same structure as parent
+            properties:
+              id:
+                format: uuid
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                type: string
+              name:
+                type: string
+              spaces:
+                type: array
+            type: object
+          type: array
+      required:
+      - id
+      - name
+      - spaces
+      title: SpaceShowTreeResponse
+      type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
+    SpaceCreateRequest:
+      additionalProperties: false
+      description: Request body for creating a child space
+      properties:
+        name:
+          description: Name of the space
+          example: My New Space
+          type: string
+      required:
+      - name
+      title: SpaceCreateRequest
+      type: object
+    SpaceCreateChildResponse:
+      additionalProperties: false
+      description: Response for creating a child space
+      properties:
+        id:
+          description: Space ID
+          format: uuid
+          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+          type: string
+        name:
+          description: Space name
+          type: string
+      required:
+      - id
+      - name
+      title: SpaceCreateChildResponse
+      type: object
+    NotFoundError:
+      additionalProperties: false
+      description: Not Found
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: NotFoundError
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+  securitySchemes:
+    authorization:
+      scheme: bearer
+      type: http

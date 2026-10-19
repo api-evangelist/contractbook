@@ -1,0 +1,12 @@
+{
+ "url": "https://api.contractbook.com/v3/docs/public//v3/openapi-v3.json",
+ "requested_url": "https://api.contractbook.com/v3/docs/public//v3/openapi-v3.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 270748,
+ "sha256": "ec988d3f1632a40596e646e909f6d739ee9625ed093b026fa8889a1aa88a4ec1",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.941), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

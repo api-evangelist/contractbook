@@ -1,0 +1,594 @@
+openapi: 3.2.0
+info:
+  description: '> **Note**
+
+    >
+
+    > Looking for documentation for **Public API v2**?'
+  title: Contractbook Templates API
+  version: '3.0'
+  x-logo:
+    altText: Contractbook logo
+    backgroundColor: '#FFFFFF'
+    url: public/contractbook-logo.svg
+servers:
+- description: Production server
+  url: https://api.contractbook.com/v3/
+  variables: {}
+- description: Staging server
+  url: https://api-staging.contractbook.com/v3/
+  variables: {}
+security: []
+tags:
+- name: Templates
+paths:
+  /templates:
+    get:
+      callbacks: {}
+      deprecated: false
+      description: Gets a list of templates
+      operationId: get_templates
+      parameters:
+      - description: Exclude templates from Spaces
+        in: query
+        name: exclude_spaces
+        schema:
+          default: false
+          example: 'true'
+          type: boolean
+      - description: Exclude templates not connected to an external application according to the given rules
+        explode: true
+        in: query
+        name: integration_filter
+        schema:
+          properties:
+            application:
+              enum:
+              - salesforce
+              required: true
+              type: string
+            object_type:
+              enum:
+              - opportunity
+              - account
+              - contact
+              type: string
+            record_type:
+              type: string
+          type: object
+        style: deepObject
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateIndexResponse'
+          description: List of templates
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+      summary: Get a list of templates
+      tags:
+      - Templates
+  /templates/{id}:
+    get:
+      callbacks: {}
+      deprecated: false
+      description: Gets a template by ID
+      operationId: get_template
+      parameters:
+      - description: Template ID
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1e013958-867e-43fb-8210-c98ab139beb6
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemplateShowResponse'
+          description: Template
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Not Found
+      summary: Get a template
+      tags:
+      - Templates
+components:
+  schemas:
+    NotFoundError:
+      additionalProperties: false
+      description: Not Found
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: NotFoundError
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+    TemplateIndexResponse:
+      additionalProperties: false
+      description: List of template previews
+      properties:
+        templates:
+          description: List of template previews
+          items:
+            additionalProperties: false
+            properties:
+              created_at:
+                description: The date and time when the template was created
+                format: date-time
+                type: string
+              description:
+                description: Description of the template
+                type: string
+              id:
+                description: Template ID
+                format: uuid
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                type: string
+              language:
+                description: Language
+                type: string
+              location:
+                properties:
+                  id:
+                    description: ID of location
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$|^root$
+                    type: string
+                  name:
+                    type: string
+                  type:
+                    description: Where the template is located
+                    enum:
+                    - none
+                    - folder
+                    - workspace
+                    - category
+                    type: string
+                type: object
+              owned:
+                description: Tells if the templates is owned by the requesting user
+                type: boolean
+              owner_id:
+                description: Template owner ID
+                format: uuid
+                pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                type: string
+              slug:
+                description: Template slug
+                type:
+                - string
+                - 'null'
+              title:
+                description: Template title
+                type:
+                - string
+                - 'null'
+              updated_at:
+                description: The date and time of the last time the template was edited
+                format: date-time
+                type: string
+            required:
+            - created_at
+            - description
+            - id
+            - language
+            - owned
+            - owner_id
+            - slug
+            - title
+            - updated_at
+            type: object
+          type: array
+      required:
+      - templates
+      title: TemplateIndexResponse
+      type: object
+    TemplateShowResponse:
+      additionalProperties: false
+      description: Full template information
+      properties:
+        template:
+          additionalProperties: false
+          properties:
+            attachments:
+              description: Attached files
+              items:
+                additionalProperties: false
+                description: Template attachment
+                properties:
+                  original:
+                    description: URL of the attachment
+                    format: uri
+                    type: string
+                  preview:
+                    description: 'If the original is a template, this field will hold an list URL with image
+
+                      previews of each page
+
+                      '
+                    items:
+                      description: Preview URL
+                      format: uri
+                      type: string
+                    type: array
+                required:
+                - original
+                type: object
+              type: array
+            company_logo_url:
+              description: The URL of the logo shown in the document
+              format: uri
+              type:
+              - string
+              - 'null'
+            created_at:
+              description: The date and time when the template was created
+              format: date-time
+              type: string
+            data_fields:
+              description: Data fields in the template
+              items:
+                description: Data field
+                properties:
+                  config:
+                    additionalProperties: false
+                    description: Additional config for this data field. Contains `options` for `select`, or `label` for `checkbox`.
+                    properties:
+                      label:
+                        required: false
+                        type:
+                        - string
+                        - 'null'
+                      options:
+                        items:
+                          type: string
+                        required: false
+                        type: array
+                    type: object
+                  description:
+                    description: Description
+                    type:
+                    - string
+                    - 'null'
+                  formatting:
+                    additionalProperties: false
+                    description: Formatting
+                    properties:
+                      fractional:
+                        type:
+                        - boolean
+                        - 'null'
+                      grouping:
+                        enum:
+                        - ''
+                        - dot
+                        - comma
+                        - space
+                        type:
+                        - string
+                        - 'null'
+                    type:
+                    - object
+                    - 'null'
+                  id:
+                    description: Unique ID
+                    format: uuid
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    type: string
+                  name:
+                    description: Name
+                    type: string
+                  required:
+                    description: Whether this data field must be filled to send the document for signature
+                    type: boolean
+                  source:
+                    description: Source of data for this data field
+                    enum:
+                    - drafter_questionnaire
+                    - ai
+                    - salesforce
+                    type:
+                    - string
+                    - 'null'
+                  source_mapping:
+                    description: Integration data mapping for this data field. Revealed only when connected to the same integration instance.
+                    type:
+                    - string
+                    - 'null'
+                  source_sync_type:
+                    description: Integration sync mode for this data field. Revealed only when connected to the same integration instance.
+                    enum:
+                    - downstream
+                    - upstream
+                    - bidirectional
+                    type:
+                    - string
+                    - 'null'
+                  type:
+                    description: Type
+                    enum:
+                    - text
+                    - number
+                    - date
+                    - select
+                    - checkbox
+                    type: string
+                  value:
+                    description: Value
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - id
+                - value
+                - formatting
+                - description
+                - config
+                - name
+                - type
+                - required
+                - source
+                - source_mapping
+                - source_sync_type
+                title: DataField
+                type: object
+              type: array
+            default_message:
+              description: A default message that will get copied to the draft
+              type: string
+            description:
+              description: Description of the template
+              type: string
+            id:
+              description: Template ID
+              format: uuid
+              pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              type: string
+            language:
+              description: Language
+              type: string
+            owned:
+              description: Tells if the templates is owned by the requesting user
+              type: boolean
+            owner_id:
+              description: Template owner ID
+              format: uuid
+              pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+              type: string
+            parties:
+              description: Parties and signees
+              items:
+                additionalProperties: false
+                description: Party
+                properties:
+                  address:
+                    description: Address
+                    example: 123 Main Street
+                    type:
+                    - string
+                    - 'null'
+                  id:
+                    description: Unique ID
+                    format: uuid
+                    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                    type:
+                    - string
+                    - 'null'
+                  name:
+                    description: Name
+                    example: Jane Doe
+                    type:
+                    - string
+                    - 'null'
+                  number:
+                    description: Company's VAT number or CVR
+                    type:
+                    - string
+                    - 'null'
+                  reference:
+                    description: How the party will be referred to in the document
+                    example: Sender
+                    type:
+                    - string
+                    - 'null'
+                  signees:
+                    description: Party's signees
+                    items:
+                      additionalProperties: false
+                      properties:
+                        changes_requested_at:
+                          description: Date and time when the signee requested changes to the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        email:
+                          description: Signee's email address
+                          format: email
+                          type:
+                          - string
+                          - 'null'
+                        full_name:
+                          description: Signee's full name
+                          example: Jane Doe
+                          type:
+                          - string
+                          - 'null'
+                        id:
+                          description: Unique ID
+                          format: uuid
+                          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+                          type:
+                          - string
+                          - 'null'
+                        opened_at:
+                          description: Date and time when the signee opened the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        order:
+                          description: Signee's signing order. When the signing order mode is set to `grouped`, then this number represents the signee's group number.
+                          minimum: 0
+                          type: integer
+                        rejected_at:
+                          description: Date and time when the signee rejected the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        signature_verification_methods:
+                          description: List of allowed signature types for the signee
+                          example:
+                          - sms
+                          - basic
+                          - wet_signature
+                          items:
+                            enum:
+                            - sms
+                            - basic
+                            - wet_signature
+                            - criipto_dk_mitid_substantial
+                            - criipto_dk_mitid_business
+                            - criipto_no_bankid
+                            - criipto_se_bankid_same_device
+                            - criipto_se_bankid_another_device
+                            - criipto_fi_bankid
+                            - criipto_fi_bankid_mobile
+                            type: string
+                          type:
+                          - array
+                          - 'null'
+                        signed_at:
+                          description: Date and time when the signee signed the document
+                          format: date-time
+                          readOnly: true
+                          type:
+                          - string
+                          - 'null'
+                        title:
+                          description: Signee's title
+                          example: Software Engineer
+                          type:
+                          - string
+                          - 'null'
+                      type: object
+                    type: array
+                  type:
+                    description: Type
+                    enum:
+                    - personal
+                    - company
+                    type: string
+                type: object
+              type: array
+            signing_order_mode:
+              description: The signing order mode. When it's set to grouped, each signee in `parties.signees`, should have the order field set to the group's number starting from 0.
+              enum:
+              - random
+              - strict
+              - grouped
+              type:
+              - string
+              - 'null'
+            slug:
+              description: Template slug
+              type:
+              - string
+              - 'null'
+            template:
+              description: Template content
+              type: object
+            title:
+              description: Title
+              type: string
+            updated_at:
+              description: The date and time of the last time the template was edited
+              format: date-time
+              type: string
+          required:
+          - attachments
+          - company_logo_url
+          - created_at
+          - default_message
+          - description
+          - data_fields
+          - id
+          - language
+          - owned
+          - owner_id
+          - parties
+          - signing_order_mode
+          - slug
+          - title
+          - updated_at
+          type: object
+      required:
+      - template
+      title: TemplateShowResponse
+      type: object
+  securitySchemes:
+    authorization:
+      scheme: bearer
+      type: http

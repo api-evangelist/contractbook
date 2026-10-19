@@ -4,7 +4,143 @@ info:
 
     >
 
-    > Looking for documentation for **Public API v2**?'
+    > Looking for documentation for **Public API v2**? Click here. >
+
+    >
+
+    > Please, provide your feedback via `#help-public-api` channel at Contractbook Friends
+
+    > Slack or by sending an email at help-public-api@contractbook.dk. ## Table of Contents
+
+
+    - Introduction
+
+    - Migration from Public API v2
+
+    - Authentication
+
+    - Use cases
+
+    - Scenario 1: Sending multiple contracts for signature
+
+    - Scenario 2: Uploading attachments to a document
+
+    - Scenario 3: Deleting a document
+
+    - Scenario 4: Using data fields
+
+    - Scenario 5: Downloading the contract as PDF
+
+    - Scenario 6: Sharing a document with collaborators
+
+    - Scenario 7: Receiving notifications for document life-cycle events
+
+    - Appendix A: Enhancing the /v3/documents
+
+
+    ## Introduction
+
+
+    Contractbook turns static contracts into a database for your entire
+
+    organization, unlocking the full value of your data while ensuring transparency
+
+    and a seamless data flow between tools. Our API allows you to generate pre-filled drafts from any data source, stay
+
+    updated on contract activity, and quickly export an overview of all contracts
+
+    and drafts. > Note: Whenever your user needs to access the Contractbook editor, we expect
+
+    > you to redirect their browser to the appropriate page. ## Migration from Public API v2
+
+
+    Public API v3 introduces several breaking changes focused on simplifying the document and template structure. ### Restructured parties and signees
+
+
+    The most significant change is the restructuring of document parties and signees. In v2, you had two separate but overlapping structures that created data redundancy:
+
+
+    - `visible_parties`: Basic party info (name, address, type, reference, number)
+
+    - `parties`: Signee details with redundant company/personal fields
+
+
+    In v3, this has been unified and simplified:
+
+    - **v2 `visible_parties`** → **v3 `parties`**: Contains essential party information
+
+    - **v2 `parties`** → **v3 `signees`**: Nested within parties, contains only signee-related information
+
+
+    **Field changes in the restructuring:**
+
+    - `personal_title` (personal party) and `representative_title` (company party) → unified as `title` in signees
+
+    - `company_representative` (company party) → `full_name` in signees
+
+    - **Removed redundant fields**: `company_address`, `company_name`, `company_number`, `personal_number` (already available in the parent party)
+
+    - **Removed internal references**: `user_id`, `profile_id`, `visible_party_id`
+
+
+    **Signee structure** now contains only signee-related information:
+
+    - `email`, `full_name`, `title`,`order`, `signature_verification_methods`
+
+    - `signed_at`, `opened_at`, `rejected_at`, `changes_requested_at`
+
+
+    ### Other removed attributes**
+
+
+    **From documents:**
+
+    - `folders` (folders are deprecated in favor of workspaces)
+
+
+    **From templates:**
+
+    - `target_shared_folder` (folders are deprecated in favor of workspaces)
+
+    - Party structure follows the same pattern as documents
+
+
+    ### Migration strategy
+
+
+    When migrating from v2 to v3:
+
+
+    1. **Update all endpoint URLs** by replacing `/v2/` with `/v3/`
+
+    2. **Restructure party data** in your requests and response handling:
+
+    - Map `visible_parties` to `parties`
+
+    - Move signee information from old `parties` to `signees` array within each party
+
+    3. **Remove deprecated fields** from your payloads (company_*, personal_*, representative_* fields)
+
+    4. **Update response parsing** to handle the new nested signee structure
+
+    5. **Test thoroughly** as the party/signee relationship is now more structured
+
+
+    ## Authentication
+
+
+    To use the API, you''ll need to get your own API key. For that, log into
+
+    Contractbook and navigate to your profile settings. There you can create an API
+
+    key which is going to be shown only once upon creation. There are two environments for API:
+
+
+    * **staging**: this environment should
+
+    only be used for testing purposes only. Here''s where you''ll be spending most of
+
+    your time when developing new features for your app(s).'
   title: Contractbook Document sharing API
   version: '3.0'
   x-logo:
@@ -137,6 +273,81 @@ paths:
       - Document sharing
 components:
   schemas:
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+    NotFoundError:
+      additionalProperties: false
+      description: Not Found
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: NotFoundError
+      type: object
     DocumentShareRequest:
       additionalProperties: false
       description: Document sharing parameters
@@ -252,45 +463,6 @@ components:
       - error
       title: BadRequestError
       type: object
-    DocumentUnshareRequest:
-      additionalProperties: false
-      description: Document unsharing parameters
-      properties:
-        email:
-          description: User's email
-          format: email
-          maxLength: 255
-          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
-          type: string
-      required:
-      - email
-      title: DocumentUnshareRequest
-      type: object
-    ForbiddenError:
-      additionalProperties: false
-      description: Forbidden
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Forbidden
-              type: string
-            type:
-              description: HTTP error message
-              example: forbidden
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: ForbiddenError
-      type: object
     UnprocessableContentError:
       additionalProperties: false
       description: Unprocessable Content
@@ -342,55 +514,19 @@ components:
       - error
       title: UnprocessableContentError
       type: object
-    NotFoundError:
+    DocumentUnshareRequest:
       additionalProperties: false
-      description: Not Found
+      description: Document unsharing parameters
       properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Not Found
-              type: string
-            type:
-              description: HTTP error message
-              example: not_found
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
+        email:
+          description: User's email
+          format: email
+          maxLength: 255
+          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
+          type: string
       required:
-      - error
-      title: NotFoundError
-      type: object
-    UnauthorizedError:
-      additionalProperties: false
-      description: Unauthorized
-      properties:
-        error:
-          additionalProperties: false
-          properties:
-            message:
-              description: Error details message
-              example: Unauthorized
-              type: string
-            type:
-              description: HTTP error message
-              example: unauthorized
-              type: string
-          readOnly: true
-          required:
-          - type
-          - message
-          type: object
-      readOnly: true
-      required:
-      - error
-      title: UnauthorizedError
+      - email
+      title: DocumentUnshareRequest
       type: object
   securitySchemes:
     authorization:

@@ -1,0 +1,398 @@
+openapi: 3.2.0
+info:
+  description: '> **Note**
+
+    >
+
+    > Looking for documentation for **Public API v2**?'
+  title: Contractbook Document sharing API
+  version: '3.0'
+  x-logo:
+    altText: Contractbook logo
+    backgroundColor: '#FFFFFF'
+    url: public/contractbook-logo.svg
+servers:
+- description: Production server
+  url: https://api.contractbook.com/v3/
+  variables: {}
+- description: Staging server
+  url: https://api-staging.contractbook.com/v3/
+  variables: {}
+security: []
+tags:
+- name: Document sharing
+paths:
+  /documents/{id}/share:
+    delete:
+      callbacks: {}
+      deprecated: false
+      description: Unshares a document from a user specified by profile ID
+      operationId: unshare_document
+      parameters:
+      - description: Document ID
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1e013958-867e-43fb-8210-c98ab139beb6
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentUnshareRequest'
+        description: Document unsharing parameters
+        required: false
+      responses:
+        '204':
+          content:
+            application/json: {}
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Not Found
+      summary: Unshare a document
+      tags:
+      - Document sharing
+    post:
+      callbacks: {}
+      deprecated: false
+      description: Shares a document to a user specified by email
+      operationId: share_document
+      parameters:
+      - description: Document ID
+        in: path
+        name: id
+        required: true
+        schema:
+          example: 1e013958-867e-43fb-8210-c98ab139beb6
+          format: uuid
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentShareRequest'
+        description: Document sharing parameters
+        required: false
+      responses:
+        '204':
+          content:
+            application/json: {}
+          description: Success
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnauthorizedError'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenError'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Not Found
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UnprocessableContentError'
+          description: Unprocessable Entity
+      summary: Share a document
+      tags:
+      - Document sharing
+components:
+  schemas:
+    DocumentShareRequest:
+      additionalProperties: false
+      description: Document sharing parameters
+      properties:
+        assigned_data_field_ids:
+          default: []
+          description: List of data fields IDs this user can update if their role is set to filler
+          items:
+            example: d5bcbcdb-552a-4419-bbff-c7fe3cc6837c
+            format: uuid
+            minLength: 36
+            pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+            type: string
+          type: array
+        can_access_private_comments:
+          description: 'Allows accessing private comments if set to **true**.
+
+
+            It is always **true** for **manager** role.
+
+
+            For other roles, it can be set using this parameter.
+
+            '
+          type: boolean
+        can_access_private_history:
+          description: Allows accessing private comments if set to **true**.
+          type: boolean
+        can_send_for_signature:
+          description: 'Allows sending for signature if set to **true**.
+
+
+            It is always **true** for **manager** role and always **false** for **reviewer** role.
+
+
+            For other roles, it can be set using this parameter.
+
+            '
+          type: boolean
+        email:
+          description: User's email
+          format: email
+          maxLength: 255
+          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
+          type: string
+        message:
+          description: Message to the user. If you don't have it, send an empty string.
+          maxLength: 10000
+          minLength: 1
+          type: string
+        role:
+          description: User's role
+          enum:
+          - manager
+          - editor
+          - filler
+          - reviewer
+          type: string
+      required:
+      - email
+      - role
+      - message
+      title: DocumentShareRequest
+      type: object
+    BadRequestError:
+      additionalProperties: false
+      description: Bad Request
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
+            message:
+              description: Error details message
+              example: Bad Request
+              type: string
+            type:
+              description: HTTP error message
+              example: bad_request
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: BadRequestError
+      type: object
+    DocumentUnshareRequest:
+      additionalProperties: false
+      description: Document unsharing parameters
+      properties:
+        email:
+          description: User's email
+          format: email
+          maxLength: 255
+          pattern: \A(?!\s)(?![\s\S]*\s$)(?!mailto:)(^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?(?:\.[\p{L}\p{N}](?:[\p{L}\p{N}-]{0,61}[\p{L}\p{N}])?){1,}$)\Z
+          type: string
+      required:
+      - email
+      title: DocumentUnshareRequest
+      type: object
+    ForbiddenError:
+      additionalProperties: false
+      description: Forbidden
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Forbidden
+              type: string
+            type:
+              description: HTTP error message
+              example: forbidden
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: ForbiddenError
+      type: object
+    UnprocessableContentError:
+      additionalProperties: false
+      description: Unprocessable Content
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            failures:
+              description: List of request errors
+              items:
+                additionalProperties: false
+                description: Error description
+                properties:
+                  detail:
+                    description: Details of the error
+                    type: string
+                  source:
+                    additionalProperties: false
+                    properties:
+                      pointer:
+                        description: Failing field name or reference
+                        type: string
+                    required:
+                    - pointer
+                    type: object
+                  title:
+                    description: Title of the error
+                    type: string
+                required:
+                - title
+                - detail
+                type: object
+              type: array
+            message:
+              description: Error details message
+              example: Unprocessable Content
+              type: string
+            type:
+              description: HTTP error message
+              example: unprocessable_entity
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnprocessableContentError
+      type: object
+    NotFoundError:
+      additionalProperties: false
+      description: Not Found
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Not Found
+              type: string
+            type:
+              description: HTTP error message
+              example: not_found
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: NotFoundError
+      type: object
+    UnauthorizedError:
+      additionalProperties: false
+      description: Unauthorized
+      properties:
+        error:
+          additionalProperties: false
+          properties:
+            message:
+              description: Error details message
+              example: Unauthorized
+              type: string
+            type:
+              description: HTTP error message
+              example: unauthorized
+              type: string
+          readOnly: true
+          required:
+          - type
+          - message
+          type: object
+      readOnly: true
+      required:
+      - error
+      title: UnauthorizedError
+      type: object
+  securitySchemes:
+    authorization:
+      scheme: bearer
+      type: http
