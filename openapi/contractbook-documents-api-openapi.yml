@@ -2949,3 +2949,9 @@ components:
     authorization:
       scheme: bearer
       type: http
+x-provenance:
+  method: harvested
+  publisher: Contractbook
+  source: https://api.contractbook.com/v3/docs/public//v3/openapi-v3.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
